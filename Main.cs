@@ -1,19 +1,12 @@
-﻿using System;
-using BepInEx;
+﻿using BepInEx;
 using BepInEx.Configuration;
-using UnityEngine;
 using RiskOfOptions;
-using RoR2;
-using System.Collections.Generic;
-using JetBrains.Annotations;
 using RiskOfOptions.OptionConfigs;
 using RiskOfOptions.Options;
+using RoR2;
 using System.Runtime.CompilerServices;
 using System.Security;
 using System.Security.Permissions;
-using TMPro;
-using UnityEngine.Networking;
-using System.Text.RegularExpressions;
 
 [module: UnverifiableCode]
 #pragma warning disable CS0618 // Type or member is obsolete
@@ -93,7 +86,6 @@ namespace ror2ChatFilterMod
             Off
         }
 
-
         public void Start()
         {
             SetupConfig();
@@ -103,7 +95,7 @@ namespace ror2ChatFilterMod
 
             //server
 
-                //On.RoR2.GenericPickupController.SendPickupMessage += GenericPickupController_SendPickupMessage;
+            //On.RoR2.GenericPickupController.SendPickupMessage += GenericPickupController_SendPickupMessage;
             if (!cfgShowFamilyServer.Value)
                 On.RoR2.ClassicStageInfo.BroadcastFamilySelection += ClassicStageInfo_BroadcastFamilySelection;
 
@@ -112,6 +104,7 @@ namespace ror2ChatFilterMod
                 ModCompat_RiskOfOptions();
             }
         }
+
         private static bool ShouldShowClient(ChatMessageBase chatMessage, ConfigEntry<FilterType> configEntry)
         {
             if (chatMessage is Chat.PlayerPickupChatMessage playerPickupChatMessage)
@@ -119,10 +112,13 @@ namespace ror2ChatFilterMod
                 {
                     case FilterType.All:
                         return true;
+
                     case FilterType.Myself:
                         return playerPickupChatMessage.subjectAsCharacterBody == LocalUserManager.GetFirstLocalUser().cachedBody;
+
                     case FilterType.Others:
                         return playerPickupChatMessage.subjectAsCharacterBody != LocalUserManager.GetFirstLocalUser().cachedBody;
+
                     case FilterType.Off:
                         return false;
                 }
@@ -131,10 +127,13 @@ namespace ror2ChatFilterMod
                 {
                     case FilterType.All:
                         return true;
+
                     case FilterType.Myself:
                         return playerDeathChatMessage.subjectAsCharacterBody == LocalUserManager.GetFirstLocalUser().cachedBody;
+
                     case FilterType.Others:
                         return playerDeathChatMessage.subjectAsCharacterBody != LocalUserManager.GetFirstLocalUser().cachedBody;
+
                     case FilterType.Off:
                         return false;
                 }
@@ -143,10 +142,13 @@ namespace ror2ChatFilterMod
                 {
                     case FilterType.All:
                         return true;
+
                     case FilterType.Myself:
                         return playerChatMessage.networkPlayerName.steamId == LocalUserManager.GetFirstLocalUser().currentNetworkUser.GetNetworkPlayerName().steamId;
+
                     case FilterType.Others:
                         return playerChatMessage.networkPlayerName.steamId != LocalUserManager.GetFirstLocalUser().currentNetworkUser.GetNetworkPlayerName().steamId;
+
                     case FilterType.Off:
                         return false;
                 }
@@ -156,10 +158,13 @@ namespace ror2ChatFilterMod
                 {
                     case FilterType.All:
                         return true;
+
                     case FilterType.Myself:
                         return bodyChatMessage.bodyObject == LocalUserManager.GetFirstLocalUser().cachedBody.gameObject;
+
                     case FilterType.Others:
                         return bodyChatMessage.bodyObject != LocalUserManager.GetFirstLocalUser().cachedBody.gameObject;
+
                     case FilterType.Off:
                         return false;
                 }
@@ -170,10 +175,13 @@ namespace ror2ChatFilterMod
                 {
                     case FilterType.All:
                         return true;
+
                     case FilterType.Myself:
                         return coloredTokenChatMessage.subjectAsCharacterBody == LocalUserManager.GetFirstLocalUser().cachedBody;
+
                     case FilterType.Others:
                         return coloredTokenChatMessage.subjectAsCharacterBody != LocalUserManager.GetFirstLocalUser().cachedBody;
+
                     case FilterType.Off:
                         return false;
                 }
@@ -184,10 +192,13 @@ namespace ror2ChatFilterMod
                 {
                     case FilterType.All:
                         return true;
+
                     case FilterType.Myself:
                         return subjectFormatChatMessage.subjectAsCharacterBody == LocalUserManager.GetFirstLocalUser().cachedBody;
+
                     case FilterType.Others:
                         return subjectFormatChatMessage.subjectAsCharacterBody != LocalUserManager.GetFirstLocalUser().cachedBody;
+
                     case FilterType.Off:
                         return false;
                 }
@@ -198,10 +209,13 @@ namespace ror2ChatFilterMod
                 {
                     case FilterType.All:
                         return true;
+
                     case FilterType.Myself:
                         return subjectChatMessage.subjectAsCharacterBody == LocalUserManager.GetFirstLocalUser().cachedBody;
+
                     case FilterType.Others:
                         return subjectChatMessage.subjectAsCharacterBody != LocalUserManager.GetFirstLocalUser().cachedBody;
+
                     case FilterType.Off:
                         return false;
                 }
@@ -211,7 +225,6 @@ namespace ror2ChatFilterMod
 
         private void ChatFilterClient(On.RoR2.Chat.orig_AddMessage_ChatMessageBase orig, ChatMessageBase message)
         {
-
             bool showMessage = true;
             switch (message)
             {
@@ -223,20 +236,24 @@ namespace ror2ChatFilterMod
                             break;
                     }
                     break;
+
                 case Chat.PlayerDeathChatMessage playerDeathChatMessage:
                     showMessage = ShouldShowClient(playerDeathChatMessage, cfgShowDeathMessagesClient);
                     break;
+
                 case Chat.PlayerChatMessage chatMsg:
                     switch (chatMsg.baseToken)
                     {
                         case "PLAYER_CONNECTED":
                             showMessage = ShouldShowClient(chatMsg, cfgShowJoinMessagesClient);
                             break;
+
                         case "PLAYER_DISCONNECTED":
                             showMessage = ShouldShowClient(chatMsg, cfgShowLeaveMessagesClient);
                             break;
                     }
                     break;
+
                 case Chat.BodyChatMessage bodyChatMessage:
                     showMessage = bodyChatMessage.token switch
                     {
@@ -244,9 +261,11 @@ namespace ror2ChatFilterMod
                         _ => true
                     };
                     break;
+
                 case Chat.NpcChatMessage _:
                     showMessage = cfgShowNpcClient.Value;
                     break;
+
                 case ColoredTokenChatMessage coloredTokenChatMessage:
                     showMessage = coloredTokenChatMessage.baseToken switch
                     {
@@ -254,6 +273,7 @@ namespace ror2ChatFilterMod
                         _ => true
                     };
                     break;
+
                 case Chat.SubjectFormatChatMessage subjectFormatChatMessage:
                     showMessage = subjectFormatChatMessage.baseToken switch
                     {
@@ -268,6 +288,7 @@ namespace ror2ChatFilterMod
                         _ => true
                     };
                     break;
+
                 case SubjectChatMessage subjectChatMessage:
                     showMessage = subjectChatMessage.baseToken switch
                     {
@@ -276,6 +297,7 @@ namespace ror2ChatFilterMod
                         _ => true
                     };
                     break;
+
                 case Chat.SimpleChatMessage simpleChatMessage:
                     //InfiniteTower: stageTransitionChatToken
                     //InfiniteTower: beginChatToken
@@ -307,10 +329,10 @@ namespace ror2ChatFilterMod
                 orig(message);
         }
 
-
         public void SetupConfig()
         {
             #region Client
+
             ConfigEntry<bool> BindClient(string k, bool t, string d)
             {
                 return Config.Bind("Client", k, t, d);
@@ -349,9 +371,11 @@ namespace ror2ChatFilterMod
             cfgShowShrineCombatClient = BindClient2("Shrine Combat Messages", FilterType.All, "<style=cShrine>{0} has summoned {1}s to fight.</color>");
             cfgShowArenaEndClient = BindClient("Arena End Messages", false, "<style=cWorldEvent>The Cell stabilizes.</style>");
             cfgShowPetFrogClient = BindClient2("Pet Frog Messages", FilterType.All, "{0} pet the frog.");
-            #endregion
+
+            #endregion Client
 
             #region Server
+
             ConfigEntry<bool> BindServer(string k, bool t, string d)
             {
                 return Config.Bind("Server", k, t, d);
@@ -383,7 +407,8 @@ namespace ror2ChatFilterMod
             cfgShowShrineCombatServer = BindServer("Shrine Combat Messages", true, "<style=cShrine>{0} has summoned {1}s to fight.</color>");
             cfgShowArenaEndServer = BindServer("Arena End Messages", false, "<style=cWorldEvent>The Cell stabilizes.</style>");
             cfgShowPetFrogServer = BindServer("Pet Frog Messages", true, "{0} pet the frog.");
-            #endregion
+
+            #endregion Server
         }
 
         [MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.NoOptimization)]
@@ -483,17 +508,20 @@ namespace ror2ChatFilterMod
                 case Chat.PlayerDeathChatMessage _:
                     showMessage = cfgShowDeathMessagesServer.Value;
                     break;
+
                 case Chat.PlayerChatMessage chatMsg:
                     switch (chatMsg.baseToken)
                     {
                         case "PLAYER_CONNECTED":
                             showMessage = cfgShowJoinMessagesServer.Value;
                             break;
+
                         case "PLAYER_DISCONNECTED":
                             showMessage = cfgShowLeaveMessagesServer.Value;
                             break;
                     }
                     break;
+
                 case Chat.PlayerPickupChatMessage playerPickupChatMessage:
                     switch (playerPickupChatMessage.baseToken)
                     {
@@ -504,6 +532,7 @@ namespace ror2ChatFilterMod
                             break;
                     }
                     break;
+
                 case Chat.BodyChatMessage bodyChatMessage:
                     showMessage = bodyChatMessage.token switch
                     {
@@ -511,9 +540,11 @@ namespace ror2ChatFilterMod
                         _ => true
                     };
                     break;
+
                 case Chat.NpcChatMessage _:
                     showMessage = cfgShowNpcServer.Value;
                     break;
+
                 case ColoredTokenChatMessage coloredTokenChatMessage:
                     showMessage = coloredTokenChatMessage.baseToken switch
                     {
@@ -521,6 +552,7 @@ namespace ror2ChatFilterMod
                         _ => true
                     };
                     break;
+
                 case Chat.SubjectFormatChatMessage subjectFormatChatMessage:
                     showMessage = subjectFormatChatMessage.baseToken switch
                     {
@@ -535,6 +567,7 @@ namespace ror2ChatFilterMod
                         _ => true
                     };
                     break;
+
                 case SubjectChatMessage subjectChatMessage:
                     showMessage = subjectChatMessage.baseToken switch
                     {
@@ -543,6 +576,7 @@ namespace ror2ChatFilterMod
                         _ => true
                     };
                     break;
+
                 case Chat.SimpleChatMessage simpleChatMessage:
                     //InfiniteTower: stageTransitionChatToken
                     //InfiniteTower: beginChatToken
