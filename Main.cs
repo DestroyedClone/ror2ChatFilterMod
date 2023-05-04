@@ -250,160 +250,107 @@ namespace ror2ChatFilterMod
         //server
         private void Chat_SendBroadcastChat_ChatMessageBase(On.RoR2.Chat.orig_SendBroadcastChat_ChatMessageBase orig, ChatMessageBase message)
         {
-            if (message is Chat.PlayerDeathChatMessage && !cfgShowDeathMessagesServer.Value)
-            {
-                return;
-            }
-            else if (message is Chat.PlayerChatMessage chatMsg)
-            {
-                if (chatMsg.baseToken == "PLAYER_CONNECTED" && !cfgShowJoinMessagesServer.Value)
-                {
-                    return;
-                } else if (chatMsg.baseToken == "PLAYER_DISCONNECTED" && !cfgShowLeaveMessagesServer.Value)
-                {
-                    return;
-                }
-            }
-            else if (message is Chat.PlayerPickupChatMessage playerPickupChatMessage)
-            {
-                if (playerPickupChatMessage.baseToken == "PLAYER_PICKUP" && !cfgShowPlayerPickupMessagesServer.Value)
-                {
-                    return;
-                }
-                else if (playerPickupChatMessage.baseToken == "INFINITETOWER_ADD_ITEM")
-                {
+            bool showMessage = true;
 
-                }
-                else if (playerPickupChatMessage.baseToken == "MONSTER_PICKUP" && !cfgShowNPCPickupMessagesServer.Value)
-                {
-                    return;
-                }
-                else if (playerPickupChatMessage.baseToken == "VOIDCAMP_COMPLETE")
-                {
-
-                }
-                return;
-            }
-            else if (message is Chat.BodyChatMessage bodyChatMessage)
+            switch (message)
             {
-                if (bodyChatMessage.token == "EQUIPMENT_BOSSHUNTERCONSUMED_CHAT" && !cfgShowAhoyServer.Value)
-                {
-                    return;
-                }
+                case Chat.PlayerDeathChatMessage playerDeathChatMessage:
+                    showMessage = cfgShowDeathMessagesServer.Value;
+                    break;
+                case Chat.PlayerChatMessage chatMsg:
+                    switch (chatMsg.baseToken)
+                    {
+                        case "PLAYER_CONNECTED":
+                            showMessage = cfgShowJoinMessagesServer.Value;
+                            break;
+                        case "PLAYER_DISCONNECTED":
+                            showMessage = cfgShowLeaveMessagesServer.Value;
+                            break;
+                    }
+                    break;
+                case Chat.PlayerPickupChatMessage playerPickupChatMessage:
+                    switch (playerPickupChatMessage.baseToken)
+                    {
+                        //INFINITETOWER_ADD_ITEM
+                        case "PLAYER_PICKUP":
+                            showMessage = cfgShowPlayerPickupMessagesServer.Value;
+                            break;
+                        case "MONSTER_PICKUP":
+                            showMessage = cfgShowNPCPickupMessagesServer.Value;
+                            break;
+                        case "VOIDCAMP_COMPLETE":
+                            showMessage = true;
+                            break;
+                    }
+                    break;
+                case Chat.BodyChatMessage bodyChatMessage:
+                    showMessage = bodyChatMessage.token switch
+                    {
+                        "EQUIPMENT_BOSSHUNTERCONSUMED_CHAT" => cfgShowAhoyServer.Value,
+                        _ => true
+                    };
+                    break;
+                case Chat.NpcChatMessage npcChatMessage:
+                    showMessage = cfgShowNpcServer.Value;
+                    break;
+                case ColoredTokenChatMessage coloredTokenChatMessage:
+                    showMessage = coloredTokenChatMessage.baseToken switch
+                    {
+                        "VOID_SUPPRESSOR_USE_MESSAGE" => cfgShowSuppressorServer.Value,
+                        _ => true
+                    };
+                    break;
+                case Chat.SubjectFormatChatMessage subjectFormatChatMessage:
+                    showMessage = subjectFormatChatMessage.baseToken switch
+                    {
+                        "ACHIEVEMENT_UNLOCKED_MESSAGE" => cfgShowAchievementServer.Value,
+                        "SHRINE_CHANCE_FAIL_MESSAGE" => cfgShowShrineChanceFailServer.Value,
+                        "SHRINE_CHANCE_SUCCESS_MESSAGE" => cfgShowShrineChanceWinServer.Value,
+                        "SHRINE_BOSS_USE_MESSAGE" => cfgShowShrineBossServer.Value,
+                        "SHRINE_BLOOD_USE_MESSAGE" => cfgShowShrineBloodServer.Value,
+                        "SHRINE_RESTACK_USE_MESSAGE" => cfgShowShrineRestackServer.Value,
+                        "SHRINE_HEALING_USE_MESSAGE" => cfgShowShrineHealingServer.Value,
+                        "SHRINE_COMBAT_USE_MESSAGE" => cfgShowShrineCombatServer.Value,
+                        _ => true
+                    };
+                    break;
+                case SubjectChatMessage subjectChatMessage:
+                    showMessage = subjectChatMessage.baseToken switch
+                    {
+                        "PLAYER_ACTIVATED_TELEPORTER" => cfgShowTeleporterActivationServer.Value,
+                        "PET_FROG" => cfgShowPetFrogServer.Value,
+                        _ => true
+                    };
+                    break;
+                case Chat.SimpleChatMessage simpleChatMessage:
+                    //InfiniteTower: stageTransitionChatToken
+                    //InfiniteTower: beginChatToken
+                    //InfiniteTower: suddenDeathChatToken
+                    //STONEGATE_OPEN
+                    //LUNAR_TELEPORTER_IDLE
+                    //LUNAR_TELEPORTER_ACTIVE
+                    //VULTURE_EGG_WARNING
+                    //VULTURE_EGG_BEGIN
+                    showMessage = simpleChatMessage.baseToken switch
+                    {
+                        "PORTAL_SHOP_WILL_OPEN" => cfgShowPortalShopWillOpenServer.Value,
+                        "PORTAL_GOLDSHORES_WILL_OPEN" => cfgShowPortalGoldshoresWillOpenServer.Value,
+                        "PORTAL_MS_WILL_OPEN" => cfgShowPortalMSWillOpenServer.Value,
+                        "SHRINE_BOSS_BEGIN_TRIAL" => cfgShowMountainTeleporterServer.Value,
+                        "PORTAL_SHOP_OPEN" => cfgShowPortalMSOpenServer.Value,
+                        "PORTAL_GOLDSHORES_OPEN" => cfgShowPortalGoldshoresOpenServer.Value,
+                        "PORTAL_MS_OPEN" => cfgShowPortalMSOpenServer.Value,
+                        "ARENA_END" => cfgShowArenaEndServer.Value,
+                        _ => simpleChatMessage.baseToken.StartsWith("BAZAAR_SEER_")
+                            ? cfgShowSeerServer.Value
+                            : true
+                    };
+                    break;
             }
-            else if (message is Chat.NpcChatMessage && !cfgShowNpcServer.Value)
+            if (showMessage)
             {
-                return;
+                orig(message);
             }
-            else if (message is ColoredTokenChatMessage coloredTokenChatMessage)
-            {
-                if (coloredTokenChatMessage.baseToken == "VOID_SUPPRESSOR_USE_MESSAGE" && !cfgShowSuppressorServer.Value)
-                {
-                    return;
-                }
-            }
-            else if (message is Chat.SubjectFormatChatMessage subjectFormatChatMessage)
-            {
-                //same as networkuser.CmdReportAchievement
-                if (subjectFormatChatMessage.baseToken == "ACHIEVEMENT_UNLOCKED_MESSAGE" && !cfgShowAchievementServer.Value)
-                {
-                    return;
-                }
-                else if (subjectFormatChatMessage.baseToken == "SHRINE_CHANCE_FAIL_MESSAGE" && !cfgShowShrineChanceFailServer.Value)
-                {
-                    return;
-                }
-                else if (subjectFormatChatMessage.baseToken == "SHRINE_CHANCE_SUCCESS_MESSAGE" && !cfgShowShrineChanceWinServer.Value)
-                {
-                    return;
-                }
-                else if (subjectFormatChatMessage.baseToken == "SHRINE_BOSS_USE_MESSAGE" && !cfgShowShrineBossServer.Value)
-                {
-                    return;
-                }
-                else if (subjectFormatChatMessage.baseToken == "SHRINE_BLOOD_USE_MESSAGE" && !cfgShowShrineBloodServer.Value)
-                {
-                    return;
-                }
-                else if (subjectFormatChatMessage.baseToken == "SHRINE_RESTACK_USE_MESSAGE" && !cfgShowShrineRestackServer.Value)
-                {
-                    return;
-                }
-                else if (subjectFormatChatMessage.baseToken == "SHRINE_HEALING_USE_MESSAGE" && !cfgShowShrineHealingServer.Value)
-                {
-                    return;
-                }
-                else if (subjectFormatChatMessage.baseToken == "SHRINE_COMBAT_USE_MESSAGE" && !cfgShowShrineCombatServer.Value)
-                {
-                    return;
-                }
-
-            }
-            else if (message is SubjectChatMessage subjectChatMessage)
-            {
-                if (subjectChatMessage.baseToken == "PLAYER_ACTIVATED_TELEPORTER" && !cfgShowTeleporterActivationServer.Value)
-                {
-                    return;
-                }
-                else if (subjectChatMessage.baseToken == "PET_FROG" && !cfgShowPetFrogServer.Value)
-                {
-                    return;
-                }
-            }
-            else if (message is Chat.SimpleChatMessage  simpleChatMessage)
-            {
-                //InfiniteTower: stageTransitionChatToken
-                //InfiniteTower: beginChatToken
-                //InfiniteTower: suddenDeathChatToken
-                //STONEGATE_OPEN
-                //LUNAR_TELEPORTER_IDLE
-                //LUNAR_TELEPORTER_ACTIVE
-                //VULTURE_EGG_WARNING
-                //VULTURE_EGG_BEGIN
-                switch (simpleChatMessage.baseToken)
-                {
-                    case "PORTAL_SHOP_WILL_OPEN":
-                        if (!cfgShowPortalShopWillOpenServer.Value)
-                            return;
-                        break;
-                    case "PORTAL_GOLDSHORES_WILL_OPEN":
-                        if (!cfgShowPortalGoldshoresWillOpenServer.Value)
-                            return;
-                        break;
-                    case "PORTAL_MS_WILL_OPEN":
-                        if (!cfgShowPortalMSWillOpenServer.Value)
-                            return;
-                        break;
-                    case "SHRINE_BOSS_BEGIN_TRIAL":
-                        if (!cfgShowMountainTeleporterServer.Value)
-                            return;
-                        break;
-                    case "PORTAL_SHOP_OPEN":
-                        if (!cfgShowPortalMSOpenServer.Value)
-                            return;
-                        break;
-                    case "PORTAL_GOLDSHORES_OPEN":
-                        if (!cfgShowPortalGoldshoresOpenServer.Value)
-                            return;
-                        break;
-                    case "PORTAL_MS_OPEN":
-                        if (!cfgShowPortalMSOpenServer.Value)
-                            return;
-                        break;
-                    case "ARENA_END":
-                        if (!cfgShowArenaEndServer.Value)
-                            return;
-                        break;
-                    default:
-                        if (simpleChatMessage.baseToken.StartsWith("BAZAAR_SEER_"))
-                        {
-                            if (!cfgShowSeerServer.Value)
-                                return;
-                        }
-                        break;
-                }
-            }
-            orig(message);
         }
     }
 }
