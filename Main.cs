@@ -319,36 +319,36 @@ namespace ror2ChatFilterMod
             {
                 return Config.Bind("Client", k, t, d);
             }
-            cfgShowPlayerPickupMessagesClient = Config.Bind("Client", "Show Player Pickup Messages", FilterType.All, "<style=cEvent>{0} picked up {1}{2}</color>");
+            cfgShowPlayerPickupMessagesClient = Config.Bind("Client", "Player Pickup Messages", FilterType.All, "<style=cEvent>{0} picked up {1}{2}</color>");
             cfgTimestampFormat = Config.Bind("Client", "Timestamp Format", "{0} {1}", "First parameter is the timestamp, the second is the original message. Leave empty to disable.");
 
-            cfgShowDeathMessagesClient = BindClient2("Show Death Messages", FilterType.All, "");
-            cfgShowJoinMessagesClient = BindClient2("Show Join Messages", FilterType.All, "<style=cEvent>{0} connected.</color>");
-            cfgShowLeaveMessagesClient = BindClient2("Show Leave Messages", FilterType.All, "<style=cEvent>{0} disconnected.</color>");
-            cfgShowNPCPickupMessagesClient = BindClient("Show NPC Pickup Messages", true, "Scav pickups, void fields item adds");
-            cfgShowAhoyClient = BindClient2("Show Ahoy Messages", FilterType.All, "Ahoy!");
-            cfgShowNpcClient = BindClient("Show NPC Messages", true, "Mithrix messages");
-            cfgShowAchievementClient = BindClient2("Show Achievement Messages", FilterType.All, "<color=#ccd3e0>{0} achieved <color=#BDE151>{1}</color></color>");
-            cfgShowFamilyClient = BindClient("Show Family Messages", true, "");
-            cfgShowTeleporterActivationClient = BindClient2("Show Teleporter Activation Messages", FilterType.All, "<style=cEvent>{0} activated the <style=cDeath>Teleporter <sprite name=\"TP\" tint=1></style>.</style>");
-            cfgShowSuppressorClient = BindClient2("Show Suppressor Messages", FilterType.All, "<style=cShrine>{0} eradicated {1} from the universe.");
-            cfgShowPortalShopWillOpenClient = BindClient("Show Portal Shop Will Open Messages", true, "<style=cWorldEvent>A blue orb appears..</style>");
-            cfgShowPortalGoldshoresWillOpenClient = BindClient("Show Portal Goldshores Will Open Messages", true, "<style=cWorldEvent>A gold orb appears..</style>");
-            cfgShowPortalMSWillOpenClient = BindClient("Show Portal MS Will Open Messages", true, "<style=cWorldEvent>A celestial orb appears..</style>");
-            cfgShowPortalShopOpenClient = BindClient("Show Portal Shop Open Messages", true, "<style=cWorldEvent>A blue portal appears..</style>");
-            cfgShowPortalGoldshoresOpenClient = BindClient("Show Portal Goldshores Open Messages", true, "<style=cWorldEvent>A gold portal appears..</style>");
-            cfgShowPortalMSOpenClient = BindClient("Show Portal MS Open Messages", true, "<style=cWorldEvent>A celestial portal appears..</style>");
-            cfgShowMountainTeleporterClient = BindClient("Show Mountain Teleporter Messages", true, "<style=cShrine>Let the challenge of the Mountain... begin!</style>");
-            cfgShowShrineChanceWinClient = BindClient2("Show Shrine Chance Win Messages", FilterType.All, "<style=cShrine>{0} offered to the shrine and was rewarded!</color>");
-            cfgShowShrineChanceFailClient = BindClient2("Show Shrine Chance Fail Messages", FilterType.All, "<style=cShrine>{0} offered to the shrine and gained nothing.</color>");
-            cfgShowSeerClient = BindClient("Show Seer Messages", true, "<style=cWorldEvent>You dream of STAGEHINT.</style>");
-            cfgShowShrineBossClient = BindClient2("Show Shrine Boss Messages", FilterType.All, "<style=cShrine>{0} has invited the challenge of the Mountain..</color>");
-            cfgShowShrineBloodClient = BindClient2("Show Shrine Blood Messages", FilterType.All, "<style=cShrine>{0} feels a searing pain, and has gained {1} gold.</color>");
-            cfgShowShrineRestackClient = BindClient2("Show Shrine Restack Messages", FilterType.All, "<style=cShrine>{0} is... sequenced.</color>");
-            cfgShowShrineHealingClient = BindClient2("Show Shrine Healing Messages", FilterType.All, "\"<style=cShrine>{0} is embraced by the healing warmth of the Woods.</color>");
-            cfgShowShrineCombatClient = BindClient2("Show Shrine Combat Messages", FilterType.All, "<style=cShrine>{0} has summoned {1}s to fight.</color>");
-            cfgShowArenaEndClient = BindClient("Show Arena End Messages", false, "<style=cWorldEvent>The Cell stabilizes.</style>");
-            cfgShowPetFrogClient = BindClient2("Show Pet Frog Messages", FilterType.All, "{0} pet the frog.");
+            cfgShowDeathMessagesClient = BindClient2("Death Messages", FilterType.All, "");
+            cfgShowJoinMessagesClient = BindClient2("Join Messages", FilterType.All, "<style=cEvent>{0} connected.</color>");
+            cfgShowLeaveMessagesClient = BindClient2("Leave Messages", FilterType.All, "<style=cEvent>{0} disconnected.</color>");
+            cfgShowNPCPickupMessagesClient = BindClient("NPC Pickup Messages", true, "Scav pickups, void fields item adds");
+            cfgShowAhoyClient = BindClient2("Ahoy Messages", FilterType.All, "Ahoy!");
+            cfgShowNpcClient = BindClient("NPC Messages", true, "Mithrix messages");
+            cfgShowAchievementClient = BindClient2("Achievement Messages", FilterType.All, "<color=#ccd3e0>{0} achieved <color=#BDE151>{1}</color></color>");
+            cfgShowFamilyClient = BindClient("Family Messages", true, "");
+            cfgShowTeleporterActivationClient = BindClient2("Teleporter Activation Messages", FilterType.All, "<style=cEvent>{0} activated the <style=cDeath>Teleporter <sprite name=\"TP\" tint=1></style>.</style>");
+            cfgShowSuppressorClient = BindClient2("Suppressor Messages", FilterType.All, "<style=cShrine>{0} eradicated {1} from the universe.");
+            cfgShowPortalShopWillOpenClient = BindClient("Portal Shop Will Open Messages", true, "<style=cWorldEvent>A blue orb appears..</style>");
+            cfgShowPortalGoldshoresWillOpenClient = BindClient("Portal Goldshores Will Open Messages", true, "<style=cWorldEvent>A gold orb appears..</style>");
+            cfgShowPortalMSWillOpenClient = BindClient("Portal MS Will Open Messages", true, "<style=cWorldEvent>A celestial orb appears..</style>");
+            cfgShowPortalShopOpenClient = BindClient("Portal Shop Open Messages", true, "<style=cWorldEvent>A blue portal appears..</style>");
+            cfgShowPortalGoldshoresOpenClient = BindClient("Portal Goldshores Open Messages", true, "<style=cWorldEvent>A gold portal appears..</style>");
+            cfgShowPortalMSOpenClient = BindClient("Portal MS Open Messages", true, "<style=cWorldEvent>A celestial portal appears..</style>");
+            cfgShowMountainTeleporterClient = BindClient("Mountain Teleporter Messages", true, "<style=cShrine>Let the challenge of the Mountain... begin!</style>");
+            cfgShowShrineChanceWinClient = BindClient2("Shrine Chance Win Messages", FilterType.All, "<style=cShrine>{0} offered to the shrine and was rewarded!</color>");
+            cfgShowShrineChanceFailClient = BindClient2("Shrine Chance Fail Messages", FilterType.All, "<style=cShrine>{0} offered to the shrine and gained nothing.</color>");
+            cfgShowSeerClient = BindClient("Seer Messages", true, "<style=cWorldEvent>You dream of STAGEHINT.</style>");
+            cfgShowShrineBossClient = BindClient2("Shrine Boss Messages", FilterType.All, "<style=cShrine>{0} has invited the challenge of the Mountain..</color>");
+            cfgShowShrineBloodClient = BindClient2("Shrine Blood Messages", FilterType.All, "<style=cShrine>{0} feels a searing pain, and has gained {1} gold.</color>");
+            cfgShowShrineRestackClient = BindClient2("Shrine Restack Messages", FilterType.All, "<style=cShrine>{0} is... sequenced.</color>");
+            cfgShowShrineHealingClient = BindClient2("Shrine Healing Messages", FilterType.All, "\"<style=cShrine>{0} is embraced by the healing warmth of the Woods.</color>");
+            cfgShowShrineCombatClient = BindClient2("Shrine Combat Messages", FilterType.All, "<style=cShrine>{0} has summoned {1}s to fight.</color>");
+            cfgShowArenaEndClient = BindClient("Arena End Messages", false, "<style=cWorldEvent>The Cell stabilizes.</style>");
+            cfgShowPetFrogClient = BindClient2("Pet Frog Messages", FilterType.All, "{0} pet the frog.");
             #endregion
 
             #region Server
@@ -356,33 +356,33 @@ namespace ror2ChatFilterMod
             {
                 return Config.Bind("Server", k, t, d);
             }
-            cfgShowDeathMessagesServer = BindServer("Show Death Messages", true, "");
-            cfgShowJoinMessagesServer = BindServer("Show Join Messages", true, "<style=cEvent>{0} connected.</color>");
-            cfgShowLeaveMessagesServer = BindServer("Show Leave Messages", true, "<style=cEvent>{0} disconnected.</color>");
-            cfgShowNPCPickupMessagesServer = BindServer("Show NPC Pickup Messages", true, "Scav pickups, void fields item adds");
-            cfgShowAhoyServer = BindServer("Show Ahoy Messages", false, "Ahoy!");
-            cfgShowNpcServer = BindServer("Show NPC Messages", true, "Mithrix messages");
-            cfgShowAchievementServer = BindServer("Show Achievement Messages", false, "<color=#ccd3e0>{0} achieved <color=#BDE151>{1}</color></color>");
-            cfgShowFamilyServer = BindServer("Show Family Messages", true, "");
-            cfgShowTeleporterActivationServer = BindServer("Show Teleporter Activation Messages", true, "<style=cEvent>{0} activated the <style=cDeath>Teleporter <sprite name=\"TP\" tint=1></style>.</style>");
-            cfgShowSuppressorServer = BindServer("Show Suppressor Messages", true, "<style=cShrine>{0} eradicated {1} from the universe.");
-            cfgShowPortalShopWillOpenServer = BindServer("Show Portal Shop Will Open Messages", true, "<style=cWorldEvent>A blue orb appears..</style>");
-            cfgShowPortalGoldshoresWillOpenServer = BindServer("Show Portal Goldshores Will Open Messages", true, "<style=cWorldEvent>A gold orb appears..</style>");
-            cfgShowPortalMSWillOpenServer = BindServer("Show Portal MS Will Open Messages", true, "<style=cWorldEvent>A celestial orb appears..</style>");
-            cfgShowPortalShopOpenServer = BindServer("Show Portal Shop Open Messages", true, "<style=cWorldEvent>A blue portal appears..</style>");
-            cfgShowPortalGoldshoresOpenServer = BindServer("Show Portal Goldshores Open Messages", true, "<style=cWorldEvent>A gold portal appears..</style>");
-            cfgShowPortalMSOpenServer = BindServer("Show Portal MS Open Messages", true, "<style=cWorldEvent>A celestial portal appears..</style>");
-            cfgShowMountainTeleporterServer = BindServer("Show Mountain Teleporter Messages", true, "<style=cShrine>Let the challenge of the Mountain... begin!</style>");
-            cfgShowShrineChanceWinServer = BindServer("Show Shrine Chance Win Messages", false, "<style=cShrine>{0} offered to the shrine and was rewarded!</color>");
-            cfgShowShrineChanceFailServer = BindServer("Show Shrine Chance Fail Messages", false, "<style=cShrine>{0} offered to the shrine and gained nothing.</color>");
-            cfgShowSeerServer = BindServer("Show Seer Messages", true, "<style=cWorldEvent>You dream of STAGEHINT.</style>");
-            cfgShowShrineBossServer = BindServer("Show Shrine Boss Messages", true, "<style=cShrine>{0} has invited the challenge of the Mountain..</color>");
-            cfgShowShrineBloodServer = BindServer("Show Shrine Blood Messages", false, "<style=cShrine>{0} feels a searing pain, and has gained {1} gold.</color>");
-            cfgShowShrineRestackServer = BindServer("Show Shrine Restack Messages", true, "<style=cShrine>{0} is... sequenced.</color>");
-            cfgShowShrineHealingServer = BindServer("Show Shrine Healing Messages", false, "\"<style=cShrine>{0} is embraced by the healing warmth of the Woods.</color>");
-            cfgShowShrineCombatServer = BindServer("Show Shrine Combat Messages", true, "<style=cShrine>{0} has summoned {1}s to fight.</color>");
-            cfgShowArenaEndServer = BindServer("Show Arena End Messages", false, "<style=cWorldEvent>The Cell stabilizes.</style>");
-            cfgShowPetFrogServer = BindServer("Show Pet Frog Messages", true, "{0} pet the frog.");
+            cfgShowDeathMessagesServer = BindServer("Death Messages", true, "");
+            cfgShowJoinMessagesServer = BindServer("Join Messages", true, "<style=cEvent>{0} connected.</color>");
+            cfgShowLeaveMessagesServer = BindServer("Leave Messages", true, "<style=cEvent>{0} disconnected.</color>");
+            cfgShowNPCPickupMessagesServer = BindServer("NPC Pickup Messages", true, "Scav pickups, void fields item adds");
+            cfgShowAhoyServer = BindServer("Ahoy Messages", false, "Ahoy!");
+            cfgShowNpcServer = BindServer("NPC Messages", true, "Mithrix messages");
+            cfgShowAchievementServer = BindServer("Achievement Messages", false, "<color=#ccd3e0>{0} achieved <color=#BDE151>{1}</color></color>");
+            cfgShowFamilyServer = BindServer("Family Messages", true, "");
+            cfgShowTeleporterActivationServer = BindServer("Teleporter Activation Messages", true, "<style=cEvent>{0} activated the <style=cDeath>Teleporter <sprite name=\"TP\" tint=1></style>.</style>");
+            cfgShowSuppressorServer = BindServer("Suppressor Messages", true, "<style=cShrine>{0} eradicated {1} from the universe.");
+            cfgShowPortalShopWillOpenServer = BindServer("Portal Shop Will Open Messages", true, "<style=cWorldEvent>A blue orb appears..</style>");
+            cfgShowPortalGoldshoresWillOpenServer = BindServer("Portal Goldshores Will Open Messages", true, "<style=cWorldEvent>A gold orb appears..</style>");
+            cfgShowPortalMSWillOpenServer = BindServer("Portal MS Will Open Messages", true, "<style=cWorldEvent>A celestial orb appears..</style>");
+            cfgShowPortalShopOpenServer = BindServer("Portal Shop Open Messages", true, "<style=cWorldEvent>A blue portal appears..</style>");
+            cfgShowPortalGoldshoresOpenServer = BindServer("Portal Goldshores Open Messages", true, "<style=cWorldEvent>A gold portal appears..</style>");
+            cfgShowPortalMSOpenServer = BindServer("Portal MS Open Messages", true, "<style=cWorldEvent>A celestial portal appears..</style>");
+            cfgShowMountainTeleporterServer = BindServer("Mountain Teleporter Messages", true, "<style=cShrine>Let the challenge of the Mountain... begin!</style>");
+            cfgShowShrineChanceWinServer = BindServer("Shrine Chance Win Messages", false, "<style=cShrine>{0} offered to the shrine and was rewarded!</color>");
+            cfgShowShrineChanceFailServer = BindServer("Shrine Chance Fail Messages", false, "<style=cShrine>{0} offered to the shrine and gained nothing.</color>");
+            cfgShowSeerServer = BindServer("Seer Messages", true, "<style=cWorldEvent>You dream of STAGEHINT.</style>");
+            cfgShowShrineBossServer = BindServer("Shrine Boss Messages", true, "<style=cShrine>{0} has invited the challenge of the Mountain..</color>");
+            cfgShowShrineBloodServer = BindServer("Shrine Blood Messages", false, "<style=cShrine>{0} feels a searing pain, and has gained {1} gold.</color>");
+            cfgShowShrineRestackServer = BindServer("Shrine Restack Messages", true, "<style=cShrine>{0} is... sequenced.</color>");
+            cfgShowShrineHealingServer = BindServer("Shrine Healing Messages", false, "\"<style=cShrine>{0} is embraced by the healing warmth of the Woods.</color>");
+            cfgShowShrineCombatServer = BindServer("Shrine Combat Messages", true, "<style=cShrine>{0} has summoned {1}s to fight.</color>");
+            cfgShowArenaEndServer = BindServer("Arena End Messages", false, "<style=cWorldEvent>The Cell stabilizes.</style>");
+            cfgShowPetFrogServer = BindServer("Pet Frog Messages", true, "{0} pet the frog.");
             #endregion
         }
 
