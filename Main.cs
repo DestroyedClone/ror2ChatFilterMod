@@ -14,6 +14,7 @@ using System.Security.Permissions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
+using System.Text.RegularExpressions;
 
 [module: UnverifiableCode]
 #pragma warning disable CS0618 // Type or member is obsolete
@@ -67,10 +68,62 @@ namespace ror2ChatFilterMod
 
         public static CharacterBody characterBody;
 
-        public static Dictionary<string, string> langName_to_suffixDefault = new Dictionary<string, string>();
-        public static Dictionary<string, string> langName_to_suffixEnemy = new Dictionary<string, string>();
-        public static Dictionary<string, string> langName_to_suffixInteractable = new Dictionary<string, string>();
-        public static Dictionary<string, string> langName_to_suffixInteractableWithCost = new Dictionary<string, string>();
+        public static Dictionary<string, string> langName_to_suffixDefault = new Dictionary<string, string>()
+        {
+            { "de", " will hierhin gehen.</style>" },
+            { "en", "" },
+            { "es-ES", "" },
+            { "FR", "" },
+            { "IT", "" },
+            { "ja", "" },
+            { "ko", "" },
+            { "pt-BR", "" },
+            { "RU", "" },
+            { "tr", "" },
+            { "zh-CN", "" },
+        };
+        public static Dictionary<string, string> langName_to_suffixEnemy = new Dictionary<string, string>()
+        {
+            { "de", "“ angreifen.</style>" },
+            { "en", "" },
+            { "es-ES", "" },
+            { "FR", "" },
+            { "IT", "" },
+            { "ja", "" },
+            { "ko", "" },
+            { "pt-BR", "" },
+            { "RU", "" },
+            { "tr", "" },
+            { "zh-CN", "" },
+        };
+        public static Dictionary<string, string> langName_to_suffixInteractable = new Dictionary<string, string>()
+        {
+            { "de", "" },
+            { "en", "" },
+            { "es-ES", "" },
+            { "FR", "" },
+            { "IT", "" },
+            { "ja", "" },
+            { "ko", "" },
+            { "pt-BR", "" },
+            { "RU", "" },
+            { "tr", "" },
+            { "zh-CN", "" },
+        };
+        public static Dictionary<string, string> langName_to_suffixInteractableWithCost = new Dictionary<string, string>()
+        {
+            { "de", "" },
+            { "en", "" },
+            { "es-ES", "" },
+            { "FR", "" },
+            { "IT", "" },
+            { "ja", "" },
+            { "ko", "" },
+            { "pt-BR", "" },
+            { "RU", "" },
+            { "tr", "" },
+            { "zh-CN", "" },
+        };
 
         public static Dictionary<string, bool> subjectFormatChatMessage_to_config = new Dictionary<string, bool>()
         {
@@ -86,16 +139,27 @@ namespace ror2ChatFilterMod
             disabled
         }*/
 
-        public void Setup()
+        public static void SetupTokens()
         {
             langName_to_suffixDefault.Clear();
             langName_to_suffixEnemy.Clear();
             langName_to_suffixInteractable.Clear();
             langName_to_suffixInteractableWithCost.Clear();
-            string Token(string token)
+
+            static string Token(string token)
             {
                 return token.Substring(token.IndexOf("}") + 1);
             }
+
+                var sb1 = HG.StringBuilderPool.RentStringBuilder();
+                var sb2 = HG.StringBuilderPool.RentStringBuilder();
+                var sb3 = HG.StringBuilderPool.RentStringBuilder();
+                var sb4 = HG.StringBuilderPool.RentStringBuilder();
+
+            sb1.AppendLine("langName_to_suffixDefault");
+            sb2.AppendLine("langName_to_suffixEnemy");
+            sb3.AppendLine("langName_to_suffixInteractable");
+            sb4.AppendLine("langName_to_suffixInteractableWithCost");
             foreach (var lang in RoR2.Language.steamLanguageTable)
             {
                 var langName = lang.Value.webApiName;
@@ -104,17 +168,27 @@ namespace ror2ChatFilterMod
                 var text3 = Language.GetString("PLAYER_PING_INTERACTABLE", langName);
                 var text4 = Language.GetString("PLAYER_PING_INTERACTABLE_WITH_COST", langName);
 
-                langName_to_suffixDefault[langName] = Token(text1);
-                langName_to_suffixEnemy[langName] = Token(text2);
-                langName_to_suffixInteractable[langName] = Token(text3);
-                langName_to_suffixInteractableWithCost[langName] = Token(text4);
+                sb1.AppendLine($"{{{langName}, {text1}}},");
+                sb2.AppendLine($"{{{langName}, {text2}}},");
+                sb3.AppendLine($"{{{langName}, {text3}}},");
+                sb4.AppendLine($"{{{langName}, {text4}}},");
             }
+
+            Debug.Log(sb1.ToString());
+            Debug.Log(sb2.ToString());
+            Debug.Log(sb3.ToString());
+            Debug.Log(sb4.ToString());
+
+            HG.StringBuilderPool.ReturnStringBuilder(sb1);
+            HG.StringBuilderPool.ReturnStringBuilder(sb2);
+            HG.StringBuilderPool.ReturnStringBuilder(sb3);
+            HG.StringBuilderPool.ReturnStringBuilder(sb4);
         }
 
 
         public void Start()
         {
-            Setup();
+            RoR2Application.onLoad += SetupTokens;
             SetupConfig();
 
             On.RoR2.Chat.SendBroadcastChat_ChatMessageBase += Chat_SendBroadcastChat_ChatMessageBase;
@@ -174,7 +248,7 @@ namespace ror2ChatFilterMod
         [MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.NoOptimization)]
         private static void ModCompat_RiskOfOptions()
         {
-            void A(ConfigEntry<bool> configEntry)
+            static void A(ConfigEntry<bool> configEntry)
             {
                 ModSettingsManager.AddOption(new CheckBoxOption(configEntry, new CheckBoxConfig()
                 {
@@ -222,7 +296,171 @@ namespace ror2ChatFilterMod
             currentLangName = Language.currentLanguageName;
         }
 
+
         private void Chat_AddMessage_string(On.RoR2.Chat.orig_AddMessage_string orig, string message)
+        {
+            bool shouldShow = true;
+            if (message.EndsWith(">"))
+            {
+                switch (Language.currentLanguageName)
+                {
+                    case "de":
+                        if (message.EndsWith(" will hierhin gehen.</style>") && !cfgShowPingMoveClient.Value)
+                            shouldShow = false;
+                        if (message.EndsWith("“ angreifen.</style>") && !cfgShowPingAttackClient.Value)
+                            shouldShow = false;
+                        if (message.StartsWith("<style=cIsDamage>") && message.Contains(" hat Folgendes gefunden: ") && message.EndsWith(".</style>") && !cfgShowPingInteractableClient.Value)
+                            shouldShow = false;
+                        if (message.StartsWith("<style=cIsDamage>") && message.Contains(" hat Folgendes gefunden: ") && message.Contains(" (") && message.EndsWith(").</style>") && !cfgShowPingInteractableWithCostClient.Value)
+                            shouldShow = false;
+                        break;
+                    case "en":
+                        if (message.EndsWith("") && !cfgShowPingMoveClient.Value)
+                            shouldShow = false;
+                        if (message.EndsWith("") && !cfgShowPingAttackClient.Value)
+                            shouldShow = false;
+                        if (message.EndsWith("") && !cfgShowPingInteractableClient.Value)
+                            shouldShow = false;
+                        if (message.EndsWith("") && !cfgShowPingInteractableWithCostClient.Value)
+                            shouldShow = false;
+                        break;
+                    case "es-ES":
+                        if (message.EndsWith("") && !cfgShowPingMoveClient.Value)
+                            shouldShow = false;
+                        if (message.EndsWith("") && !cfgShowPingAttackClient.Value)
+                            shouldShow = false;
+                        if (message.EndsWith("") && !cfgShowPingInteractableClient.Value)
+                            shouldShow = false;
+                        if (message.EndsWith("") && !cfgShowPingInteractableWithCostClient.Value)
+                            shouldShow = false;
+                        break;
+                    case "FR":
+                        if (message.EndsWith("") && !cfgShowPingMoveClient.Value)
+                            shouldShow = false;
+                        if (message.EndsWith("") && !cfgShowPingAttackClient.Value)
+                            shouldShow = false;
+                        if (message.EndsWith("") && !cfgShowPingInteractableClient.Value)
+                            shouldShow = false;
+                        if (message.EndsWith("") && !cfgShowPingInteractableWithCostClient.Value)
+                            shouldShow = false;
+                        break;
+                    case "IT":
+                        if (message.EndsWith("") && !cfgShowPingMoveClient.Value)
+                            shouldShow = false;
+                        if (message.EndsWith("") && !cfgShowPingAttackClient.Value)
+                            shouldShow = false;
+                        if (message.EndsWith("") && !cfgShowPingInteractableClient.Value)
+                            shouldShow = false;
+                        if (message.EndsWith("") && !cfgShowPingInteractableWithCostClient.Value)
+                            shouldShow = false;
+                        break;
+                    case "ja":
+                        if (message.EndsWith("") && !cfgShowPingMoveClient.Value)
+                            shouldShow = false;
+                        if (message.EndsWith("") && !cfgShowPingAttackClient.Value)
+                            shouldShow = false;
+                        if (message.EndsWith("") && !cfgShowPingInteractableClient.Value)
+                            shouldShow = false;
+                        if (message.EndsWith("") && !cfgShowPingInteractableWithCostClient.Value)
+                            shouldShow = false;
+                        break;
+                    case "ko":
+                        if (message.EndsWith("") && !cfgShowPingMoveClient.Value)
+                            shouldShow = false;
+                        if (message.EndsWith("") && !cfgShowPingAttackClient.Value)
+                            shouldShow = false;
+                        if (message.EndsWith("") && !cfgShowPingInteractableClient.Value)
+                            shouldShow = false;
+                        if (message.EndsWith("") && !cfgShowPingInteractableWithCostClient.Value)
+                            shouldShow = false;
+                        break;
+                    case "pt-BR":
+                        if (message.EndsWith("") && !cfgShowPingMoveClient.Value)
+                            shouldShow = false;
+                        if (message.EndsWith("") && !cfgShowPingAttackClient.Value)
+                            shouldShow = false;
+                        if (message.EndsWith("") && !cfgShowPingInteractableClient.Value)
+                            shouldShow = false;
+                        if (message.EndsWith("") && !cfgShowPingInteractableWithCostClient.Value)
+                            shouldShow = false;
+                        break;
+                    case "RU":
+                        if (message.EndsWith("") && !cfgShowPingMoveClient.Value)
+                            shouldShow = false;
+                        if (message.EndsWith("") && !cfgShowPingAttackClient.Value)
+                            shouldShow = false;
+                        if (message.EndsWith("") && !cfgShowPingInteractableClient.Value)
+                            shouldShow = false;
+                        if (message.EndsWith("") && !cfgShowPingInteractableWithCostClient.Value)
+                            shouldShow = false;
+                        break;
+                    case "tr":
+                        if (message.EndsWith("") && !cfgShowPingMoveClient.Value)
+                            shouldShow = false;
+                        if (message.EndsWith("") && !cfgShowPingAttackClient.Value)
+                            shouldShow = false;
+                        if (message.EndsWith("") && !cfgShowPingInteractableClient.Value)
+                            shouldShow = false;
+                        if (message.EndsWith("") && !cfgShowPingInteractableWithCostClient.Value)
+                            shouldShow = false;
+                        break;
+                    case "zh-CN":
+                        if (message.EndsWith("") && !cfgShowPingMoveClient.Value)
+                            shouldShow = false;
+                        if (message.EndsWith("") && !cfgShowPingAttackClient.Value)
+                            shouldShow = false;
+                        if (message.EndsWith("") && !cfgShowPingInteractableClient.Value)
+                            shouldShow = false;
+                        if (message.EndsWith("") && !cfgShowPingInteractableWithCostClient.Value)
+                            shouldShow = false;
+                        break;
+
+                }
+            }
+            if (shouldShow)
+                orig(message);
+        }
+
+
+        private void Chat_AddMeassage_string(On.RoR2.Chat.orig_AddMessage_string orig, string message)
+        {
+            if (message.EndsWith(">"))
+            {
+                bool shouldSkipMessage = false;
+                string suffixDefault = langName_to_suffixDefault[currentLangName];
+                string suffixEnemy = langName_to_suffixEnemy[currentLangName];
+                string suffixInteractable = langName_to_suffixInteractable[currentLangName];
+                string suffixInteractableWithCost = langName_to_suffixInteractableWithCost[currentLangName];
+
+                if (message.EndsWith(suffixDefault) && !cfgShowPingMoveClient.Value)
+                {
+                    shouldSkipMessage = true;
+                }
+                else if (message.EndsWith(suffixEnemy) && !cfgShowPingAttackClient.Value)
+                {
+                    shouldSkipMessage = true;
+                }
+                else if (message.EndsWith(suffixInteractable) && !cfgShowPingInteractableClient.Value)
+                {
+                    shouldSkipMessage = true;
+                }
+                else if (message.EndsWith(suffixInteractableWithCost) && !cfgShowPingInteractableWithCostClient.Value)
+                {
+                    shouldSkipMessage = true;
+                }
+
+                Chat.AddMessage("Debug: " + message + " vs " + suffixDefault + ", " + suffixEnemy + ", " + suffixInteractable + ", " + suffixInteractableWithCost + " => shouldSkipMessage=" + shouldSkipMessage);
+
+                if (shouldSkipMessage)
+                {
+                    return;
+                }
+            }
+            orig(message);
+        }
+
+
+        private void Chat_AddMessage_string2(On.RoR2.Chat.orig_AddMessage_string orig, string message)
         {
             if (message.EndsWith(">"))
             {
@@ -290,7 +528,7 @@ namespace ror2ChatFilterMod
                         _ => true
                     };
                     break;
-                case Chat.NpcChatMessage npcChatMessage:
+                case Chat.NpcChatMessage _:
                     showMessage = cfgShowNpcServer.Value;
                     break;
                 case ColoredTokenChatMessage coloredTokenChatMessage:
