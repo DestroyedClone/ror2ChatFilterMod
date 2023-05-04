@@ -389,14 +389,48 @@ namespace ror2ChatFilterMod
         [MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.NoOptimization)]
         private static void ModCompat_RiskOfOptions()
         {
-            static void A(ConfigEntry<FilterType> entry)
+            static void A(ConfigEntry<bool> configEntry)
+            {
+                ModSettingsManager.AddOption(new CheckBoxOption(configEntry, new CheckBoxConfig()
+                {
+                    category = "Server"
+                }));
+            }
+            static void A2(ConfigEntry<FilterType> entry)
             {
                 ModSettingsManager.AddOption(new ChoiceOption(entry, new ChoiceConfig()
                 {
                     category = "Client"
                 }));
             }
-            A(cfgShowPlayerPickupMessagesClient);
+            A2(cfgShowPlayerPickupMessagesClient);
+            A2(cfgShowDeathMessagesClient);
+            A2(cfgShowJoinMessagesClient);
+            A2(cfgShowLeaveMessagesClient);
+            A(cfgShowNPCPickupMessagesClient);
+            A2(cfgShowAhoyClient);
+            A(cfgShowNpcClient);
+            A2(cfgShowAchievementClient);
+            A(cfgShowFamilyClient);
+            A2(cfgShowTeleporterActivationClient);
+            A2(cfgShowSuppressorClient);
+            A(cfgShowPortalShopWillOpenClient);
+            A(cfgShowPortalGoldshoresWillOpenClient);
+            A(cfgShowPortalMSWillOpenClient);
+            A(cfgShowPortalShopOpenClient);
+            A(cfgShowPortalGoldshoresOpenClient);
+            A(cfgShowPortalMSOpenClient);
+            A(cfgShowMountainTeleporterClient);
+            A2(cfgShowShrineChanceWinClient);
+            A2(cfgShowShrineChanceFailClient);
+            A(cfgShowSeerClient);
+            A2(cfgShowShrineBossClient);
+            A2(cfgShowShrineBloodClient);
+            A2(cfgShowShrineRestackClient);
+            A2(cfgShowShrineHealingClient);
+            A2(cfgShowShrineCombatClient);
+            A(cfgShowArenaEndClient);
+            A2(cfgShowPetFrogClient);
 
             static void B(ConfigEntry<bool> configEntry)
             {
