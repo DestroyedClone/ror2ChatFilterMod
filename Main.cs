@@ -473,7 +473,6 @@ namespace ror2ChatFilterMod
             return null;
         }
 
-
         //server
         private void ChatFilterServer(On.RoR2.Chat.orig_SendBroadcastChat_ChatMessageBase orig, ChatMessageBase message)
         {
