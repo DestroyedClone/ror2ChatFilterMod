@@ -312,8 +312,8 @@ namespace ror2ChatFilterMod
 
         public static void Initialize(ConfigFile Config)
         {
-            CheckLoadedMods();
             SetupConfig(Config);
+            CheckLoadedMods();
         }
 
         public static void CheckLoadedMods()
@@ -324,6 +324,8 @@ namespace ror2ChatFilterMod
                 IsAnyModLoaded = IsAnyModLoaded || result;
                 return result;
             }
+            modloaded_BossAntiSoftlock = IsModLoaded("com.justinderby.bossantisoftlock");
+
             modloaded_VsTwitch = IsModLoaded("com.justinderby.vstwitch");
             modloaded_GOTCE = IsModLoaded("com.TheBestAssociatedLargelyLudicrousSillyheadGroup.GOTCE");
             modloaded_NemesisSlab = IsModLoaded("com.Heyimnoop.NemesisSlab"); //for gotce shit
@@ -373,7 +375,7 @@ namespace ror2ChatFilterMod
             cfgModCompat_SpireItems_BloodIdol = Config.Bind("SpireItems", "BloodIdol", true, modcompat_SpireItems_SubjectFormatChatMessage_BaseToken_GoldenIdolSingleToken);
             cfgModcompat_VsTwitch_Challenge = Config.Bind("VsTwitch", "Challenge", true, modcompat_VsTwitch_SimpleChat_BaseToken_ChallengeToken);
             cfgModcompat_VsTwitch_AllyToken = Config.Bind("VsTwitch", "AllyToken", true, modcompat_VsTwitch_SimpleChat_BaseToken_StartsWith_AllyToken + modcompat_VsTwitch_SimpleChat_BaseToken_StartsWith_AllyToken);
-            cfgModcompat_GOTCE_RushOrDie = Config.Bind("GOTCE", "Woolie's Artifact", true, string.Format(modcompat_GOTCE_SimpleChat_BaseToken_RushOrDieToken, modcompat_GOTCE_SimpleChat_ParamToken_RushOrDieToken));
+            cfgModcompat_GOTCE_RushOrDie = Config.Bind("GOTCE", "Woolies Artifact", true, string.Format(modcompat_GOTCE_SimpleChat_BaseToken_RushOrDieToken, modcompat_GOTCE_SimpleChat_ParamToken_RushOrDieToken));
             cfgModcompat_GOTCE_RerollShit = Config.Bind("GOTCE", "Reroll Slab", true, "the fog is coming");
             cfgModcompat_UltimateCustomRun_Welcome = Config.Bind("UltimateCustomRun", "Welcome", true, modcompat_UltimateCustomRun_SimpleChatMessage_BaseToken_Welcome);
             cfgModcompat_TeammateRevive_DeathCurseDisabled = Config.Bind("TeammateRevive", "DeathCurseDisabled", true, modcompat_TeammateRevive_SimpleChatMessage_BaseToken_DeathCurseDisabledToken);
@@ -483,6 +485,8 @@ namespace ror2ChatFilterMod
             A2(cfgShowPetFrogClient, "Vanilla");
 
             #endregion Vanilla
+
+
 
             if (modloaded_BossAntiSoftlock)
             {

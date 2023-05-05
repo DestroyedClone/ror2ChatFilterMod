@@ -16,7 +16,7 @@ namespace ror2ChatFilterMod
     [BepInDependency("com.justinderby.vstwitch", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("com.TheBestAssociatedLargelyLudicrousSillyheadGroup.GOTCE", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("com.Heyimnoop.NemesisSlab", BepInDependency.DependencyFlags.SoftDependency)] //for gotce shit
-    [BepInDependency("com.HIFU.UltimateCustomRun", BepInDependency.DependencyFlags.SoftDependency)]
+    [BepInDependency("com.HIFU.UltimateCustomRun", BepInDependency.DependencyFlags.SoftDependency)] //deprecated
     [BepInDependency("KosmosisDire.TeammateRevival", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("com.ThinkInvisible.TinkersSatchel", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("SylmarDev.SpireItems", BepInDependency.DependencyFlags.SoftDependency)]
@@ -36,6 +36,7 @@ namespace ror2ChatFilterMod
     [BepInDependency("com.Zenithrium.vanillaVoid", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("com.themysticsword.mysticsitems", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("com.ChirrLover.Starstorm2Unofficial", BepInDependency.DependencyFlags.SoftDependency)]
+    [BepInDependency("com.justinderby.bossantisoftlock", BepInDependency.DependencyFlags.SoftDependency)]
     public class Main : BaseUnityPlugin
     {
         public static ConfigEntry<string> cfgTimestampFormat;
@@ -77,7 +78,7 @@ namespace ror2ChatFilterMod
             Off
         }
 
-        public void Start()
+        public void Awake()
         {
             SetupConfig();
 

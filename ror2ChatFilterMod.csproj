@@ -9,7 +9,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Compile Remove="ModCompat.cs" />
+	  <Compile Remove="Server.cs" />
 	</ItemGroup>
 	
 	<ItemGroup>
