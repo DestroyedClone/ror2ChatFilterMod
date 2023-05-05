@@ -22,17 +22,17 @@ namespace ror2ChatFilterMod
     {
         public static ConfigEntry<string> cfgTimestampFormat;
 
-        public static ConfigEntry<FilterType> cfgShowPlayerPickupMessagesClient;
-        public static ConfigEntry<FilterType> cfgShowDeathMessagesClient;
-        public static ConfigEntry<FilterType> cfgShowJoinMessagesClient;
-        public static ConfigEntry<FilterType> cfgShowLeaveMessagesClient;
+        public static ConfigEntry<ChatFilterType> cfgShowPlayerPickupMessagesClient;
+        public static ConfigEntry<ChatFilterType> cfgShowDeathMessagesClient;
+        public static ConfigEntry<ChatFilterType> cfgShowJoinMessagesClient;
+        public static ConfigEntry<ChatFilterType> cfgShowLeaveMessagesClient;
         public static ConfigEntry<bool> cfgShowNPCPickupMessagesClient;
-        public static ConfigEntry<FilterType> cfgShowAhoyClient;
+        public static ConfigEntry<ChatFilterType> cfgShowAhoyClient;
         public static ConfigEntry<bool> cfgShowNpcClient;
-        public static ConfigEntry<FilterType> cfgShowAchievementClient;
+        public static ConfigEntry<ChatFilterType> cfgShowAchievementClient;
         public static ConfigEntry<bool> cfgShowFamilyClient;
-        public static ConfigEntry<FilterType> cfgShowTeleporterActivationClient;
-        public static ConfigEntry<FilterType> cfgShowSuppressorClient;
+        public static ConfigEntry<ChatFilterType> cfgShowTeleporterActivationClient;
+        public static ConfigEntry<ChatFilterType> cfgShowSuppressorClient;
         public static ConfigEntry<bool> cfgShowPortalShopWillOpenClient;
         public static ConfigEntry<bool> cfgShowPortalGoldshoresWillOpenClient;
         public static ConfigEntry<bool> cfgShowPortalMSWillOpenClient;
@@ -40,18 +40,18 @@ namespace ror2ChatFilterMod
         public static ConfigEntry<bool> cfgShowPortalGoldshoresOpenClient;
         public static ConfigEntry<bool> cfgShowPortalMSOpenClient;
         public static ConfigEntry<bool> cfgShowMountainTeleporterClient;
-        public static ConfigEntry<FilterType> cfgShowShrineChanceWinClient;
-        public static ConfigEntry<FilterType> cfgShowShrineChanceFailClient;
+        public static ConfigEntry<ChatFilterType> cfgShowShrineChanceWinClient;
+        public static ConfigEntry<ChatFilterType> cfgShowShrineChanceFailClient;
         public static ConfigEntry<bool> cfgShowSeerClient;
-        public static ConfigEntry<FilterType> cfgShowShrineBossClient;
-        public static ConfigEntry<FilterType> cfgShowShrineBloodClient;
-        public static ConfigEntry<FilterType> cfgShowShrineRestackClient;
-        public static ConfigEntry<FilterType> cfgShowShrineHealingClient;
-        public static ConfigEntry<FilterType> cfgShowShrineCombatClient;
+        public static ConfigEntry<ChatFilterType> cfgShowShrineBossClient;
+        public static ConfigEntry<ChatFilterType> cfgShowShrineBloodClient;
+        public static ConfigEntry<ChatFilterType> cfgShowShrineRestackClient;
+        public static ConfigEntry<ChatFilterType> cfgShowShrineHealingClient;
+        public static ConfigEntry<ChatFilterType> cfgShowShrineCombatClient;
         public static ConfigEntry<bool> cfgShowArenaEndClient;
-        public static ConfigEntry<FilterType> cfgShowPetFrogClient;
+        public static ConfigEntry<ChatFilterType> cfgShowPetFrogClient;
 
-        public enum FilterType
+        public enum ChatFilterType
         {
             All,
             Myself,
@@ -64,74 +64,70 @@ namespace ror2ChatFilterMod
             SetupConfig();
 
             On.RoR2.Chat.AddMessage_ChatMessageBase += ChatFilterClient;
-
-            if (BepInEx.Bootstrap.Chainloader.PluginInfos.ContainsKey("com.rune580.riskofoptions"))
-            {
-                ModCompat_RiskOfOptions();
-            }
+            ModCompat.Initialize(Config);
         }
 
-        private static bool ShouldShowClient(ChatMessageBase chatMessage, ConfigEntry<FilterType> configEntry)
+        public static bool ShouldShowClient(ChatMessageBase chatMessage, ConfigEntry<ChatFilterType> configEntry)
         {
             if (chatMessage is Chat.PlayerPickupChatMessage playerPickupChatMessage)
                 switch (configEntry.Value)
                 {
-                    case FilterType.All:
+                    case ChatFilterType.All:
                         return true;
 
-                    case FilterType.Myself:
+                    case ChatFilterType.Myself:
                         return playerPickupChatMessage.subjectAsCharacterBody == LocalUserManager.GetFirstLocalUser().cachedBody;
 
-                    case FilterType.Others:
+                    case ChatFilterType.Others:
                         return playerPickupChatMessage.subjectAsCharacterBody != LocalUserManager.GetFirstLocalUser().cachedBody;
 
-                    case FilterType.Off:
+                    case ChatFilterType.Off:
                         return false;
                 }
             else if (chatMessage is Chat.PlayerDeathChatMessage playerDeathChatMessage)
                 switch (configEntry.Value)
                 {
-                    case FilterType.All:
+                    case ChatFilterType.All:
                         return true;
 
-                    case FilterType.Myself:
+                    case ChatFilterType.Myself:
                         return playerDeathChatMessage.subjectAsCharacterBody == LocalUserManager.GetFirstLocalUser().cachedBody;
 
-                    case FilterType.Others:
+                    case ChatFilterType.Others:
                         return playerDeathChatMessage.subjectAsCharacterBody != LocalUserManager.GetFirstLocalUser().cachedBody;
 
-                    case FilterType.Off:
+                    case ChatFilterType.Off:
                         return false;
                 }
             else if (chatMessage is Chat.PlayerChatMessage playerChatMessage)
                 switch (configEntry.Value)
                 {
-                    case FilterType.All:
+                    case ChatFilterType.All:
                         return true;
 
-                    case FilterType.Myself:
+                    case ChatFilterType.Myself:
                         return playerChatMessage.networkPlayerName.steamId == LocalUserManager.GetFirstLocalUser().currentNetworkUser.GetNetworkPlayerName().steamId;
 
-                    case FilterType.Others:
+                    case ChatFilterType.Others:
                         return playerChatMessage.networkPlayerName.steamId != LocalUserManager.GetFirstLocalUser().currentNetworkUser.GetNetworkPlayerName().steamId;
 
-                    case FilterType.Off:
+                    case ChatFilterType.Off:
                         return false;
                 }
             else if (chatMessage is Chat.BodyChatMessage bodyChatMessage)
             {
                 switch (configEntry.Value)
                 {
-                    case FilterType.All:
+                    case ChatFilterType.All:
                         return true;
 
-                    case FilterType.Myself:
+                    case ChatFilterType.Myself:
                         return bodyChatMessage.bodyObject == LocalUserManager.GetFirstLocalUser().cachedBody.gameObject;
 
-                    case FilterType.Others:
+                    case ChatFilterType.Others:
                         return bodyChatMessage.bodyObject != LocalUserManager.GetFirstLocalUser().cachedBody.gameObject;
 
-                    case FilterType.Off:
+                    case ChatFilterType.Off:
                         return false;
                 }
             }
@@ -139,16 +135,16 @@ namespace ror2ChatFilterMod
             {
                 switch (configEntry.Value)
                 {
-                    case FilterType.All:
+                    case ChatFilterType.All:
                         return true;
 
-                    case FilterType.Myself:
+                    case ChatFilterType.Myself:
                         return coloredTokenChatMessage.subjectAsCharacterBody == LocalUserManager.GetFirstLocalUser().cachedBody;
 
-                    case FilterType.Others:
+                    case ChatFilterType.Others:
                         return coloredTokenChatMessage.subjectAsCharacterBody != LocalUserManager.GetFirstLocalUser().cachedBody;
 
-                    case FilterType.Off:
+                    case ChatFilterType.Off:
                         return false;
                 }
             }
@@ -156,16 +152,16 @@ namespace ror2ChatFilterMod
             {
                 switch (configEntry.Value)
                 {
-                    case FilterType.All:
+                    case ChatFilterType.All:
                         return true;
 
-                    case FilterType.Myself:
+                    case ChatFilterType.Myself:
                         return subjectFormatChatMessage.subjectAsCharacterBody == LocalUserManager.GetFirstLocalUser().cachedBody;
 
-                    case FilterType.Others:
+                    case ChatFilterType.Others:
                         return subjectFormatChatMessage.subjectAsCharacterBody != LocalUserManager.GetFirstLocalUser().cachedBody;
 
-                    case FilterType.Off:
+                    case ChatFilterType.Off:
                         return false;
                 }
             }
@@ -173,16 +169,16 @@ namespace ror2ChatFilterMod
             {
                 switch (configEntry.Value)
                 {
-                    case FilterType.All:
+                    case ChatFilterType.All:
                         return true;
 
-                    case FilterType.Myself:
+                    case ChatFilterType.Myself:
                         return subjectChatMessage.subjectAsCharacterBody == LocalUserManager.GetFirstLocalUser().cachedBody;
 
-                    case FilterType.Others:
+                    case ChatFilterType.Others:
                         return subjectChatMessage.subjectAsCharacterBody != LocalUserManager.GetFirstLocalUser().cachedBody;
 
-                    case FilterType.Off:
+                    case ChatFilterType.Off:
                         return false;
                 }
             }
@@ -253,6 +249,10 @@ namespace ror2ChatFilterMod
                         "SHRINE_COMBAT_USE_MESSAGE" => ShouldShowClient(subjectFormatChatMessage, cfgShowShrineCombatClient),
                         _ => true
                     };
+                    if (showMessage) //check for true, if its false its already been filtered
+                    {
+                        showMessage = ModCompat.ModCompatCheck_SubjectFormatChatMessage(subjectFormatChatMessage);
+                    }
                     break;
 
                 case SubjectChatMessage subjectChatMessage:
@@ -286,8 +286,12 @@ namespace ror2ChatFilterMod
                         _ => simpleChatMessage.baseToken.StartsWith("BAZAAR_SEER_")
                             ? cfgShowSeerClient.Value
                             : !simpleChatMessage.baseToken.StartsWith("FAMILY_")
-|| cfgShowFamilyClient.Value
+                            || cfgShowFamilyClient.Value
                     };
+                    if (showMessage) //check for true, if its false its already been filtered
+                    {
+                        showMessage = ModCompat.ModCompatCheck_SimpleChatMessage(simpleChatMessage);
+                    }
                     break;
             }
 
@@ -298,28 +302,28 @@ namespace ror2ChatFilterMod
         public void SetupConfig()
         {
             #region Client
-
+            var clientKey = "Client";
             ConfigEntry<bool> BindClient(string k, bool t, string d)
             {
-                return Config.Bind("Client", k, t, d);
+                return Config.Bind(clientKey, k, t, d);
             }
-            ConfigEntry<FilterType> BindClient2(string k, FilterType t, string d)
+            ConfigEntry<ChatFilterType> BindClient2(string k, ChatFilterType t, string d)
             {
-                return Config.Bind("Client", k, t, d);
+                return Config.Bind(clientKey, k, t, d);
             }
-            cfgShowPlayerPickupMessagesClient = Config.Bind("Client", "Player Pickup Messages", FilterType.All, "<style=cEvent>{0} picked up {1}{2}</color>");
-            cfgTimestampFormat = Config.Bind("Client", "Timestamp Format", "{0} {1}", "First parameter is the timestamp, the second is the original message. Leave empty to disable.");
+            cfgShowPlayerPickupMessagesClient = Config.Bind(clientKey, "Player Pickup Messages", ChatFilterType.All, "<style=cEvent>{0} picked up {1}{2}</color>");
+            cfgTimestampFormat = Config.Bind(clientKey, "Timestamp Format", "{0} {1}", "First parameter is the timestamp, the second is the original message. Leave empty to disable.");
 
-            cfgShowDeathMessagesClient = BindClient2("Death Messages", FilterType.All, "");
-            cfgShowJoinMessagesClient = BindClient2("Join Messages", FilterType.All, "<style=cEvent>{0} connected.</color>");
-            cfgShowLeaveMessagesClient = BindClient2("Leave Messages", FilterType.All, "<style=cEvent>{0} disconnected.</color>");
+            cfgShowDeathMessagesClient = BindClient2("Death Messages", ChatFilterType.All, "");
+            cfgShowJoinMessagesClient = BindClient2("Join Messages", ChatFilterType.All, "<style=cEvent>{0} connected.</color>");
+            cfgShowLeaveMessagesClient = BindClient2("Leave Messages", ChatFilterType.All, "<style=cEvent>{0} disconnected.</color>");
             cfgShowNPCPickupMessagesClient = BindClient("NPC Pickup Messages", true, "Scav pickups, void fields item adds");
-            cfgShowAhoyClient = BindClient2("Ahoy Messages", FilterType.All, "Ahoy!");
+            cfgShowAhoyClient = BindClient2("Ahoy Messages", ChatFilterType.All, "Ahoy!");
             cfgShowNpcClient = BindClient("NPC Messages", true, "Mithrix messages");
-            cfgShowAchievementClient = BindClient2("Achievement Messages", FilterType.All, "<color=#ccd3e0>{0} achieved <color=#BDE151>{1}</color></color>");
+            cfgShowAchievementClient = BindClient2("Achievement Messages", ChatFilterType.All, "<color=#ccd3e0>{0} achieved <color=#BDE151>{1}</color></color>");
             cfgShowFamilyClient = BindClient("Family Messages", true, "");
-            cfgShowTeleporterActivationClient = BindClient2("Teleporter Activation Messages", FilterType.All, "<style=cEvent>{0} activated the <style=cDeath>Teleporter <sprite name=\"TP\" tint=1></style>.</style>");
-            cfgShowSuppressorClient = BindClient2("Suppressor Messages", FilterType.All, "<style=cShrine>{0} eradicated {1} from the universe.");
+            cfgShowTeleporterActivationClient = BindClient2("Teleporter Activation Messages", ChatFilterType.All, "<style=cEvent>{0} activated the <style=cDeath>Teleporter <sprite name=\"TP\" tint=1></style>.</style>");
+            cfgShowSuppressorClient = BindClient2("Suppressor Messages", ChatFilterType.All, "<style=cShrine>{0} eradicated {1} from the universe.");
             cfgShowPortalShopWillOpenClient = BindClient("Portal Shop Will Open Messages", true, "<style=cWorldEvent>A blue orb appears..</style>");
             cfgShowPortalGoldshoresWillOpenClient = BindClient("Portal Goldshores Will Open Messages", true, "<style=cWorldEvent>A gold orb appears..</style>");
             cfgShowPortalMSWillOpenClient = BindClient("Portal MS Will Open Messages", true, "<style=cWorldEvent>A celestial orb appears..</style>");
@@ -327,65 +331,19 @@ namespace ror2ChatFilterMod
             cfgShowPortalGoldshoresOpenClient = BindClient("Portal Goldshores Open Messages", true, "<style=cWorldEvent>A gold portal appears..</style>");
             cfgShowPortalMSOpenClient = BindClient("Portal MS Open Messages", true, "<style=cWorldEvent>A celestial portal appears..</style>");
             cfgShowMountainTeleporterClient = BindClient("Mountain Teleporter Messages", true, "<style=cShrine>Let the challenge of the Mountain... begin!</style>");
-            cfgShowShrineChanceWinClient = BindClient2("Shrine Chance Win Messages", FilterType.All, "<style=cShrine>{0} offered to the shrine and was rewarded!</color>");
-            cfgShowShrineChanceFailClient = BindClient2("Shrine Chance Fail Messages", FilterType.All, "<style=cShrine>{0} offered to the shrine and gained nothing.</color>");
+            cfgShowShrineChanceWinClient = BindClient2("Shrine Chance Win Messages", ChatFilterType.All, "<style=cShrine>{0} offered to the shrine and was rewarded!</color>");
+            cfgShowShrineChanceFailClient = BindClient2("Shrine Chance Fail Messages", ChatFilterType.All, "<style=cShrine>{0} offered to the shrine and gained nothing.</color>");
             cfgShowSeerClient = BindClient("Seer Messages", true, "<style=cWorldEvent>You dream of STAGEHINT.</style>");
-            cfgShowShrineBossClient = BindClient2("Shrine Boss Messages", FilterType.All, "<style=cShrine>{0} has invited the challenge of the Mountain..</color>");
-            cfgShowShrineBloodClient = BindClient2("Shrine Blood Messages", FilterType.All, "<style=cShrine>{0} feels a searing pain, and has gained {1} gold.</color>");
-            cfgShowShrineRestackClient = BindClient2("Shrine Restack Messages", FilterType.All, "<style=cShrine>{0} is... sequenced.</color>");
-            cfgShowShrineHealingClient = BindClient2("Shrine Healing Messages", FilterType.All, "\"<style=cShrine>{0} is embraced by the healing warmth of the Woods.</color>");
-            cfgShowShrineCombatClient = BindClient2("Shrine Combat Messages", FilterType.All, "<style=cShrine>{0} has summoned {1}s to fight.</color>");
+            cfgShowShrineBossClient = BindClient2("Shrine Boss Messages", ChatFilterType.All, "<style=cShrine>{0} has invited the challenge of the Mountain..</color>");
+            cfgShowShrineBloodClient = BindClient2("Shrine Blood Messages", ChatFilterType.All, "<style=cShrine>{0} feels a searing pain, and has gained {1} gold.</color>");
+            cfgShowShrineRestackClient = BindClient2("Shrine Restack Messages", ChatFilterType.All, "<style=cShrine>{0} is... sequenced.</color>");
+            cfgShowShrineHealingClient = BindClient2("Shrine Healing Messages", ChatFilterType.All, "\"<style=cShrine>{0} is embraced by the healing warmth of the Woods.</color>");
+            cfgShowShrineCombatClient = BindClient2("Shrine Combat Messages", ChatFilterType.All, "<style=cShrine>{0} has summoned {1}s to fight.</color>");
             cfgShowArenaEndClient = BindClient("Arena End Messages", false, "<style=cWorldEvent>The Cell stabilizes.</style>");
-            cfgShowPetFrogClient = BindClient2("Pet Frog Messages", FilterType.All, "{0} pet the frog.");
+            cfgShowPetFrogClient = BindClient2("Pet Frog Messages", ChatFilterType.All, "{0} pet the frog.");
 
             #endregion Client
         }
 
-        [MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.NoOptimization)]
-        private static void ModCompat_RiskOfOptions()
-        {
-            static void A(ConfigEntry<bool> configEntry)
-            {
-                ModSettingsManager.AddOption(new CheckBoxOption(configEntry, new CheckBoxConfig()
-                {
-                    category = "Server"
-                }));
-            }
-            static void A2(ConfigEntry<FilterType> entry)
-            {
-                ModSettingsManager.AddOption(new ChoiceOption(entry, new ChoiceConfig()
-                {
-                    category = "Client"
-                }));
-            }
-            A2(cfgShowPlayerPickupMessagesClient);
-            A2(cfgShowDeathMessagesClient);
-            A2(cfgShowJoinMessagesClient);
-            A2(cfgShowLeaveMessagesClient);
-            A(cfgShowNPCPickupMessagesClient);
-            A2(cfgShowAhoyClient);
-            A(cfgShowNpcClient);
-            A2(cfgShowAchievementClient);
-            A(cfgShowFamilyClient);
-            A2(cfgShowTeleporterActivationClient);
-            A2(cfgShowSuppressorClient);
-            A(cfgShowPortalShopWillOpenClient);
-            A(cfgShowPortalGoldshoresWillOpenClient);
-            A(cfgShowPortalMSWillOpenClient);
-            A(cfgShowPortalShopOpenClient);
-            A(cfgShowPortalGoldshoresOpenClient);
-            A(cfgShowPortalMSOpenClient);
-            A(cfgShowMountainTeleporterClient);
-            A2(cfgShowShrineChanceWinClient);
-            A2(cfgShowShrineChanceFailClient);
-            A(cfgShowSeerClient);
-            A2(cfgShowShrineBossClient);
-            A2(cfgShowShrineBloodClient);
-            A2(cfgShowShrineRestackClient);
-            A2(cfgShowShrineHealingClient);
-            A2(cfgShowShrineCombatClient);
-            A(cfgShowArenaEndClient);
-            A2(cfgShowPetFrogClient);
-        }
     }
 }

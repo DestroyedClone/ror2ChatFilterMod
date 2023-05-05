@@ -7,6 +7,10 @@
 		<Nullable>disable</Nullable>
 		<NullableContextOptions>disable</NullableContextOptions>
 	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="ModCompat.cs" />
+	</ItemGroup>
 	
 	<ItemGroup>
 		<PackageReference Include="BepInEx.Analyzers" Version="1.0.*">
