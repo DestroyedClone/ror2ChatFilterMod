@@ -190,6 +190,12 @@ namespace ror2ChatFilterMod
             bool showMessage = true;
             switch (message)
             {
+                case Chat.UserChatMessage userChatMessage:
+                    if (showMessage)
+                    {
+                        ModCompat.ModCompatCheck_UserChatMessage(userChatMessage);
+                    }
+                    break;
                 case Chat.PlayerPickupChatMessage playerPickupChatMessage:
                     switch (playerPickupChatMessage.baseToken)
                     {
@@ -222,6 +228,8 @@ namespace ror2ChatFilterMod
                         "EQUIPMENT_BOSSHUNTERCONSUMED_CHAT" => ShouldShowClient(bodyChatMessage, cfgShowAhoyClient),
                         _ => true
                     };
+                    if (showMessage)
+                        ModCompat.ModCompatCheck_BodyChatMessage(bodyChatMessage);
                     break;
 
                 case Chat.NpcChatMessage _:
