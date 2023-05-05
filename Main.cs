@@ -18,6 +18,29 @@ namespace ror2ChatFilterMod
 {
     [BepInPlugin("com.DestroyedClone.RoR2ChatFilterMod", "Chat Filter Mod", "1.0.0")]
     [BepInDependency("com.rune580.riskofoptions", BepInDependency.DependencyFlags.SoftDependency)]
+    [BepInDependency("com.justinderby.vstwitch", BepInDependency.DependencyFlags.SoftDependency)]
+    [BepInDependency("com.TheBestAssociatedLargelyLudicrousSillyheadGroup.GOTCE", BepInDependency.DependencyFlags.SoftDependency)]
+    [BepInDependency("com.Heyimnoop.NemesisSlab", BepInDependency.DependencyFlags.SoftDependency)] //for gotce shit
+    [BepInDependency("com.HIFU.UltimateCustomRun", BepInDependency.DependencyFlags.SoftDependency)]
+    [BepInDependency("KosmosisDire.TeammateRevival", BepInDependency.DependencyFlags.SoftDependency)]
+    [BepInDependency("com.ThinkInvisible.TinkersSatchel", BepInDependency.DependencyFlags.SoftDependency)]
+    [BepInDependency("SylmarDev.SpireItems", BepInDependency.DependencyFlags.SoftDependency)]
+    [BepInDependency("dev.wildbook.multitudes", BepInDependency.DependencyFlags.SoftDependency)]
+    [BepInDependency("com.evaisa.moreshrines", BepInDependency.DependencyFlags.SoftDependency)]
+    [BepInDependency("com.Nuxlar.UmbralMithrix", BepInDependency.DependencyFlags.SoftDependency)]
+    [BepInDependency("com.niwith.DropInMultiplayer", BepInDependency.DependencyFlags.SoftDependency)]
+    [BepInDependency("com.PopcornFactory.DarthVaderMod", BepInDependency.DependencyFlags.SoftDependency)]
+    [BepInDependency("com.Viliger.ShrineOfRepair", BepInDependency.DependencyFlags.SoftDependency)]
+    [BepInDependency("BALLS.WellRoundedBalance", BepInDependency.DependencyFlags.SoftDependency)]
+    [BepInDependency("Gorakh.RiskOfChaos", BepInDependency.DependencyFlags.SoftDependency)]
+    [BepInDependency("com.funkfrog_sipondo.sharesuite", BepInDependency.DependencyFlags.SoftDependency)]
+    [BepInDependency("com.Moffein.BossKillTimer", BepInDependency.DependencyFlags.SoftDependency)]
+    [BepInDependency("com.rob.Direseeker", BepInDependency.DependencyFlags.SoftDependency)]
+    [BepInDependency("local.difficulty.multitudes", BepInDependency.DependencyFlags.SoftDependency)]
+    [BepInDependency("com.ContactLight.LostInTransit", BepInDependency.DependencyFlags.SoftDependency)]
+    [BepInDependency("com.Zenithrium.vanillaVoid", BepInDependency.DependencyFlags.SoftDependency)]
+    [BepInDependency("com.themysticsword.mysticsitems", BepInDependency.DependencyFlags.SoftDependency)]
+    [BepInDependency("com.ChirrLover.Starstorm2Unofficial", BepInDependency.DependencyFlags.SoftDependency)]
     public class Main : BaseUnityPlugin
     {
         public static ConfigEntry<string> cfgTimestampFormat;
@@ -242,6 +265,8 @@ namespace ror2ChatFilterMod
                         "VOID_SUPPRESSOR_USE_MESSAGE" => ShouldShowClient(coloredTokenChatMessage, cfgShowSuppressorClient),
                         _ => true
                     };
+                    if (showMessage)
+                        showMessage = ModCompat.ModCompatCheck_ColoredTokenChatMessage(coloredTokenChatMessage);
                     break;
 
                 case Chat.SubjectFormatChatMessage subjectFormatChatMessage:
@@ -270,6 +295,8 @@ namespace ror2ChatFilterMod
                         "PET_FROG" => ShouldShowClient(subjectChatMessage, cfgShowPetFrogClient),
                         _ => true
                     };
+                    if (showMessage)
+                        showMessage = ModCompat.ModCompatCheck_SubjectChatMessage(subjectChatMessage);
                     break;
 
                 case Chat.SimpleChatMessage simpleChatMessage:
