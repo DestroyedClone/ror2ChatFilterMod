@@ -1,13 +1,8 @@
 ﻿using BepInEx;
 using BepInEx.Configuration;
-using RiskOfOptions;
-using RiskOfOptions.OptionConfigs;
-using RiskOfOptions.Options;
 using RoR2;
-using System.Runtime.CompilerServices;
 using System.Security;
 using System.Security.Permissions;
-using UnityEngine;
 
 [module: UnverifiableCode]
 #pragma warning disable CS0618 // Type or member is obsolete
@@ -219,6 +214,7 @@ namespace ror2ChatFilterMod
                         ModCompat.ModCompatCheck_UserChatMessage(userChatMessage);
                     }
                     break;
+
                 case Chat.PlayerPickupChatMessage playerPickupChatMessage:
                     switch (playerPickupChatMessage.baseToken)
                     {
@@ -337,6 +333,7 @@ namespace ror2ChatFilterMod
         public void SetupConfig()
         {
             #region Client
+
             var clientKey = "Client";
             ConfigEntry<bool> BindClient(string k, bool t, string d)
             {
@@ -379,6 +376,5 @@ namespace ror2ChatFilterMod
 
             #endregion Client
         }
-
     }
 }
