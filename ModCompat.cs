@@ -5,6 +5,8 @@ using RiskOfOptions.Options;
 using RoR2;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
+using System.Xml.Linq;
+using UnityEngine;
 using static ror2ChatFilterMod.Main;
 
 namespace ror2ChatFilterMod
@@ -30,6 +32,8 @@ namespace ror2ChatFilterMod
 
         public const string mc_VsTwitch_SimpleChat_BaseToken_EndsWith_AllyToken = "</color> <color=#9147ff> enters the game to help you...</color>";
         public static ConfigEntry<bool> cfgVsTwitch_AllyToken;
+
+        public static string mc_VsTwitch_Ally_Description = $"<color=#{ColorUtility.ToHtmlStringRGB(Color.green)}>{FakeUsername2}</color><color=#9147ff> enters the game to help you...</color>";
         //https://github.com/JustDerb/RoR2-VsTwitch/blob/c7a0894e2abe380541b53d55e9a22e3cb043de5a/VsTwitch.cs#L245
         //im lazing a little, seems useful?
 
@@ -45,14 +49,6 @@ namespace ror2ChatFilterMod
 
         //https://github.com/AngeloTadeucci/RoR2_RaidInfo/blob/eeb96b302c3cdd843b427245319d29d68d3becc4/Message.cs#L6
         //https://github.com/harbingerofme/R2DS-Essentials/blob/165184420d5995f3be6f85913251a349e568000a/Modules/MotD.cs#L167
-
-        //https://github.com/hifoomin/UltimateCustomRun/blob/3144665504a47c7d3ad32e3226fc05a82b7bdc69/UCR.Content/SendChatNotif.cs#L23
-        public static bool modloaded_UltimateCustomRun;
-        public const string KEY_ULTIMATECUSTOMRUN = "UltimateCustomRun";
-        public const string mc_UltimateCustomRun_SimpleChatMessage_BaseToken_Welcome = "</size></color><color=#BFA9D3>Thanks for trying out </color><color=#8932D5>UltimateCustomRun.</color>\n" +
-          "<color=#BFA9D3>For any mod devs that see this, feel free to contribute and make the mod as good as possible.\n" +
-          "There is a to-do list regarding items in the Main Class.\n" +
-          "<i>Github PR's / Issues are best</i>, but DMs and pings are also welcome. Have fun and peace out! \u2764</color>";
 
         public static ConfigEntry<bool> cfgUltimateCustomRun_Welcome;
 
@@ -324,7 +320,6 @@ namespace ror2ChatFilterMod
 
             modloaded_VsTwitch = IsModLoaded("com.justinderby.vstwitch");
             modloaded_GOTCE = IsModLoaded("com.TheBestAssociatedLargelyLudicrousSillyheadGroup.GOTCE");
-            modloaded_UltimateCustomRun = IsModLoaded("com.HIFU.UltimateCustomRun");
             modloaded_TeammateRevive = IsModLoaded("KosmosisDire.TeammateRevival");
             modloaded_TinkersSatchel = IsModLoaded("com.ThinkInvisible.TinkersSatchel");
             modloaded_SpireItems = IsModLoaded("SylmarDev.SpireItems");
@@ -368,9 +363,8 @@ namespace ror2ChatFilterMod
             //no modcheck otherwise you'd have to launch with it on to generate and ehhhhh
             cfgSpireItems_BloodIdol = Config.Bind(KEY_SPIREITEMS, "BloodIdol", true, mc_SpireItems_SubjectFormatChatMessage_BaseToken_GoldenIdolSingleToken);
             cfgVsTwitch_Challenge = Config.Bind(KEY_VSTWITCH, "Challenge", true, mc_VsTwitch_SimpleChat_BaseToken_ChallengeToken);
-            cfgVsTwitch_AllyToken = Config.Bind(KEY_VSTWITCH, "AllyToken", true, mc_VsTwitch_SimpleChat_BaseToken_StartsWith_AllyToken + mc_VsTwitch_SimpleChat_BaseToken_StartsWith_AllyToken);
+            cfgVsTwitch_AllyToken = Config.Bind(KEY_VSTWITCH, "AllyToken", true, mc_VsTwitch_Ally_Description);
             cfgGOTCE_RushOrDie = Config.Bind(KEY_GOTCE, "Woolies Artifact", true, string.Format(mc_GOTCE_SimpleChat_BaseToken_RushOrDieToken, mc_GOTCE_SimpleChat_ParamToken_RushOrDieToken));
-            cfgUltimateCustomRun_Welcome = Config.Bind(KEY_ULTIMATECUSTOMRUN, "Welcome", true, mc_UltimateCustomRun_SimpleChatMessage_BaseToken_Welcome);
             cfgTeammateRevive_DeathCurseDisabled = Config.Bind(KEY_TEAMMATEREVIVE, "DeathCurseDisabled", true, mc_TeammateRevive_SimpleChatMessage_BaseToken_DeathCurseDisabledToken);
             cfgTeammateRevive_DeathCurseEnforcedByServer = Config.Bind(KEY_TEAMMATEREVIVE, "DeathCurseEnforcedByServer", true, mc_TeammateRevive_SimpleChatMessage_BaseToken_DeathCurseEnforcedByServerToken);
             cfgTinkersSatchel_Compass = Config.Bind(KEY_TINKERSSATCHEL, KEY_TINKERSSATCHEL, ChatFilterType.All, mc_TinkersSatchel_SubjectFormatChatMessage_BaseToken_Compass);
@@ -500,10 +494,6 @@ namespace ror2ChatFilterMod
             {
                 A(cfgGOTCE_RushOrDie, KEY_GOTCE);
             }
-            if (modloaded_UltimateCustomRun)
-            {
-                A(cfgUltimateCustomRun_Welcome, KEY_ULTIMATECUSTOMRUN);
-            }
             if (modloaded_TeammateRevive)
             {
                 A(cfgTeammateRevive_DeathCurseDisabled, KEY_TEAMMATEREVIVE);
@@ -616,11 +606,6 @@ namespace ror2ChatFilterMod
                     && chatMessage.paramTokens.Length == 1
                     && chatMessage.paramTokens[0] == mc_GOTCE_SimpleChat_ParamToken_RushOrDieToken)
                     return cfgGOTCE_RushOrDie.Value;
-            }
-            if (modloaded_UltimateCustomRun)
-            {
-                if (baseToken == mc_UltimateCustomRun_SimpleChatMessage_BaseToken_Welcome)
-                    return cfgUltimateCustomRun_Welcome.Value;
             }
             if (modloaded_TeammateRevive)
             {
