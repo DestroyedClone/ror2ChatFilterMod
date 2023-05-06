@@ -65,10 +65,10 @@ namespace ror2ChatFilterMod
         public const string KEY_TINKERSSATCHEL = "TinkersSatchel";
         public const string mc_TinkersSatchel_SubjectFormatChatMessage_BaseToken_Compass = "TKSAT_COMPASS_USE_MESSAGE";
         public static ConfigEntry<ChatFilterType> cfgTinkersSatchel_Compass;
-        public const string mc_TinkersSatchel_SubjectChatMessage_BaseToken_MonkeyPawActivate = "TKSAT_MONKEYSPAW_ACTIVATED";
-        public static ConfigEntry<ChatFilterType> cfgTinkersSatchel_MonkeyPawActivate;
-        public const string mc_TinkersSatchel_ColoredTokenChatMessage_BaseToken_MonkeyPawItemGrant = "TKSAT_MONKEYSPAW_ACTIVATED";
-        public static ConfigEntry<bool> cfgTinkersSatchel_MonkeyPawItemGrant;
+        //public const string mc_TinkersSatchel_SubjectChatMessage_BaseToken_MonkeyPawActivate = "TKSAT_MONKEYSPAW_ACTIVATED";
+        //public static ConfigEntry<ChatFilterType> cfgTinkersSatchel_MonkeyPawActivate;
+        //public const string mc_TinkersSatchel_ColoredTokenChatMessage_BaseToken_MonkeyPawItemGrant = "TKSAT_MONKEYSPAW_ACTIVATED";
+        //public static ConfigEntry<bool> cfgTinkersSatchel_MonkeyPawItemGrant;
 
         //https://github.com/SylmarDev/SpireItems/blob/3a4c8ef16ff58bd5457523d6efb475bddf7fe0d5/SpireItems/Relics/Tier2/BloodIdol.cs#L80
         public static bool modloaded_SpireItems;
@@ -368,8 +368,8 @@ namespace ror2ChatFilterMod
             cfgTeammateRevive_DeathCurseDisabled = Config.Bind(KEY_TEAMMATEREVIVE, "DeathCurseDisabled", true, mc_TeammateRevive_SimpleChatMessage_BaseToken_DeathCurseDisabledToken);
             cfgTeammateRevive_DeathCurseEnforcedByServer = Config.Bind(KEY_TEAMMATEREVIVE, "DeathCurseEnforcedByServer", true, mc_TeammateRevive_SimpleChatMessage_BaseToken_DeathCurseEnforcedByServerToken);
             cfgTinkersSatchel_Compass = Config.Bind(KEY_TINKERSSATCHEL, KEY_TINKERSSATCHEL, ChatFilterType.All, mc_TinkersSatchel_SubjectFormatChatMessage_BaseToken_Compass);
-            cfgTinkersSatchel_MonkeyPawActivate = Config.Bind(KEY_TINKERSSATCHEL, "MonkeyPawActivate", ChatFilterType.All, mc_TinkersSatchel_SubjectChatMessage_BaseToken_MonkeyPawActivate);
-            cfgTinkersSatchel_MonkeyPawItemGrant = Config.Bind(KEY_TINKERSSATCHEL, "MonkeyPawItemGrant", true, mc_TinkersSatchel_ColoredTokenChatMessage_BaseToken_MonkeyPawItemGrant);
+            //cfgTinkersSatchel_MonkeyPawActivate = Config.Bind(KEY_TINKERSSATCHEL, "MonkeyPawActivate", ChatFilterType.All, mc_TinkersSatchel_SubjectChatMessage_BaseToken_MonkeyPawActivate);
+            //cfgTinkersSatchel_MonkeyPawItemGrant = Config.Bind(KEY_TINKERSSATCHEL, "MonkeyPawItemGrant", true, mc_TinkersSatchel_ColoredTokenChatMessage_BaseToken_MonkeyPawItemGrant);
             cfgBossAntiSoftlock_ResetBossPosition = Config.Bind(KEY_BOSSANTISOFTLOCK, "ResetBossPosition", true, mc_BossAntiSoftlock_SimpleChatMessage_BaseToken_StartsWith_ResetBossPositionsToken);
             cfgBossAntiSoftlock_ErrorReset = Config.Bind(KEY_BOSSANTISOFTLOCK, "Error Reset", true, mc_BossAntiSoftlock_SimpleChatMessage_BaseToken_ErrorResetToken);
             cfgBossAntiSoftlock_ModHint = Config.Bind(KEY_BOSSANTISOFTLOCK, "ModHint", true, mc_BossAntiSoftlock_SimpleChatMessage_BaseToken_ModHintToken);
@@ -441,34 +441,34 @@ namespace ror2ChatFilterMod
             #region Vanilla
 
             var vanilla = "Vanilla";
-            A2(cfgShowPlayerPickupMessages, vanilla);
-            A2(cfgShowDeathMessages, "Vanilla");
-            A2(cfgShowJoinMessages, "Vanilla");
-            A2(cfgShowLeaveMessages, "Vanilla");
-            A(cfgShowNPCPickupMessages, "Vanilla");
-            A2(cfgShowAhoy, "Vanilla");
-            A(cfgShowNpc, "Vanilla");
-            A2(cfgShowAchievement, "Vanilla");
-            A(cfgShowFamily, "Vanilla");
-            A2(cfgShowTeleporterActivation, "Vanilla");
-            A2(cfgShowSuppressor, "Vanilla");
-            A(cfgShowPortalShopWillOpen, "Vanilla");
-            A(cfgShowPortalGoldshoresWillOpen, "Vanilla");
-            A(cfgShowPortalMSWillOpen, "Vanilla");
-            A(cfgShowPortalShopOpen, "Vanilla");
-            A(cfgShowPortalGoldshoresOpen, "Vanilla");
-            A(cfgShowPortalMSOpen, "Vanilla");
-            A(cfgShowMountainTeleporter, "Vanilla");
-            A2(cfgShowShrineChanceWin, "Vanilla");
-            A2(cfgShowShrineChanceFail, "Vanilla");
-            A(cfgShowSeer, "Vanilla");
-            A2(cfgShowShrineBoss, "Vanilla");
-            A2(cfgShowShrineBlood, "Vanilla");
-            A2(cfgShowShrineRestack, "Vanilla");
-            A2(cfgShowShrineHealing, "Vanilla");
-            A2(cfgShowShrineCombat, "Vanilla");
-            A(cfgShowArenaEnd, "Vanilla");
-            A2(cfgShowPetFrog, "Vanilla");
+            A2(cfgPlayerPickupMessages, vanilla);
+            A2(cfgDeathMessages, "Vanilla");
+            A2(cfgJoinMessages, "Vanilla");
+            A2(cfgLeaveMessages, "Vanilla");
+            A(cfgNPCPickupMessages, "Vanilla");
+            A2(cfgAhoy, "Vanilla");
+            A(cfgNpcMessages, "Vanilla");
+            A2(cfgAchievement, "Vanilla");
+            A(cfgFamily, "Vanilla");
+            A2(cfgTeleporterActivation, "Vanilla");
+            A2(cfgSuppressor, "Vanilla");
+            A(cfgPortalShopWillOpen, "Vanilla");
+            A(cfgPortalGoldshoresWillOpen, "Vanilla");
+            A(cfgPortalMSWillOpen, "Vanilla");
+            A(cfgPortalShopOpen, "Vanilla");
+            A(cfgPortalGoldshoresOpen, "Vanilla");
+            A(cfgPortalMSOpen, "Vanilla");
+            A(cfgMountainTeleporter, "Vanilla");
+            A2(cfgShrineChanceWin, "Vanilla");
+            A2(cfgShrineChanceFail, "Vanilla");
+            A(cfgSeer, "Vanilla");
+            A2(cfgShrineBoss, "Vanilla");
+            A2(cfgShrineBlood, "Vanilla");
+            A2(cfgShrineRestack, "Vanilla");
+            A2(cfgShrineHealing, "Vanilla");
+            A2(cfgShrineCombat, "Vanilla");
+            A(cfgArenaEnd, "Vanilla");
+            A2(cfgPetFrog, "Vanilla");
 
             #endregion Vanilla
 
@@ -502,8 +502,8 @@ namespace ror2ChatFilterMod
             if (modloaded_TinkersSatchel)
             {
                 A2(cfgTinkersSatchel_Compass, KEY_TINKERSSATCHEL);
-                A2(cfgTinkersSatchel_MonkeyPawActivate, KEY_TINKERSSATCHEL);
-                A(cfgTinkersSatchel_MonkeyPawItemGrant, KEY_TINKERSSATCHEL);
+                //A2(cfgTinkersSatchel_MonkeyPawActivate, KEY_TINKERSSATCHEL);
+                //A(cfgTinkersSatchel_MonkeyPawItemGrant, KEY_TINKERSSATCHEL);
             }
             if (modloaded_Multitudes)
             {
@@ -829,13 +829,13 @@ namespace ror2ChatFilterMod
         public static bool ModCompatCheck_SubjectChatMessage(SubjectChatMessage chatMessage)
         {
             if (!IsAnyModLoaded) return true;
-            var baseToken = chatMessage.baseToken;
+            //var baseToken = chatMessage.baseToken;
 
-            if (modloaded_TinkersSatchel)
-            {
-                if (baseToken == mc_TinkersSatchel_SubjectChatMessage_BaseToken_MonkeyPawActivate)
-                    return ShouldShowClient(chatMessage, cfgTinkersSatchel_MonkeyPawActivate);
-            }
+            //if (modloaded_TinkersSatchel)
+            //{
+            //    if (baseToken == mc_TinkersSatchel_SubjectChatMessage_BaseToken_MonkeyPawActivate)
+            //        return ShouldShowClient(chatMessage, cfgTinkersSatchel_MonkeyPawActivate);
+            //}
 
             return true;
         }
@@ -843,13 +843,13 @@ namespace ror2ChatFilterMod
         public static bool ModCompatCheck_ColoredTokenChatMessage(ColoredTokenChatMessage chatMessage)
         {
             if (!IsAnyModLoaded) return true;
-            var baseToken = chatMessage.baseToken;
+            //var baseToken = chatMessage.baseToken;
 
-            if (modloaded_TinkersSatchel)
-            {
-                if (baseToken == mc_TinkersSatchel_ColoredTokenChatMessage_BaseToken_MonkeyPawItemGrant)
-                    return cfgTinkersSatchel_MonkeyPawItemGrant.Value;
-            }
+            //if (modloaded_TinkersSatchel)
+            //{
+            //    if (baseToken == mc_TinkersSatchel_ColoredTokenChatMessage_BaseToken_MonkeyPawItemGrant)
+            //        return cfgTinkersSatchel_MonkeyPawItemGrant.Value;
+            //}
 
             return true;
         }

@@ -39,34 +39,34 @@ namespace ror2ChatFilterMod
     {
         public static ConfigEntry<string> cfgTimestampFormat;
 
-        public static ConfigEntry<ChatFilterType> cfgShowPlayerPickupMessages;
-        public static ConfigEntry<ChatFilterType> cfgShowDeathMessages;
-        public static ConfigEntry<ChatFilterType> cfgShowJoinMessages;
-        public static ConfigEntry<ChatFilterType> cfgShowLeaveMessages;
-        public static ConfigEntry<bool> cfgShowNPCPickupMessages;
-        public static ConfigEntry<ChatFilterType> cfgShowAhoy;
-        public static ConfigEntry<bool> cfgShowNpc;
-        public static ConfigEntry<ChatFilterType> cfgShowAchievement;
-        public static ConfigEntry<bool> cfgShowFamily;
-        public static ConfigEntry<ChatFilterType> cfgShowTeleporterActivation;
-        public static ConfigEntry<ChatFilterType> cfgShowSuppressor;
-        public static ConfigEntry<bool> cfgShowPortalShopWillOpen;
-        public static ConfigEntry<bool> cfgShowPortalGoldshoresWillOpen;
-        public static ConfigEntry<bool> cfgShowPortalMSWillOpen;
-        public static ConfigEntry<bool> cfgShowPortalShopOpen;
-        public static ConfigEntry<bool> cfgShowPortalGoldshoresOpen;
-        public static ConfigEntry<bool> cfgShowPortalMSOpen;
-        public static ConfigEntry<bool> cfgShowMountainTeleporter;
-        public static ConfigEntry<ChatFilterType> cfgShowShrineChanceWin;
-        public static ConfigEntry<ChatFilterType> cfgShowShrineChanceFail;
-        public static ConfigEntry<bool> cfgShowSeer;
-        public static ConfigEntry<ChatFilterType> cfgShowShrineBoss;
-        public static ConfigEntry<ChatFilterType> cfgShowShrineBlood;
-        public static ConfigEntry<ChatFilterType> cfgShowShrineRestack;
-        public static ConfigEntry<ChatFilterType> cfgShowShrineHealing;
-        public static ConfigEntry<ChatFilterType> cfgShowShrineCombat;
-        public static ConfigEntry<bool> cfgShowArenaEnd;
-        public static ConfigEntry<ChatFilterType> cfgShowPetFrog;
+        public static ConfigEntry<ChatFilterType> cfgPlayerPickupMessages;
+        public static ConfigEntry<bool> cfgNPCPickupMessages;
+        public static ConfigEntry<ChatFilterType> cfgDeathMessages;
+        public static ConfigEntry<ChatFilterType> cfgJoinMessages;
+        public static ConfigEntry<ChatFilterType> cfgLeaveMessages;
+        public static ConfigEntry<ChatFilterType> cfgAhoy;
+        public static ConfigEntry<bool> cfgNpcMessages;
+        public static ConfigEntry<ChatFilterType> cfgAchievement;
+        public static ConfigEntry<bool> cfgFamily;
+        public static ConfigEntry<ChatFilterType> cfgTeleporterActivation;
+        public static ConfigEntry<ChatFilterType> cfgSuppressor;
+        public static ConfigEntry<bool> cfgPortalShopWillOpen;
+        public static ConfigEntry<bool> cfgPortalGoldshoresWillOpen;
+        public static ConfigEntry<bool> cfgPortalMSWillOpen;
+        public static ConfigEntry<bool> cfgPortalShopOpen;
+        public static ConfigEntry<bool> cfgPortalGoldshoresOpen;
+        public static ConfigEntry<bool> cfgPortalMSOpen;
+        public static ConfigEntry<bool> cfgMountainTeleporter;
+        public static ConfigEntry<ChatFilterType> cfgShrineChanceWin;
+        public static ConfigEntry<ChatFilterType> cfgShrineChanceFail;
+        public static ConfigEntry<bool> cfgSeer;
+        public static ConfigEntry<ChatFilterType> cfgShrineBoss;
+        public static ConfigEntry<ChatFilterType> cfgShrineBlood;
+        public static ConfigEntry<ChatFilterType> cfgShrineRestack;
+        public static ConfigEntry<ChatFilterType> cfgShrineHealing;
+        public static ConfigEntry<ChatFilterType> cfgShrineCombat;
+        public static ConfigEntry<bool> cfgArenaEnd;
+        public static ConfigEntry<ChatFilterType> cfgPetFrog;
 
         public enum ChatFilterType
         {
@@ -218,24 +218,24 @@ namespace ror2ChatFilterMod
                     switch (playerPickupChatMessage.baseToken)
                     {
                         case "PLAYER_PICKUP":
-                            showMessage = ShouldShowClient(playerPickupChatMessage, cfgShowPlayerPickupMessages);
+                            showMessage = ShouldShowClient(playerPickupChatMessage, cfgPlayerPickupMessages);
                             break;
                     }
                     break;
 
                 case Chat.PlayerDeathChatMessage playerDeathChatMessage:
-                    showMessage = ShouldShowClient(playerDeathChatMessage, cfgShowDeathMessages);
+                    showMessage = ShouldShowClient(playerDeathChatMessage, cfgDeathMessages);
                     break;
 
                 case Chat.PlayerChatMessage chatMsg:
                     switch (chatMsg.baseToken)
                     {
                         case "PLAYER_CONNECTED":
-                            showMessage = ShouldShowClient(chatMsg, cfgShowJoinMessages);
+                            showMessage = ShouldShowClient(chatMsg, cfgJoinMessages);
                             break;
 
                         case "PLAYER_DISCONNECTED":
-                            showMessage = ShouldShowClient(chatMsg, cfgShowLeaveMessages);
+                            showMessage = ShouldShowClient(chatMsg, cfgLeaveMessages);
                             break;
                     }
                     break;
@@ -243,7 +243,7 @@ namespace ror2ChatFilterMod
                 case Chat.BodyChatMessage bodyChatMessage:
                     showMessage = bodyChatMessage.token switch
                     {
-                        "EQUIPMENT_BOSSHUNTERCONSUMED_CHAT" => ShouldShowClient(bodyChatMessage, cfgShowAhoy),
+                        "EQUIPMENT_BOSSHUNTERCONSUMED_CHAT" => ShouldShowClient(bodyChatMessage, cfgAhoy),
                         _ => true
                     };
                     if (showMessage)
@@ -251,13 +251,13 @@ namespace ror2ChatFilterMod
                     break;
 
                 case Chat.NpcChatMessage _:
-                    showMessage = cfgShowNpc.Value;
+                    showMessage = cfgNpcMessages.Value;
                     break;
 
                 case ColoredTokenChatMessage coloredTokenChatMessage:
                     showMessage = coloredTokenChatMessage.baseToken switch
                     {
-                        "VOID_SUPPRESSOR_USE_MESSAGE" => ShouldShowClient(coloredTokenChatMessage, cfgShowSuppressor),
+                        "VOID_SUPPRESSOR_USE_MESSAGE" => ShouldShowClient(coloredTokenChatMessage, cfgSuppressor),
                         _ => true
                     };
                     if (showMessage)
@@ -267,14 +267,14 @@ namespace ror2ChatFilterMod
                 case Chat.SubjectFormatChatMessage subjectFormatChatMessage:
                     showMessage = subjectFormatChatMessage.baseToken switch
                     {
-                        "ACHIEVEMENT_UNLOCKED_MESSAGE" => ShouldShowClient(subjectFormatChatMessage, cfgShowAchievement),
-                        "SHRINE_CHANCE_FAIL_MESSAGE" => ShouldShowClient(subjectFormatChatMessage, cfgShowShrineChanceFail),
-                        "SHRINE_CHANCE_SUCCESS_MESSAGE" => ShouldShowClient(subjectFormatChatMessage, cfgShowShrineChanceWin),
-                        "SHRINE_BOSS_USE_MESSAGE" => ShouldShowClient(subjectFormatChatMessage, cfgShowShrineBoss),
-                        "SHRINE_BLOOD_USE_MESSAGE" => ShouldShowClient(subjectFormatChatMessage, cfgShowShrineBlood),
-                        "SHRINE_RESTACK_USE_MESSAGE" => ShouldShowClient(subjectFormatChatMessage, cfgShowShrineRestack),
-                        "SHRINE_HEALING_USE_MESSAGE" => ShouldShowClient(subjectFormatChatMessage, cfgShowShrineHealing),
-                        "SHRINE_COMBAT_USE_MESSAGE" => ShouldShowClient(subjectFormatChatMessage, cfgShowShrineCombat),
+                        "ACHIEVEMENT_UNLOCKED_MESSAGE" => ShouldShowClient(subjectFormatChatMessage, cfgAchievement),
+                        "SHRINE_CHANCE_FAIL_MESSAGE" => ShouldShowClient(subjectFormatChatMessage, cfgShrineChanceFail),
+                        "SHRINE_CHANCE_SUCCESS_MESSAGE" => ShouldShowClient(subjectFormatChatMessage, cfgShrineChanceWin),
+                        "SHRINE_BOSS_USE_MESSAGE" => ShouldShowClient(subjectFormatChatMessage, cfgShrineBoss),
+                        "SHRINE_BLOOD_USE_MESSAGE" => ShouldShowClient(subjectFormatChatMessage, cfgShrineBlood),
+                        "SHRINE_RESTACK_USE_MESSAGE" => ShouldShowClient(subjectFormatChatMessage, cfgShrineRestack),
+                        "SHRINE_HEALING_USE_MESSAGE" => ShouldShowClient(subjectFormatChatMessage, cfgShrineHealing),
+                        "SHRINE_COMBAT_USE_MESSAGE" => ShouldShowClient(subjectFormatChatMessage, cfgShrineCombat),
                         _ => true
                     };
                     if (showMessage) //check for true, if its false its already been filtered
@@ -286,8 +286,8 @@ namespace ror2ChatFilterMod
                 case SubjectChatMessage subjectChatMessage:
                     showMessage = subjectChatMessage.baseToken switch
                     {
-                        "PLAYER_ACTIVATED_TELEPORTER" => ShouldShowClient(subjectChatMessage, cfgShowTeleporterActivation),
-                        "PET_FROG" => ShouldShowClient(subjectChatMessage, cfgShowPetFrog),
+                        "PLAYER_ACTIVATED_TELEPORTER" => ShouldShowClient(subjectChatMessage, cfgTeleporterActivation),
+                        "PET_FROG" => ShouldShowClient(subjectChatMessage, cfgPetFrog),
                         _ => true
                     };
                     if (showMessage)
@@ -305,18 +305,18 @@ namespace ror2ChatFilterMod
                     //VULTURE_EGG_BEGIN
                     showMessage = simpleChatMessage.baseToken switch
                     {
-                        "PORTAL_SHOP_WILL_OPEN" => cfgShowPortalShopWillOpen.Value,
-                        "PORTAL_GOLDSHORES_WILL_OPEN" => cfgShowPortalGoldshoresWillOpen.Value,
-                        "PORTAL_MS_WILL_OPEN" => cfgShowPortalMSWillOpen.Value,
-                        "SHRINE_BOSS_BEGIN_TRIAL" => cfgShowMountainTeleporter.Value,
-                        "PORTAL_SHOP_OPEN" => cfgShowPortalMSOpen.Value,
-                        "PORTAL_GOLDSHORES_OPEN" => cfgShowPortalGoldshoresOpen.Value,
-                        "PORTAL_MS_OPEN" => cfgShowPortalMSOpen.Value,
-                        "ARENA_END" => cfgShowArenaEnd.Value,
+                        "PORTAL_SHOP_WILL_OPEN" => cfgPortalShopWillOpen.Value,
+                        "PORTAL_GOLDSHORES_WILL_OPEN" => cfgPortalGoldshoresWillOpen.Value,
+                        "PORTAL_MS_WILL_OPEN" => cfgPortalMSWillOpen.Value,
+                        "SHRINE_BOSS_BEGIN_TRIAL" => cfgMountainTeleporter.Value,
+                        "PORTAL_SHOP_OPEN" => cfgPortalMSOpen.Value,
+                        "PORTAL_GOLDSHORES_OPEN" => cfgPortalGoldshoresOpen.Value,
+                        "PORTAL_MS_OPEN" => cfgPortalMSOpen.Value,
+                        "ARENA_END" => cfgArenaEnd.Value,
                         _ => simpleChatMessage.baseToken.StartsWith("BAZAAR_SEER_")
-                            ? cfgShowSeer.Value
+                            ? cfgSeer.Value
                             : !simpleChatMessage.baseToken.StartsWith("FAMILY_")
-                            || cfgShowFamily.Value
+                            || cfgFamily.Value
                     };
                     if (showMessage) //check for true, if its false its already been filtered
                     {
@@ -333,7 +333,7 @@ namespace ror2ChatFilterMod
         {
             #region 
 
-            var clientKey = "";
+            var clientKey = "Client";
             ConfigEntry<bool> Bind(string k, bool t, string d)
             {
                 return Config.Bind(clientKey, k, t, d);
@@ -342,36 +342,36 @@ namespace ror2ChatFilterMod
             {
                 return Config.Bind(clientKey, k, t, d);
             }
-            cfgShowPlayerPickupMessages = Config.Bind(clientKey, "Player Pickup Messages", ChatFilterType.All, "<style=cEvent>{0} picked up {1}{2}</color>");
+            cfgPlayerPickupMessages = Config.Bind(clientKey, "Player Pickup", ChatFilterType.All, "<style=cEvent>{0} picked up {1}{2}</color>");
             cfgTimestampFormat = Config.Bind(clientKey, "Timestamp Format", "{0} {1}", "First parameter is the timestamp, the second is the original message. Leave empty to disable.");
 
-            cfgShowDeathMessages = Bind2("Death Messages", ChatFilterType.All, "");
-            cfgShowJoinMessages = Bind2("Join Messages", ChatFilterType.All, "<style=cEvent>{0} connected.</color>");
-            cfgShowLeaveMessages = Bind2("Leave Messages", ChatFilterType.All, "<style=cEvent>{0} disconnected.</color>");
-            cfgShowNPCPickupMessages = Bind("NPC Pickup Messages", true, "Scav pickups, void fields item adds");
-            cfgShowAhoy = Bind2("Ahoy Messages", ChatFilterType.All, "Ahoy!");
-            cfgShowNpc = Bind("NPC Messages", true, "Mithrix messages");
-            cfgShowAchievement = Bind2("Achievement Messages", ChatFilterType.All, "<color=#ccd3e0>{0} achieved <color=#BDE151>{1}</color></color>");
-            cfgShowFamily = Bind("Family Messages", true, "");
-            cfgShowTeleporterActivation = Bind2("Teleporter Activation Messages", ChatFilterType.All, "<style=cEvent>{0} activated the <style=cDeath>Teleporter <sprite name=\"TP\" tint=1></style>.</style>");
-            cfgShowSuppressor = Bind2("Suppressor Messages", ChatFilterType.All, "<style=cShrine>{0} eradicated {1} from the universe.");
-            cfgShowPortalShopWillOpen = Bind("Portal Shop Will Open Messages", true, "<style=cWorldEvent>A blue orb appears..</style>");
-            cfgShowPortalGoldshoresWillOpen = Bind("Portal Goldshores Will Open Messages", true, "<style=cWorldEvent>A gold orb appears..</style>");
-            cfgShowPortalMSWillOpen = Bind("Portal MS Will Open Messages", true, "<style=cWorldEvent>A celestial orb appears..</style>");
-            cfgShowPortalShopOpen = Bind("Portal Shop Open Messages", true, "<style=cWorldEvent>A blue portal appears..</style>");
-            cfgShowPortalGoldshoresOpen = Bind("Portal Goldshores Open Messages", true, "<style=cWorldEvent>A gold portal appears..</style>");
-            cfgShowPortalMSOpen = Bind("Portal MS Open Messages", true, "<style=cWorldEvent>A celestial portal appears..</style>");
-            cfgShowMountainTeleporter = Bind("Mountain Teleporter Messages", true, "<style=cShrine>Let the challenge of the Mountain... begin!</style>");
-            cfgShowShrineChanceWin = Bind2("Shrine Chance Win Messages", ChatFilterType.All, "<style=cShrine>{0} offered to the shrine and was rewarded!</color>");
-            cfgShowShrineChanceFail = Bind2("Shrine Chance Fail Messages", ChatFilterType.All, "<style=cShrine>{0} offered to the shrine and gained nothing.</color>");
-            cfgShowSeer = Bind("Seer Messages", true, "<style=cWorldEvent>You dream of STAGEHINT.</style>");
-            cfgShowShrineBoss = Bind2("Shrine Boss Messages", ChatFilterType.All, "<style=cShrine>{0} has invited the challenge of the Mountain..</color>");
-            cfgShowShrineBlood = Bind2("Shrine Blood Messages", ChatFilterType.All, "<style=cShrine>{0} feels a searing pain, and has gained {1} gold.</color>");
-            cfgShowShrineRestack = Bind2("Shrine Restack Messages", ChatFilterType.All, "<style=cShrine>{0} is... sequenced.</color>");
-            cfgShowShrineHealing = Bind2("Shrine Healing Messages", ChatFilterType.All, "\"<style=cShrine>{0} is embraced by the healing warmth of the Woods.</color>");
-            cfgShowShrineCombat = Bind2("Shrine Combat Messages", ChatFilterType.All, "<style=cShrine>{0} has summoned {1}s to fight.</color>");
-            cfgShowArenaEnd = Bind("Arena End Messages", false, "<style=cWorldEvent>The Cell stabilizes.</style>");
-            cfgShowPetFrog = Bind2("Pet Frog Messages", ChatFilterType.All, "{0} pet the frog.");
+            cfgDeathMessages = Bind2("Death", ChatFilterType.All, "");
+            cfgJoinMessages = Bind2("Join", ChatFilterType.All, "<style=cEvent>{0} connected.</color>");
+            cfgLeaveMessages = Bind2("Leave", ChatFilterType.All, "<style=cEvent>{0} disconnected.</color>");
+            cfgNPCPickupMessages = Bind("NPC Pickup", true, "Scav pickups, void fields item adds");
+            cfgAhoy = Bind2("Ahoy", ChatFilterType.All, "Ahoy!");
+            cfgNpcMessages = Bind("NPC", true, "Mithrix messages");
+            cfgAchievement = Bind2("Achievement", ChatFilterType.All, "<color=#ccd3e0>{0} achieved <color=#BDE151>{1}</color></color>");
+            cfgFamily = Bind("Family", true, "");
+            cfgTeleporterActivation = Bind2("Teleporter Activation", ChatFilterType.All, "<style=cEvent>{0} activated the <style=cDeath>Teleporter <sprite name=\"TP\" tint=1></style>.</style>");
+            cfgSuppressor = Bind2("Suppressor", ChatFilterType.All, "<style=cShrine>{0} eradicated {1} from the universe.");
+            cfgPortalShopWillOpen = Bind("Portal Shop Will Open", true, "<style=cWorldEvent>A blue orb appears..</style>");
+            cfgPortalGoldshoresWillOpen = Bind("Portal Goldshores Will Open", true, "<style=cWorldEvent>A gold orb appears..</style>");
+            cfgPortalMSWillOpen = Bind("Portal MS Will Open", true, "<style=cWorldEvent>A celestial orb appears..</style>");
+            cfgPortalShopOpen = Bind("Portal Shop Open", true, "<style=cWorldEvent>A blue portal appears..</style>");
+            cfgPortalGoldshoresOpen = Bind("Portal Goldshores Open", true, "<style=cWorldEvent>A gold portal appears..</style>");
+            cfgPortalMSOpen = Bind("Portal MS Open", true, "<style=cWorldEvent>A celestial portal appears..</style>");
+            cfgMountainTeleporter = Bind("Mountain Teleporter", true, "<style=cShrine>Let the challenge of the Mountain... begin!</style>");
+            cfgShrineChanceWin = Bind2("Shrine Chance Win", ChatFilterType.All, "<style=cShrine>{0} offered to the shrine and was rewarded!</color>");
+            cfgShrineChanceFail = Bind2("Shrine Chance Fail", ChatFilterType.All, "<style=cShrine>{0} offered to the shrine and gained nothing.</color>");
+            cfgSeer = Bind("Seer", true, "<style=cWorldEvent>You dream of STAGEHINT.</style>");
+            cfgShrineBoss = Bind2("Shrine Boss", ChatFilterType.All, "<style=cShrine>{0} has invited the challenge of the Mountain..</color>");
+            cfgShrineBlood = Bind2("Shrine Blood", ChatFilterType.All, "<style=cShrine>{0} feels a searing pain, and has gained {1} gold.</color>");
+            cfgShrineRestack = Bind2("Shrine Restack", ChatFilterType.All, "<style=cShrine>{0} is... sequenced.</color>");
+            cfgShrineHealing = Bind2("Shrine Healing", ChatFilterType.All, "\"<style=cShrine>{0} is embraced by the healing warmth of the Woods.</color>");
+            cfgShrineCombat = Bind2("Shrine Combat", ChatFilterType.All, "<style=cShrine>{0} has summoned {1}s to fight.</color>");
+            cfgArenaEnd = Bind("Arena End", false, "<style=cWorldEvent>The Cell stabilizes.</style>");
+            cfgPetFrog = Bind2("Pet Frog", ChatFilterType.All, "{0} pet the frog.");
 
             #endregion 
         }
