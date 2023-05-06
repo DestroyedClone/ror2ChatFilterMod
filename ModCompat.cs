@@ -21,15 +21,15 @@ namespace ror2ChatFilterMod
         public static bool modloaded_VsTwitch = false;
 
         //https://github.com/JustDerb/RoR2-VsTwitch/blob/c7a0894e2abe380541b53d55e9a22e3cb043de5a/Events/EventFactory.cs#L221
-        public const string modcompat_VsTwitch_SimpleChat_BaseToken_ChallengeToken = "<color=#9147ff>Twitch Chat feels the boss should be harder on the next stage.</color>";
-        public static ConfigEntry<bool> cfgModcompat_VsTwitch_Challenge;
+        public const string mc_VsTwitch_SimpleChat_BaseToken_ChallengeToken = "<color=#9147ff>Twitch Chat feels the boss should be harder on the next stage.</color>";
+        public static ConfigEntry<bool> cfgVsTwitch_Challenge;
 
         //https://github.com/JustDerb/RoR2-VsTwitch/blob/c7a0894e2abe380541b53d55e9a22e3cb043de5a/Events/EventFactory.cs#L338
         //<color=#{ColorUtility.ToHtmlStringRGB(Color.green)}>
-        public static string modcompat_VsTwitch_SimpleChat_BaseToken_StartsWith_AllyToken = $"<color=#00FF00>";
+        public static string mc_VsTwitch_SimpleChat_BaseToken_StartsWith_AllyToken = $"<color=#00FF00>";
 
-        public const string modcompat_VsTwitch_SimpleChat_BaseToken_EndsWith_AllyToken = "</color> <color=#9147ff> enters the game to help you...</color>";
-        public static ConfigEntry<bool> cfgModcompat_VsTwitch_AllyToken;
+        public const string mc_VsTwitch_SimpleChat_BaseToken_EndsWith_AllyToken = "</color> <color=#9147ff> enters the game to help you...</color>";
+        public static ConfigEntry<bool> cfgVsTwitch_AllyToken;
         //https://github.com/JustDerb/RoR2-VsTwitch/blob/c7a0894e2abe380541b53d55e9a22e3cb043de5a/VsTwitch.cs#L245
         //im lazing a little, seems useful?
 
@@ -39,9 +39,9 @@ namespace ror2ChatFilterMod
         //https://github.com/MonsterSkinMan/GOTCE/blob/3e4d99234752df2a8acad71ef376aca02857e3ed/GOTCE/Artifact/ArtifactOfWoolie.cs#L59
         public static bool modloaded_GOTCE;
         public const string KEY_GOTCE = "GOTCE";
-        public const string modcompat_GOTCE_SimpleChat_BaseToken_RushOrDieToken = "<color=#e5eefc>{0}</color>";
-        public const string modcompat_GOTCE_SimpleChat_ParamToken_RushOrDieToken = "You got outscaled, idiot.";
-        public static ConfigEntry<bool> cfgModcompat_GOTCE_RushOrDie;
+        public const string mc_GOTCE_SimpleChat_BaseToken_RushOrDieToken = "<color=#e5eefc>{0}</color>";
+        public const string mc_GOTCE_SimpleChat_ParamToken_RushOrDieToken = "You got outscaled, idiot.";
+        public static ConfigEntry<bool> cfgGOTCE_RushOrDie;
 
         //https://github.com/AngeloTadeucci/RoR2_RaidInfo/blob/eeb96b302c3cdd843b427245319d29d68d3becc4/Message.cs#L6
         //https://github.com/harbingerofme/R2DS-Essentials/blob/165184420d5995f3be6f85913251a349e568000a/Modules/MotD.cs#L167
@@ -49,58 +49,58 @@ namespace ror2ChatFilterMod
         //https://github.com/hifoomin/UltimateCustomRun/blob/3144665504a47c7d3ad32e3226fc05a82b7bdc69/UCR.Content/SendChatNotif.cs#L23
         public static bool modloaded_UltimateCustomRun;
         public const string KEY_ULTIMATECUSTOMRUN = "UltimateCustomRun";
-        public const string modcompat_UltimateCustomRun_SimpleChatMessage_BaseToken_Welcome = "</size></color><color=#BFA9D3>Thanks for trying out </color><color=#8932D5>UltimateCustomRun.</color>\n" +
+        public const string mc_UltimateCustomRun_SimpleChatMessage_BaseToken_Welcome = "</size></color><color=#BFA9D3>Thanks for trying out </color><color=#8932D5>UltimateCustomRun.</color>\n" +
           "<color=#BFA9D3>For any mod devs that see this, feel free to contribute and make the mod as good as possible.\n" +
           "There is a to-do list regarding items in the Main Class.\n" +
           "<i>Github PR's / Issues are best</i>, but DMs and pings are also welcome. Have fun and peace out! \u2764</color>";
 
-        public static ConfigEntry<bool> cfgModcompat_UltimateCustomRun_Welcome;
+        public static ConfigEntry<bool> cfgUltimateCustomRun_Welcome;
 
         //https://github.com/KosmosisDire/TeammateRevive/blob/3b8e4e77c8c258ff82fc9372374ec664410332cd/TeammateRevive/Content/Artifact/DeathCurseArtifact.cs#L31
         public static bool modloaded_TeammateRevive;
         public const string KEY_TEAMMATEREVIVE = "TeammateRevive";
-        public const string modcompat_TeammateRevive_SimpleChatMessage_BaseToken_DeathCurseDisabledToken = "<color=\"yellow\">Artifact of Death Curse is disabled because run started in single player.</color>";
-        public static ConfigEntry<bool> cfgModcompat_TeammateRevive_DeathCurseDisabled;
-        public const string modcompat_TeammateRevive_SimpleChatMessage_BaseToken_DeathCurseEnforcedByServerToken = "<color=\"yellow\">Artifact of Death Curse is enforced by server.</color>";
-        public static ConfigEntry<bool> cfgModcompat_TeammateRevive_DeathCurseEnforcedByServer;
+        public const string mc_TeammateRevive_SimpleChatMessage_BaseToken_DeathCurseDisabledToken = "<color=\"yellow\">Artifact of Death Curse is disabled because run started in single player.</color>";
+        public static ConfigEntry<bool> cfgTeammateRevive_DeathCurseDisabled;
+        public const string mc_TeammateRevive_SimpleChatMessage_BaseToken_DeathCurseEnforcedByServerToken = "<color=\"yellow\">Artifact of Death Curse is enforced by server.</color>";
+        public static ConfigEntry<bool> cfgTeammateRevive_DeathCurseEnforcedByServer;
 
         //https://github.com/ThinkInvis/RoR2-TinkersSatchel/blob/559eae30e461e0ead649e67b3be312a4765dbf56/Items/LunarEqp/Compass.cs#L210
         public static bool modloaded_TinkersSatchel;
         public const string KEY_TINKERSSATCHEL = "TinkersSatchel";
-        public const string modcompat_TinkersSatchel_SubjectFormatChatMessage_BaseToken_Compass = "TKSAT_COMPASS_USE_MESSAGE";
-        public static ConfigEntry<ChatFilterType> cfgModCompat_TinkersSatchel_Compass;
-        public const string modcompat_TinkersSatchel_SubjectChatMessage_BaseToken_MonkeyPawActivate = "TKSAT_MONKEYSPAW_ACTIVATED";
-        public static ConfigEntry<ChatFilterType> cfgModCompat_TinkersSatchel_MonkeyPawActivate;
-        public const string modcompat_TinkersSatchel_ColoredTokenChatMessage_BaseToken_MonkeyPawItemGrant = "TKSAT_MONKEYSPAW_ACTIVATED";
-        public static ConfigEntry<bool> cfgModCompat_TinkersSatchel_MonkeyPawItemGrant;
+        public const string mc_TinkersSatchel_SubjectFormatChatMessage_BaseToken_Compass = "TKSAT_COMPASS_USE_MESSAGE";
+        public static ConfigEntry<ChatFilterType> cfgTinkersSatchel_Compass;
+        public const string mc_TinkersSatchel_SubjectChatMessage_BaseToken_MonkeyPawActivate = "TKSAT_MONKEYSPAW_ACTIVATED";
+        public static ConfigEntry<ChatFilterType> cfgTinkersSatchel_MonkeyPawActivate;
+        public const string mc_TinkersSatchel_ColoredTokenChatMessage_BaseToken_MonkeyPawItemGrant = "TKSAT_MONKEYSPAW_ACTIVATED";
+        public static ConfigEntry<bool> cfgTinkersSatchel_MonkeyPawItemGrant;
 
         //https://github.com/SylmarDev/SpireItems/blob/3a4c8ef16ff58bd5457523d6efb475bddf7fe0d5/SpireItems/Relics/Tier2/BloodIdol.cs#L80
         public static bool modloaded_SpireItems;
         public const string KEY_SPIREITEMS = "SpireItems";
         //for some reason its a subjectformatchatmessage despite not using any subjects???
-        public const string modcompat_SpireItems_SubjectFormatChatMessage_BaseToken_GoldenIdolSingleToken = "<style=cEvent>Your <color=#FFC733>golden idol</color> begins to dull in color and begins bleeding from its eyes. The bleeding never ceases.</style>";
+        public const string mc_SpireItems_SubjectFormatChatMessage_BaseToken_GoldenIdolSingleToken = "<style=cEvent>Your <color=#FFC733>golden idol</color> begins to dull in color and begins bleeding from its eyes. The bleeding never ceases.</style>";
 
-        public const string modcompat_SpireItems_SubjectFormatChatMessage_BaseToken_GoldenIdolMultipleToken = "<style=cEvent>Your <color=#FFC733>golden idols</color> begin to dull in color and begin bleeding from their eyes. The bleeding never ceases.</style>";
-        public static ConfigEntry<bool> cfgModCompat_SpireItems_BloodIdol;
+        public const string mc_SpireItems_SubjectFormatChatMessage_BaseToken_GoldenIdolMultipleToken = "<style=cEvent>Your <color=#FFC733>golden idols</color> begin to dull in color and begin bleeding from their eyes. The bleeding never ceases.</style>";
+        public static ConfigEntry<bool> cfgSpireItems_BloodIdol;
 
         //https://github.com/prodzpod/RoR2-BossAntiSoftlock/blob/4273b77ee0105efca8dbd9e936c1137a1ae0d005/BossAntiSoftlock.cs#L68
         public static bool modloaded_BossAntiSoftlock;
         public const string KEY_BOSSANTISOFTLOCK = "BossAntiSoftlock";
-        public const string modcompat_BossAntiSoftlock_SimpleChatMessage_BaseToken_StartsWith_ResetBossPositionsToken = "<color=#93c47d>Boss Anti-Softlock:</color> Resetting monster positions... ";
-        public static ConfigEntry<bool> cfgModCompat_BossAntiSoftlock_ResetBossPosition;
-        public const string modcompat_BossAntiSoftlock_SimpleChatMessage_BaseToken_ErrorResetToken = "<color=#93c47d>Boss Anti-Softlock:</color> Error resetting monster positions; check console for more info!";
-        public static ConfigEntry<bool> cfgModCompat_BossAntiSoftlock_ErrorReset;
-        public const string modcompat_BossAntiSoftlock_SimpleChatMessage_BaseToken_ModHintToken = "<color=#93c47d>Boss Anti-Softlock:</color> Type '/bossreset' to reset monster positions.";
-        public static ConfigEntry<bool> cfgModCompat_BossAntiSoftlock_ModHint;
-        public const string modcompat_BossAntiSoftlock_SimpleChatMessage_Command_BossReset1 = "/bossreset";
-        public const string modcompat_BossAntiSoftlock_SimpleChatMessage_Command_BossReset2 = "/boss_reset";
-        public const string modcompat_BossAntiSoftlock_SimpleChatMessage_Command_BossReset3 = "/resetboss";
-        public const string modcompat_BossAntiSoftlock_SimpleChatMessage_Command_BossReset4 = "/resetbosses";
-        public const string modcompat_BossAntiSoftlock_SimpleChatMessage_Command_BossReset5 = "/reset_boss";
-        public const string modcompat_BossAntiSoftlock_SimpleChatMessage_Command_BossReset6 = "/reset_bosses";
-        public const string modcompat_BossAntiSoftlock_SimpleChatMessage_Command_BossReset7 = "/br";
-        public const string modcompat_BossAntiSoftlock_SimpleChatMessage_Command_BossReset8 = "/rb";
-        public static ConfigEntry<bool> cfgModCompat_BossAntiSoftlock_Command;
+        public const string mc_BossAntiSoftlock_SimpleChatMessage_BaseToken_StartsWith_ResetBossPositionsToken = "<color=#93c47d>Boss Anti-Softlock:</color> Resetting monster positions... ";
+        public static ConfigEntry<bool> cfgBossAntiSoftlock_ResetBossPosition;
+        public const string mc_BossAntiSoftlock_SimpleChatMessage_BaseToken_ErrorResetToken = "<color=#93c47d>Boss Anti-Softlock:</color> Error resetting monster positions; check console for more info!";
+        public static ConfigEntry<bool> cfgBossAntiSoftlock_ErrorReset;
+        public const string mc_BossAntiSoftlock_SimpleChatMessage_BaseToken_ModHintToken = "<color=#93c47d>Boss Anti-Softlock:</color> Type '/bossreset' to reset monster positions.";
+        public static ConfigEntry<bool> cfgBossAntiSoftlock_ModHint;
+        public const string mc_BossAntiSoftlock_SimpleChatMessage_Command_BossReset1 = "/bossreset";
+        public const string mc_BossAntiSoftlock_SimpleChatMessage_Command_BossReset2 = "/boss_reset";
+        public const string mc_BossAntiSoftlock_SimpleChatMessage_Command_BossReset3 = "/resetboss";
+        public const string mc_BossAntiSoftlock_SimpleChatMessage_Command_BossReset4 = "/resetbosses";
+        public const string mc_BossAntiSoftlock_SimpleChatMessage_Command_BossReset5 = "/reset_boss";
+        public const string mc_BossAntiSoftlock_SimpleChatMessage_Command_BossReset6 = "/reset_bosses";
+        public const string mc_BossAntiSoftlock_SimpleChatMessage_Command_BossReset7 = "/br";
+        public const string mc_BossAntiSoftlock_SimpleChatMessage_Command_BossReset8 = "/rb";
+        public static ConfigEntry<bool> cfgBossAntiSoftlock_Command;
 
         //https://github.com/TeamMoonstorm/MoonstormSharedUtils/blob/f6db127b4dc0b4605922fa5343e2f518c5bf3258/Runtime/Code/Classes/EntityStates/EventState.cs#L94
         //???
@@ -108,38 +108,38 @@ namespace ror2ChatFilterMod
         //https://github.com/bb010g/wildbook-R2Mods/blob/a95b5a4843f6d5b4efef73db00f5390324dbda6a/Multitudes/Multitudes.cs#L107
         public static bool modloaded_Multitudes;
         public const string KEY_MULTITUDES = "Multitudes";
-        public const string modcompat_Multitudes_SimpleChatMessage_BaseToken_SendMultiplierToken = "Multitudes set to: {0}";
-        public static ConfigEntry<bool> cfgModCompat_Multitudes_SendMultiplier;
+        public const string mc_Multitudes_SimpleChatMessage_BaseToken_SendMultiplierToken = "Multitudes set to: {0}";
+        public static ConfigEntry<bool> cfgMultitudes_SendMultiplier;
 
         //bettershrinesrewrite
         public static bool modloaded_BetterShrines;
         public const string KEY_BETTERSHRINES = "BetterShrines";
-        public const string modcompat_BetterShrines_SubjectFormatChatMessage_BaseToken_ShrineHeresyToken = "SHRINE_HERESY_USE_MESSAGE";
-        public static ConfigEntry<ChatFilterType> cfgModCompat_BetterShrines_ShrineHeresy;
-        public const string modcompat_BetterShrines_SubjectFormatChatMessage_BaseToken_ShrineDisorderToken = "SHRINE_DISORDER_USE_MESSAGE";
-        public static ConfigEntry<ChatFilterType> cfgModCompat_BetterShrines_ShrineDisorder;
-        public const string modcompat_BetterShrines_SubjectFormatChatMessage_BaseToken_ShrineFallenToken = "SHRINE_FALLEN_USED";
-        public static ConfigEntry<ChatFilterType> cfgModCompat_BetterShrines_ShrineFallen;
-        public const string modcompat_BetterShrines_SubjectFormatChatMessage_BaseToken_ShrineImpToken = "SHRINE_IMP_USE_MESSAGE";
-        public static ConfigEntry<ChatFilterType> cfgModCompat_BetterShrines_ShrineImp;
-        public const string modcompat_BetterShrines_SubjectFormatChatMessage_BaseToken_ShrineWispAcceptToken = "SHRINE_WISP_ACCEPT_MESSAGE";
-        public const string modcompat_BetterShrines_SubjectFormatChatMessage_BaseToken_ShrineWispDenyToken = "SHRINE_WISP_DENY_MESSAGE";
-        public static ConfigEntry<ChatFilterType> cfgModCompat_BetterShrines_ShrineWisp;
-        public const string modcompat_BetterShrines_SubjectFormatChatMessage_BaseToken_ShrineShieldingToken = "SHRINE_SHIELDING_USE_MESSAGE";
-        public static ConfigEntry<ChatFilterType> cfgModCompat_BetterShrines_ShrineShielding;
+        public const string mc_BetterShrines_SubjectFormatChatMessage_BaseToken_ShrineHeresyToken = "SHRINE_HERESY_USE_MESSAGE";
+        public static ConfigEntry<ChatFilterType> cfgBetterShrines_ShrineHeresy;
+        public const string mc_BetterShrines_SubjectFormatChatMessage_BaseToken_ShrineDisorderToken = "SHRINE_DISORDER_USE_MESSAGE";
+        public static ConfigEntry<ChatFilterType> cfgBetterShrines_ShrineDisorder;
+        public const string mc_BetterShrines_SubjectFormatChatMessage_BaseToken_ShrineFallenToken = "SHRINE_FALLEN_USED";
+        public static ConfigEntry<ChatFilterType> cfgBetterShrines_ShrineFallen;
+        public const string mc_BetterShrines_SubjectFormatChatMessage_BaseToken_ShrineImpToken = "SHRINE_IMP_USE_MESSAGE";
+        public static ConfigEntry<ChatFilterType> cfgBetterShrines_ShrineImp;
+        public const string mc_BetterShrines_SubjectFormatChatMessage_BaseToken_ShrineWispAcceptToken = "SHRINE_WISP_ACCEPT_MESSAGE";
+        public const string mc_BetterShrines_SubjectFormatChatMessage_BaseToken_ShrineWispDenyToken = "SHRINE_WISP_DENY_MESSAGE";
+        public static ConfigEntry<ChatFilterType> cfgBetterShrines_ShrineWisp;
+        public const string mc_BetterShrines_SubjectFormatChatMessage_BaseToken_ShrineShieldingToken = "SHRINE_SHIELDING_USE_MESSAGE";
+        public static ConfigEntry<ChatFilterType> cfgBetterShrines_ShrineShielding;
 
-        public const string modcompat_BetterShrines_SubjectFormatChatMessage_BaseToken_ShrineChancePunishedToken = "SHRINE_CHANCE_PUNISHED_MESSAGE";
-        public static ConfigEntry<ChatFilterType> cfgModCompat_BetterShrines_ShrineChancePunished;
+        public const string mc_BetterShrines_SubjectFormatChatMessage_BaseToken_ShrineChancePunishedToken = "SHRINE_CHANCE_PUNISHED_MESSAGE";
+        public static ConfigEntry<ChatFilterType> cfgBetterShrines_ShrineChancePunished;
 
         //https://github.com/niwith/DropInMultiplayer/blob/9f31beee9ed8c594c75cdfa4de4c193bcc4adfa7/DropInMultiplayerV2
         public static bool modloaded_DropInMultiplayer;
         public const string KEY_DROPINMULTIPLAYER = "DropInMultiplayer";
         //server defines this
         //we could cache it when it happens but who knows what format it is, thats why we're doing just default token
-        public const string modcompat_DropInMultiplayer_SimpleChatMessage_BaseToken_EndsWith_WelcomeToken = "! Join the game by typing '/join_as {survivor name}' in chat (or '/join_as random'). To get a list of availible survivors, type '/list_survivors' in chat";
+        public const string mc_DropInMultiplayer_SimpleChatMessage_BaseToken_EndsWith_WelcomeToken = "! Join the game by typing '/join_as {survivor name}' in chat (or '/join_as random'). To get a list of availible survivors, type '/list_survivors' in chat";
 
         public static ConfigEntry<bool> cfgDropInMultiplayer_Welcome;
-        public const string modcompat_DropInMultiplayer_SimpleChatMessage_BaseToken_MissingCommandToken = "Unable to find command, try /help";
+        public const string mc_DropInMultiplayer_SimpleChatMessage_BaseToken_MissingCommandToken = "Unable to find command, try /help";
         public static ConfigEntry<bool> cfgDropInMultiplayer_MissingCommand;
 
         // UNUSED
@@ -150,28 +150,28 @@ namespace ror2ChatFilterMod
         //might fuck up
         public static NetworkUser mostRecentNetworkUserChat;
 
-        public const string modcompat_DropInMultiplayer_SimpleChatMessage_BaseToken_Command_HelpToken = "/HELP";
-        public const string modcompat_DropInMultiplayer_SimpleChatMessage_BaseToken_Command_JoinToken = "/JOIN";
-        public const string modcompat_DropInMultiplayer_SimpleChatMessage_BaseToken_Command_JoinAsToken = "/JOIN_AS";
-        public const string modcompat_DropInMultiplayer_SimpleChatMessage_BaseToken_Command_ListSurvivorsToken = "/LIST_SURVIVORS";
-        public const string modcompat_DropInMultiplayer_SimpleChatMessage_BaseToken_Command_ListBodiesToken = "/LIST_BODIES";
+        public const string mc_DropInMultiplayer_SimpleChatMessage_BaseToken_Command_HelpToken = "/HELP";
+        public const string mc_DropInMultiplayer_SimpleChatMessage_BaseToken_Command_JoinToken = "/JOIN";
+        public const string mc_DropInMultiplayer_SimpleChatMessage_BaseToken_Command_JoinAsToken = "/JOIN_AS";
+        public const string mc_DropInMultiplayer_SimpleChatMessage_BaseToken_Command_ListSurvivorsToken = "/LIST_SURVIVORS";
+        public const string mc_DropInMultiplayer_SimpleChatMessage_BaseToken_Command_ListBodiesToken = "/LIST_BODIES";
         public static ConfigEntry<bool> cfgDropInMultiplayer_Commands;
 
         //https://github.com/Ethanol10/darth-vader-ror2/blob/e155c78a6513aae472de1d80825ba934878fb9c8/DarthVaderMod/DarthVaderPlugin.cs#L126
         public static bool modloaded_DarthVader;
         public const string KEY_DARTHVADER = "DarthVader";
-        public const string modcompat_DarthVader_SimpleChatMessage_BaseToken_DeathMessageToken = "There was too much Sand";
+        public const string mc_DarthVader_SimpleChatMessage_BaseToken_DeathMessageToken = "There was too much Sand";
         public static ConfigEntry<bool> cfgDarthVader_DeathMessage;
 
         public static bool modloaded_ShrineOfRepair;
         public const string KEY_SHRINEOFREPAIR = "ShrineOfRepair";
         //https://github.com/viliger2/ShrineOfRepair/blob/1544dc66f9815e7dc446a9335956f5a9ccaf95fa/RoR2_ShrineOfRepair/Modules/Interactables/ShrineOfRepairPurchase.cs#L261
-        public const string modcompat_ShrineOfRepair_SubjectFormatChatMessage_BaseToken_ShrineRepairInteractToken = "INTERACTABLE_SHRINE_REPAIR_INTERACT";
+        public const string mc_ShrineOfRepair_SubjectFormatChatMessage_BaseToken_ShrineRepairInteractToken = "INTERACTABLE_SHRINE_REPAIR_INTERACT";
 
         public static ConfigEntry<ChatFilterType> cfgShrineOfRepair_Interact;
 
         //https://github.com/viliger2/ShrineOfRepair/blob/1544dc66f9815e7dc446a9335956f5a9ccaf95fa/RoR2_ShrineOfRepair/Modules/Interactables/ShrineOfRepairPicker.cs#L310
-        public const string modcompat_ShrineOfRepair_SubjectFormatChatMessage_BaseToken_ShrineRepairInteractPickerToken = "INTERACTABLE_SHRINE_REPAIR_INTERACT_PICKER";
+        public const string mc_ShrineOfRepair_SubjectFormatChatMessage_BaseToken_ShrineRepairInteractPickerToken = "INTERACTABLE_SHRINE_REPAIR_INTERACT_PICKER";
 
         public static ConfigEntry<ChatFilterType> cfgShrineOfRepair_InteractPicker;
 
@@ -181,7 +181,7 @@ namespace ror2ChatFilterMod
 
         public static bool modloaded_WellRoundedBalance;
         public const string KEY_WELLROUNDEDBALANCE = "WellRoundedBalance";
-        public const string modcompat_WellRoundedBalance_SubjectFormatChatMessage_BaseToken_PluriCorruptedToken = "PLURI_CORRUPTED";
+        public const string mc_WellRoundedBalance_SubjectFormatChatMessage_BaseToken_PluriCorruptedToken = "PLURI_CORRUPTED";
         public static ConfigEntry<ChatFilterType> cfgWRB_PluriCorrupted;
 
         //https://github.com/search?q=repo%3AAwokeinanEnigma%2FCloudburst%20Chat&type=code
@@ -189,11 +189,11 @@ namespace ror2ChatFilterMod
 
         public static bool modloaded_RiskOfChaos;
         public const string KEY_RISKOFCHAOS = "RiskOfChaos";
-        public const string modcompat_RiskOfChaos_SimpleChatMessage_BaseToken_LoginFailFormatToken = "TWITCH_EFFECT_VOTING_LOGIN_FAIL_FORMAT";
+        public const string mc_RiskOfChaos_SimpleChatMessage_BaseToken_LoginFailFormatToken = "TWITCH_EFFECT_VOTING_LOGIN_FAIL_FORMAT";
         public static ConfigEntry<bool> cfgRiskOfChaos_LoginFail;
 
-        //public static string modcompat_RiskOfChaos_SimpleChatMessage_ParamToken_ Language.GetString("TWITCH_LOGIN_FAIL_NOT_LOGGED_IN")
-        public const string modcompat_RiskOfChaos_SimpleChatMessage_BaseToken_ChaosEffectActivateToken = "CHAOS_EFFECT_ACTIVATE";
+        //public static string mc_RiskOfChaos_SimpleChatMessage_ParamToken_ Language.GetString("TWITCH_LOGIN_FAIL_NOT_LOGGED_IN")
+        public const string mc_RiskOfChaos_SimpleChatMessage_BaseToken_ChaosEffectActivateToken = "CHAOS_EFFECT_ACTIVATE";
 
         public static ConfigEntry<bool> cfgRiskOfChaos_ChaosEffectActivate;
 
@@ -205,16 +205,16 @@ namespace ror2ChatFilterMod
         //private const string LinkColor = "5cb1ed";
         //private const string ErrorColor = "ff0000";
 
-        public static string modcompat_ShareSuite_SimpleChatMessage_BaseToken_NotRepeatedMessageToken = $"<color=#{ShareSuite_GrayColor}>(This message will </color><color=#{ShareSuite_RedColor}>NOT</color>"
+        public static string mc_ShareSuite_SimpleChatMessage_BaseToken_NotRepeatedMessageToken = $"<color=#{ShareSuite_GrayColor}>(This message will </color><color=#{ShareSuite_RedColor}>NOT</color>"
                                  + $"<color=#{ShareSuite_GrayColor}> display again!) </color>";
 
-        public static string modcompat_ShareSuite_SimpleChatMessage_BaseToken_MessageToken = $"<color=#{ShareSuite_GrayColor}>Hey there! Thanks for installing </color>"
+        public static string mc_ShareSuite_SimpleChatMessage_BaseToken_MessageToken = $"<color=#{ShareSuite_GrayColor}>Hey there! Thanks for installing </color>"
                       + $"<color=#{ShareSuite_RedColor}>ShareSuite 2.8</color><color=#{ShareSuite_GrayColor}>!"
                       + " You should now receive logbook updates, and item description popups upon picking up items."
                       + " (You can turn Rich Messages back on now!) This mod is now compatible with Yeet, and"
                       + " some general maintenance has been done to the default blacklists! Have fun!</color>";
 
-        public static string modcompat_ShareSuite_SimpleChatMessage_BaseToken_ClickChatBoxToken = $"<color=#{ShareSuite_RedColor}>(Click the chat box to view the full message)</color>";
+        public static string mc_ShareSuite_SimpleChatMessage_BaseToken_ClickChatBoxToken = $"<color=#{ShareSuite_RedColor}>(Click the chat box to view the full message)</color>";
         public static ConfigEntry<bool> cfgShareSuite_NotRepeatedMessage;
         public static ConfigEntry<bool> cfgShareSuite_Message;
         public static ConfigEntry<bool> cfgShareSuite_ClickChatBox;
@@ -222,81 +222,81 @@ namespace ror2ChatFilterMod
         //https://github.com/Moffein/BossKillTimer/blob/master/TitanKillTimer/Class1.cs
         public static bool modloaded_BossKillTimer;
         public const string KEY_BOSSKILLTIMER = "BossKillTimer";
-        public const string modcompat_BossKillTimer_SimpleChatMessage_BaseToken_StartsWith_InstantKillToken = "<style=cIsHealing>INSTANT KILL!</style> <style=cIsHealth>";
-        public const string modcompat_BossKillTimer_SimpleChatMessage_BaseToken_StartsWith_KillToken = "<style=cIsHealth>";
-        public const string modcompat_BossKillTimer_SimpleChatMessage_BaseToken_EndsWith_KillToken = "</style> seconds!";
+        public const string mc_BossKillTimer_SimpleChatMessage_BaseToken_StartsWith_InstantKillToken = "<style=cIsHealing>INSTANT KILL!</style> <style=cIsHealth>";
+        public const string mc_BossKillTimer_SimpleChatMessage_BaseToken_StartsWith_KillToken = "<style=cIsHealth>";
+        public const string mc_BossKillTimer_SimpleChatMessage_BaseToken_EndsWith_KillToken = "</style> seconds!";
         public static ConfigEntry<bool> cfgBossKillTimer_InstantKill;
         public static ConfigEntry<bool> cfgBossKillTimer_Kill;
 
         //moff direseeker
         public static bool modloaded_Direseeker;
         public const string KEY_DIRESEEKER = "Direseeker";
-        public const string modcompat_Direseeker_SimpleChatMessage_BaseToken_SpawnWarningToken = "DIRESEEKER_SPAWN_WARNING";
-        public const string modcompat_Direseeker_SimpleChatMessage_BaseToken_SpawnBeginToken = "DIRESEEKER_SPAWN_BEGIN";
+        public const string mc_Direseeker_SimpleChatMessage_BaseToken_SpawnWarningToken = "DIRESEEKER_SPAWN_WARNING";
+        public const string mc_Direseeker_SimpleChatMessage_BaseToken_SpawnBeginToken = "DIRESEEKER_SPAWN_BEGIN";
         public static ConfigEntry<bool> cfgDireseeker_SpawnWarning;
         public static ConfigEntry<bool> cfgDireseeker_SpawnBegin;
 
         //https://github.com/6thmoon/MultitudesDifficulty/blob/c3e2dc166a327a39efa9482d9b28191daeb9d90f/Session.cs#L55
         public static bool modloaded_MultitudesDifficulty;
         public const string KEY_MULTITUDESDIFFICULTY = "MultitudesDifficulty";
-        public const string modcompat_MultitudesDifficulty_SimpleChatMessage_BaseToken_EclipseToken = "<color=#6AAA5F>Good luck.</color";
+        public const string mc_MultitudesDifficulty_SimpleChatMessage_BaseToken_EclipseToken = "<color=#6AAA5F>Good luck.</color";
 
         //the other tokens im just hardcoding
-        public const string modcompat_MultitudesDifficulty_SimpleChatMessage_BaseToken_StartsWith_DescToken = "<style=cStack>>Player Count:</style> ";
+        public const string mc_MultitudesDifficulty_SimpleChatMessage_BaseToken_StartsWith_DescToken = "<style=cStack>>Player Count:</style> ";
 
         public static ConfigEntry<bool> cfgMultitudesDifficulty_Welcome;
 
         public static bool modloaded_LostInTransit;
         public const string KEY_LOSTINTRANSIT = "LostInTransit";
-        public const string modcompat_LostInTransit_BodyChatMessage_BaseToken_BossHunterOption1Token = "EQUIPMENT_BOSSHUNTERCONSUMED_CHAT";
-        public const string modcompat_LostInTransit_BodyChatMessage_BaseToken_BossHunterOption2Token = "LIT_EQUIPMENT_BOSSHUNTERCONSUMED_CHAT";
+        public const string mc_LostInTransit_BodyChatMessage_BaseToken_BossHunterOption1Token = "EQUIPMENT_BOSSHUNTERCONSUMED_CHAT";
+        public const string mc_LostInTransit_BodyChatMessage_BaseToken_BossHunterOption2Token = "LIT_EQUIPMENT_BOSSHUNTERCONSUMED_CHAT";
         public static ConfigEntry<ChatFilterType> cfgLostInTransit_BossHunterBeatingEmbryo;
         //checks against bodyObject, is this compatible with ShouldShowClient????????
 
         public static bool modloaded_vanillaVoid;
         public const string KEY_VANILLAVOID = "VanillaVoid";
-        public const string modcompat_vanillaVoid_SimpleChatMessage_BaseToken_PortalSpawnToken = "<color=#DD7AC6>The rift opens...</color>";
+        public const string mc_vanillaVoid_SimpleChatMessage_BaseToken_PortalSpawnToken = "<color=#DD7AC6>The rift opens...</color>";
         public static ConfigEntry<bool> cfgvanillaVoid_PortalSpawn;
 
         public static bool modloaded_MysticsItems;
         public const string KEY_MYSTICSITEMS = "MysticsItems";
         //https://github.com/TheMysticSword/MysticsItems/blob/f7fa9b5bf808290196cb2a4bab6c66b5fbb167f8/Interactables/ShrineLegendary.cs#L222
-        public const string modcompat_MysticsItems_SubjectFormatChatMessage_BaseToken_ShrineLegendaryToken = "MYSTICSITEMS_SHRINE_LEGENDARY_USE_MESSAGE";
+        public const string mc_MysticsItems_SubjectFormatChatMessage_BaseToken_ShrineLegendaryToken = "MYSTICSITEMS_SHRINE_LEGENDARY_USE_MESSAGE";
 
         public static ConfigEntry<ChatFilterType> cfgMysticsItems_ShrineLegendary;
 
         //https://github.com/TheMysticSword/MysticsItems/blob/f7fa9b5bf808290196cb2a4bab6c66b5fbb167f8/Items/Tier3/TreasureMap.cs#L248
-        public const string modcompat_MysticsItems_SimpleChatMessage_BaseToken_TreasureMapToken = "MYSTICSITEMS_TREASUREMAP_WARNING";
+        public const string mc_MysticsItems_SimpleChatMessage_BaseToken_TreasureMapToken = "MYSTICSITEMS_TREASUREMAP_WARNING";
 
         public static ConfigEntry<bool> cfgMysticsItems_TreasureMap;
 
         public static bool modloaded_SS2U;
         public const string KEY_SS2U = "Starstorm 2 Unofficial";
         //https://github.com/Moffein/Starstorm2Unofficial/blob/3f0d60dd626d8baf06b7b1f0ce25ec7b3a029520/Starstorm%202/Cores/NemesisInvasion/Components/NemesisInvasionManager.cs#L120
-        public const string modcompat_SS2U_SimpleChatMessage_BaseToken_NemesisModeDeactivatedToken = "NEMESIS_MODE_DEACTIVATED";
+        public const string mc_SS2U_SimpleChatMessage_BaseToken_NemesisModeDeactivatedToken = "NEMESIS_MODE_DEACTIVATED";
 
         public static ConfigEntry<bool> cfgSS2U_NemesisDeactivated;
-        public const string modcompat_SS2U_SimpleChatMessage_BaseToken_NemesisModeActivatedWarningToken = "NEMESIS_MODE_ACTIVE_WARNING";
+        public const string mc_SS2U_SimpleChatMessage_BaseToken_NemesisModeActivatedWarningToken = "NEMESIS_MODE_ACTIVE_WARNING";
         public static ConfigEntry<bool> cfgSS2U_NemesisWarning;
 
         //https://github.com/Moffein/Starstorm2Unofficial/blob/3f0d60dd626d8baf06b7b1f0ce25ec7b3a029520/Starstorm%202/Cores/EventsCore.cs#L216
-        public const string modcompat_SS2U_SimpleChatMessage_BaseToken_StormWarnToken = "<style=cWorldEvent><sprite name=\"CloudRight\">     A storm is approaching...</style>";
+        public const string mc_SS2U_SimpleChatMessage_BaseToken_StormWarnToken = "<style=cWorldEvent><sprite name=\"CloudRight\">     A storm is approaching...</style>";
 
         public static ConfigEntry<bool> cfgSS2U_StormWarn;
-        public const string modcompat_SS2U_SimpleChatMessage_BaseToken_StormStartToken = "(Storm started.)";
+        public const string mc_SS2U_SimpleChatMessage_BaseToken_StormStartToken = "(Storm started.)";
         public static ConfigEntry<bool> cfgSS2U_StormStart;
-        public const string modcompat_SS2U_SimpleChatMessage_BaseToken_StormEndToken = "(Storm ended.)";
+        public const string mc_SS2U_SimpleChatMessage_BaseToken_StormEndToken = "(Storm ended.)";
         public static ConfigEntry<bool> cfgSS2U_StormEnd;
 
         //new Color(0.149f, 0.0039f, 0.2117f)
         //https://github.com/Moffein/Starstorm2Unofficial/blob/3f0d60dd626d8baf06b7b1f0ce25ec7b3a029520/Starstorm%202/Survivors/Nemmando/NemmandoCore.cs#L920
-        public const string modcompat_SS2U_SimpleChatMessage_BaseToken_NemmandoVoidDeathPreventToken = "<color=#26010D>He laughs in the face of the void.</color>";
+        public const string mc_SS2U_SimpleChatMessage_BaseToken_NemmandoVoidDeathPreventToken = "<color=#26010D>He laughs in the face of the void.</color>";
 
         public static ConfigEntry<bool> cfgSS2U_NemmandoVoidDeath;
-        public const string modcompat_SS2U_BaseToken_BrotherKillChirr1 = "SS2UBROTHER_KILL_CHIRR1";
-        public const string modcompat_SS2U_BaseToken_BrotherKillChirr2 = "SS2UBROTHER_KILL_CHIRR2";
+        public const string mc_SS2U_BaseToken_BrotherKillChirr1 = "SS2UBROTHER_KILL_CHIRR1";
+        public const string mc_SS2U_BaseToken_BrotherKillChirr2 = "SS2UBROTHER_KILL_CHIRR2";
         public static ConfigEntry<bool> cfgSS2U_BrotherKillChirr;
-        public const string modcompat_SS2U_BaseToken_ChirrBefriendBrother = "SS2UBROTHERHURT_CHIRR_BEFRIEND_1";
+        public const string mc_SS2U_BaseToken_ChirrBefriendBrother = "SS2UBROTHERHURT_CHIRR_BEFRIEND_1";
         public static ConfigEntry<bool> cfgSS2U_ChirrBefriendBrother;
 
         //https://github.com/Lodington/Aerolt/blob/cbec82a5ec4032303309d75448f9a3e7036eaa5b/Aerolt/Managers/TeleporterManager.cs#L53
@@ -366,64 +366,64 @@ namespace ror2ChatFilterMod
         public static void SetupConfig(ConfigFile Config)
         {
             //no modcheck otherwise you'd have to launch with it on to generate and ehhhhh
-            cfgModCompat_SpireItems_BloodIdol = Config.Bind(KEY_SPIREITEMS, "BloodIdol", true, modcompat_SpireItems_SubjectFormatChatMessage_BaseToken_GoldenIdolSingleToken);
-            cfgModcompat_VsTwitch_Challenge = Config.Bind(KEY_VSTWITCH, "Challenge", true, modcompat_VsTwitch_SimpleChat_BaseToken_ChallengeToken);
-            cfgModcompat_VsTwitch_AllyToken = Config.Bind(KEY_VSTWITCH, "AllyToken", true, modcompat_VsTwitch_SimpleChat_BaseToken_StartsWith_AllyToken + modcompat_VsTwitch_SimpleChat_BaseToken_StartsWith_AllyToken);
-            cfgModcompat_GOTCE_RushOrDie = Config.Bind(KEY_GOTCE, "Woolies Artifact", true, string.Format(modcompat_GOTCE_SimpleChat_BaseToken_RushOrDieToken, modcompat_GOTCE_SimpleChat_ParamToken_RushOrDieToken));
-            cfgModcompat_UltimateCustomRun_Welcome = Config.Bind(KEY_ULTIMATECUSTOMRUN, "Welcome", true, modcompat_UltimateCustomRun_SimpleChatMessage_BaseToken_Welcome);
-            cfgModcompat_TeammateRevive_DeathCurseDisabled = Config.Bind(KEY_TEAMMATEREVIVE, "DeathCurseDisabled", true, modcompat_TeammateRevive_SimpleChatMessage_BaseToken_DeathCurseDisabledToken);
-            cfgModcompat_TeammateRevive_DeathCurseEnforcedByServer = Config.Bind(KEY_TEAMMATEREVIVE, "DeathCurseEnforcedByServer", true, modcompat_TeammateRevive_SimpleChatMessage_BaseToken_DeathCurseEnforcedByServerToken);
-            cfgModCompat_TinkersSatchel_Compass = Config.Bind(KEY_TINKERSSATCHEL, KEY_TINKERSSATCHEL, ChatFilterType.All, modcompat_TinkersSatchel_SubjectFormatChatMessage_BaseToken_Compass);
-            cfgModCompat_TinkersSatchel_MonkeyPawActivate = Config.Bind(KEY_TINKERSSATCHEL, "MonkeyPawActivate", ChatFilterType.All, modcompat_TinkersSatchel_SubjectChatMessage_BaseToken_MonkeyPawActivate);
-            cfgModCompat_TinkersSatchel_MonkeyPawItemGrant = Config.Bind(KEY_TINKERSSATCHEL, "MonkeyPawItemGrant", true, modcompat_TinkersSatchel_ColoredTokenChatMessage_BaseToken_MonkeyPawItemGrant);
-            cfgModCompat_BossAntiSoftlock_ResetBossPosition = Config.Bind(KEY_BOSSANTISOFTLOCK, "ResetBossPosition", true, modcompat_BossAntiSoftlock_SimpleChatMessage_BaseToken_StartsWith_ResetBossPositionsToken);
-            cfgModCompat_BossAntiSoftlock_ErrorReset = Config.Bind(KEY_BOSSANTISOFTLOCK, "Error Reset", true, modcompat_BossAntiSoftlock_SimpleChatMessage_BaseToken_ErrorResetToken);
-            cfgModCompat_BossAntiSoftlock_ModHint = Config.Bind(KEY_BOSSANTISOFTLOCK, "ModHint", true, modcompat_BossAntiSoftlock_SimpleChatMessage_BaseToken_ModHintToken);
-            cfgModCompat_BossAntiSoftlock_Command = Config.Bind(KEY_BOSSANTISOFTLOCK, "Commands", true,
-                GiveDescLineByLine(modcompat_BossAntiSoftlock_SimpleChatMessage_Command_BossReset1,
-                modcompat_BossAntiSoftlock_SimpleChatMessage_Command_BossReset2,
-                modcompat_BossAntiSoftlock_SimpleChatMessage_Command_BossReset3,
-                modcompat_BossAntiSoftlock_SimpleChatMessage_Command_BossReset4,
-                modcompat_BossAntiSoftlock_SimpleChatMessage_Command_BossReset5,
-                modcompat_BossAntiSoftlock_SimpleChatMessage_Command_BossReset6,
-                modcompat_BossAntiSoftlock_SimpleChatMessage_Command_BossReset7,
-                modcompat_BossAntiSoftlock_SimpleChatMessage_Command_BossReset8));
-            cfgModCompat_Multitudes_SendMultiplier = Config.Bind(KEY_MULTITUDES, "SendMultiplier", true, modcompat_Multitudes_SimpleChatMessage_BaseToken_SendMultiplierToken);
-            cfgModCompat_BetterShrines_ShrineHeresy = Config.Bind(KEY_BETTERSHRINES, "ShrineHeresy", ChatFilterType.All, modcompat_BetterShrines_SubjectFormatChatMessage_BaseToken_ShrineHeresyToken);
-            cfgModCompat_BetterShrines_ShrineDisorder = Config.Bind(KEY_BETTERSHRINES, "ShrineDisorder", ChatFilterType.All, modcompat_BetterShrines_SubjectFormatChatMessage_BaseToken_ShrineDisorderToken);
-            cfgModCompat_BetterShrines_ShrineFallen = Config.Bind(KEY_BETTERSHRINES, "ShrineFallen", ChatFilterType.All, modcompat_BetterShrines_SubjectFormatChatMessage_BaseToken_ShrineFallenToken);
-            cfgModCompat_BetterShrines_ShrineImp = Config.Bind(KEY_BETTERSHRINES, "ShrineImp", ChatFilterType.All, modcompat_BetterShrines_SubjectFormatChatMessage_BaseToken_ShrineImpToken);
-            cfgModCompat_BetterShrines_ShrineWisp = Config.Bind(KEY_BETTERSHRINES, "ShrineWisp", ChatFilterType.All, modcompat_BetterShrines_SubjectFormatChatMessage_BaseToken_ShrineWispAcceptToken + "\n" + modcompat_BetterShrines_SubjectFormatChatMessage_BaseToken_ShrineWispDenyToken);
-            cfgModCompat_BetterShrines_ShrineShielding = Config.Bind(KEY_BETTERSHRINES, "ShrineShielding", ChatFilterType.All, modcompat_BetterShrines_SubjectFormatChatMessage_BaseToken_ShrineShieldingToken);
-            cfgModCompat_BetterShrines_ShrineChancePunished = Config.Bind(KEY_BETTERSHRINES, "ShrineChancePunished", ChatFilterType.All, modcompat_BetterShrines_SubjectFormatChatMessage_BaseToken_ShrineChancePunishedToken);
-            cfgDropInMultiplayer_Welcome = Config.Bind(KEY_DROPINMULTIPLAYER, "Welcome", true, modcompat_DropInMultiplayer_SimpleChatMessage_BaseToken_EndsWith_WelcomeToken);
-            cfgDropInMultiplayer_MissingCommand = Config.Bind(KEY_DROPINMULTIPLAYER, "MissingCommand", true, modcompat_DropInMultiplayer_SimpleChatMessage_BaseToken_MissingCommandToken);
-            cfgDarthVader_DeathMessage = Config.Bind(KEY_DARTHVADER, "DeathMessage", true, modcompat_DarthVader_SimpleChatMessage_BaseToken_DeathMessageToken);
-            cfgShrineOfRepair_Interact = Config.Bind(KEY_SHRINEOFREPAIR, "Interact", ChatFilterType.All, modcompat_ShrineOfRepair_SubjectFormatChatMessage_BaseToken_ShrineRepairInteractToken);
-            cfgShrineOfRepair_InteractPicker = Config.Bind(KEY_SHRINEOFREPAIR, "InteractPicker", ChatFilterType.All, modcompat_ShrineOfRepair_SubjectFormatChatMessage_BaseToken_ShrineRepairInteractPickerToken);
-            cfgWRB_PluriCorrupted = Config.Bind(KEY_WELLROUNDEDBALANCE, "PluriCorrupted", ChatFilterType.All, modcompat_WellRoundedBalance_SubjectFormatChatMessage_BaseToken_PluriCorruptedToken);
-            cfgRiskOfChaos_ChaosEffectActivate = Config.Bind(KEY_RISKOFCHAOS, "ChaosEffectActivate", true, modcompat_RiskOfChaos_SimpleChatMessage_BaseToken_ChaosEffectActivateToken);
-            cfgRiskOfChaos_LoginFail = Config.Bind(KEY_RISKOFCHAOS, "LoginFail", true, modcompat_RiskOfChaos_SimpleChatMessage_BaseToken_LoginFailFormatToken);
-            cfgShareSuite_NotRepeatedMessage = Config.Bind(KEY_SHARESUITE, "NotRepeatedMessage", true, modcompat_ShareSuite_SimpleChatMessage_BaseToken_NotRepeatedMessageToken);
-            cfgShareSuite_Message = Config.Bind(KEY_SHARESUITE, "Message", true, modcompat_ShareSuite_SimpleChatMessage_BaseToken_MessageToken);
-            cfgShareSuite_ClickChatBox = Config.Bind(KEY_SHARESUITE, "ClickChatBox", true, modcompat_ShareSuite_SimpleChatMessage_BaseToken_ClickChatBoxToken);
+            cfgSpireItems_BloodIdol = Config.Bind(KEY_SPIREITEMS, "BloodIdol", true, mc_SpireItems_SubjectFormatChatMessage_BaseToken_GoldenIdolSingleToken);
+            cfgVsTwitch_Challenge = Config.Bind(KEY_VSTWITCH, "Challenge", true, mc_VsTwitch_SimpleChat_BaseToken_ChallengeToken);
+            cfgVsTwitch_AllyToken = Config.Bind(KEY_VSTWITCH, "AllyToken", true, mc_VsTwitch_SimpleChat_BaseToken_StartsWith_AllyToken + mc_VsTwitch_SimpleChat_BaseToken_StartsWith_AllyToken);
+            cfgGOTCE_RushOrDie = Config.Bind(KEY_GOTCE, "Woolies Artifact", true, string.Format(mc_GOTCE_SimpleChat_BaseToken_RushOrDieToken, mc_GOTCE_SimpleChat_ParamToken_RushOrDieToken));
+            cfgUltimateCustomRun_Welcome = Config.Bind(KEY_ULTIMATECUSTOMRUN, "Welcome", true, mc_UltimateCustomRun_SimpleChatMessage_BaseToken_Welcome);
+            cfgTeammateRevive_DeathCurseDisabled = Config.Bind(KEY_TEAMMATEREVIVE, "DeathCurseDisabled", true, mc_TeammateRevive_SimpleChatMessage_BaseToken_DeathCurseDisabledToken);
+            cfgTeammateRevive_DeathCurseEnforcedByServer = Config.Bind(KEY_TEAMMATEREVIVE, "DeathCurseEnforcedByServer", true, mc_TeammateRevive_SimpleChatMessage_BaseToken_DeathCurseEnforcedByServerToken);
+            cfgTinkersSatchel_Compass = Config.Bind(KEY_TINKERSSATCHEL, KEY_TINKERSSATCHEL, ChatFilterType.All, mc_TinkersSatchel_SubjectFormatChatMessage_BaseToken_Compass);
+            cfgTinkersSatchel_MonkeyPawActivate = Config.Bind(KEY_TINKERSSATCHEL, "MonkeyPawActivate", ChatFilterType.All, mc_TinkersSatchel_SubjectChatMessage_BaseToken_MonkeyPawActivate);
+            cfgTinkersSatchel_MonkeyPawItemGrant = Config.Bind(KEY_TINKERSSATCHEL, "MonkeyPawItemGrant", true, mc_TinkersSatchel_ColoredTokenChatMessage_BaseToken_MonkeyPawItemGrant);
+            cfgBossAntiSoftlock_ResetBossPosition = Config.Bind(KEY_BOSSANTISOFTLOCK, "ResetBossPosition", true, mc_BossAntiSoftlock_SimpleChatMessage_BaseToken_StartsWith_ResetBossPositionsToken);
+            cfgBossAntiSoftlock_ErrorReset = Config.Bind(KEY_BOSSANTISOFTLOCK, "Error Reset", true, mc_BossAntiSoftlock_SimpleChatMessage_BaseToken_ErrorResetToken);
+            cfgBossAntiSoftlock_ModHint = Config.Bind(KEY_BOSSANTISOFTLOCK, "ModHint", true, mc_BossAntiSoftlock_SimpleChatMessage_BaseToken_ModHintToken);
+            cfgBossAntiSoftlock_Command = Config.Bind(KEY_BOSSANTISOFTLOCK, "Commands", true,
+                GiveDescLineByLine(mc_BossAntiSoftlock_SimpleChatMessage_Command_BossReset1,
+                mc_BossAntiSoftlock_SimpleChatMessage_Command_BossReset2,
+                mc_BossAntiSoftlock_SimpleChatMessage_Command_BossReset3,
+                mc_BossAntiSoftlock_SimpleChatMessage_Command_BossReset4,
+                mc_BossAntiSoftlock_SimpleChatMessage_Command_BossReset5,
+                mc_BossAntiSoftlock_SimpleChatMessage_Command_BossReset6,
+                mc_BossAntiSoftlock_SimpleChatMessage_Command_BossReset7,
+                mc_BossAntiSoftlock_SimpleChatMessage_Command_BossReset8));
+            cfgMultitudes_SendMultiplier = Config.Bind(KEY_MULTITUDES, "SendMultiplier", true, mc_Multitudes_SimpleChatMessage_BaseToken_SendMultiplierToken);
+            cfgBetterShrines_ShrineHeresy = Config.Bind(KEY_BETTERSHRINES, "ShrineHeresy", ChatFilterType.All, mc_BetterShrines_SubjectFormatChatMessage_BaseToken_ShrineHeresyToken);
+            cfgBetterShrines_ShrineDisorder = Config.Bind(KEY_BETTERSHRINES, "ShrineDisorder", ChatFilterType.All, mc_BetterShrines_SubjectFormatChatMessage_BaseToken_ShrineDisorderToken);
+            cfgBetterShrines_ShrineFallen = Config.Bind(KEY_BETTERSHRINES, "ShrineFallen", ChatFilterType.All, mc_BetterShrines_SubjectFormatChatMessage_BaseToken_ShrineFallenToken);
+            cfgBetterShrines_ShrineImp = Config.Bind(KEY_BETTERSHRINES, "ShrineImp", ChatFilterType.All, mc_BetterShrines_SubjectFormatChatMessage_BaseToken_ShrineImpToken);
+            cfgBetterShrines_ShrineWisp = Config.Bind(KEY_BETTERSHRINES, "ShrineWisp", ChatFilterType.All, mc_BetterShrines_SubjectFormatChatMessage_BaseToken_ShrineWispAcceptToken + "\n" + mc_BetterShrines_SubjectFormatChatMessage_BaseToken_ShrineWispDenyToken);
+            cfgBetterShrines_ShrineShielding = Config.Bind(KEY_BETTERSHRINES, "ShrineShielding", ChatFilterType.All, mc_BetterShrines_SubjectFormatChatMessage_BaseToken_ShrineShieldingToken);
+            cfgBetterShrines_ShrineChancePunished = Config.Bind(KEY_BETTERSHRINES, "ShrineChancePunished", ChatFilterType.All, mc_BetterShrines_SubjectFormatChatMessage_BaseToken_ShrineChancePunishedToken);
+            cfgDropInMultiplayer_Welcome = Config.Bind(KEY_DROPINMULTIPLAYER, "Welcome", true, mc_DropInMultiplayer_SimpleChatMessage_BaseToken_EndsWith_WelcomeToken);
+            cfgDropInMultiplayer_MissingCommand = Config.Bind(KEY_DROPINMULTIPLAYER, "MissingCommand", true, mc_DropInMultiplayer_SimpleChatMessage_BaseToken_MissingCommandToken);
+            cfgDarthVader_DeathMessage = Config.Bind(KEY_DARTHVADER, "DeathMessage", true, mc_DarthVader_SimpleChatMessage_BaseToken_DeathMessageToken);
+            cfgShrineOfRepair_Interact = Config.Bind(KEY_SHRINEOFREPAIR, "Interact", ChatFilterType.All, mc_ShrineOfRepair_SubjectFormatChatMessage_BaseToken_ShrineRepairInteractToken);
+            cfgShrineOfRepair_InteractPicker = Config.Bind(KEY_SHRINEOFREPAIR, "InteractPicker", ChatFilterType.All, mc_ShrineOfRepair_SubjectFormatChatMessage_BaseToken_ShrineRepairInteractPickerToken);
+            cfgWRB_PluriCorrupted = Config.Bind(KEY_WELLROUNDEDBALANCE, "PluriCorrupted", ChatFilterType.All, mc_WellRoundedBalance_SubjectFormatChatMessage_BaseToken_PluriCorruptedToken);
+            cfgRiskOfChaos_ChaosEffectActivate = Config.Bind(KEY_RISKOFCHAOS, "ChaosEffectActivate", true, mc_RiskOfChaos_SimpleChatMessage_BaseToken_ChaosEffectActivateToken);
+            cfgRiskOfChaos_LoginFail = Config.Bind(KEY_RISKOFCHAOS, "LoginFail", true, mc_RiskOfChaos_SimpleChatMessage_BaseToken_LoginFailFormatToken);
+            cfgShareSuite_NotRepeatedMessage = Config.Bind(KEY_SHARESUITE, "NotRepeatedMessage", true, mc_ShareSuite_SimpleChatMessage_BaseToken_NotRepeatedMessageToken);
+            cfgShareSuite_Message = Config.Bind(KEY_SHARESUITE, "Message", true, mc_ShareSuite_SimpleChatMessage_BaseToken_MessageToken);
+            cfgShareSuite_ClickChatBox = Config.Bind(KEY_SHARESUITE, "ClickChatBox", true, mc_ShareSuite_SimpleChatMessage_BaseToken_ClickChatBoxToken);
             cfgBossKillTimer_InstantKill = Config.Bind(KEY_BOSSKILLTIMER, "InstantKill", true);
             cfgBossKillTimer_Kill = Config.Bind(KEY_BOSSKILLTIMER, "Kill", true);
-            cfgDireseeker_SpawnWarning = Config.Bind(KEY_DIRESEEKER, "SpawnWarning", true, modcompat_Direseeker_SimpleChatMessage_BaseToken_SpawnWarningToken);
-            cfgDireseeker_SpawnBegin = Config.Bind(KEY_DIRESEEKER, "SpawnBegin", true, modcompat_Direseeker_SimpleChatMessage_BaseToken_SpawnBeginToken);
+            cfgDireseeker_SpawnWarning = Config.Bind(KEY_DIRESEEKER, "SpawnWarning", true, mc_Direseeker_SimpleChatMessage_BaseToken_SpawnWarningToken);
+            cfgDireseeker_SpawnBegin = Config.Bind(KEY_DIRESEEKER, "SpawnBegin", true, mc_Direseeker_SimpleChatMessage_BaseToken_SpawnBeginToken);
             cfgMultitudesDifficulty_Welcome = Config.Bind(KEY_MULTITUDESDIFFICULTY, "Welcome", true);
-            cfgLostInTransit_BossHunterBeatingEmbryo = Config.Bind(KEY_LOSTINTRANSIT, "BossHunterBeatingEmbryo", ChatFilterType.All, GiveDescLineByLine(modcompat_LostInTransit_BodyChatMessage_BaseToken_BossHunterOption1Token, modcompat_LostInTransit_BodyChatMessage_BaseToken_BossHunterOption2Token));
-            cfgvanillaVoid_PortalSpawn = Config.Bind(KEY_VANILLAVOID, "PortalSpawn", true, modcompat_vanillaVoid_SimpleChatMessage_BaseToken_PortalSpawnToken);
-            cfgMysticsItems_ShrineLegendary = Config.Bind(KEY_MYSTICSITEMS, "ShrineLegendary", ChatFilterType.All, modcompat_MysticsItems_SubjectFormatChatMessage_BaseToken_ShrineLegendaryToken);
-            cfgMysticsItems_TreasureMap = Config.Bind(KEY_MYSTICSITEMS, "TreasureMap", true, modcompat_MysticsItems_SimpleChatMessage_BaseToken_TreasureMapToken);
-            cfgSS2U_NemesisDeactivated = Config.Bind(KEY_SS2U, "NemesisDeactivated", true, modcompat_SS2U_SimpleChatMessage_BaseToken_NemesisModeDeactivatedToken);
-            cfgSS2U_NemesisWarning = Config.Bind(KEY_SS2U, "NemesisWarning", true, modcompat_SS2U_SimpleChatMessage_BaseToken_NemesisModeActivatedWarningToken);
-            cfgSS2U_StormWarn = Config.Bind(KEY_SS2U, "StormWarn", true, modcompat_SS2U_SimpleChatMessage_BaseToken_StormWarnToken);
-            cfgSS2U_StormStart = Config.Bind(KEY_SS2U, "StormStart", true, modcompat_SS2U_SimpleChatMessage_BaseToken_StormStartToken);
-            cfgSS2U_StormEnd = Config.Bind(KEY_SS2U, "StormEnd", true, modcompat_SS2U_SimpleChatMessage_BaseToken_StormEndToken);
-            cfgSS2U_NemmandoVoidDeath = Config.Bind(KEY_SS2U, "NemmandoVoidDeathPrevention", true, modcompat_SS2U_SimpleChatMessage_BaseToken_NemmandoVoidDeathPreventToken);
-            cfgSS2U_BrotherKillChirr = Config.Bind(KEY_SS2U, "BrotherKillChirr", true, GiveDescLineByLine(modcompat_SS2U_BaseToken_BrotherKillChirr1, modcompat_SS2U_BaseToken_BrotherKillChirr2));
-            cfgSS2U_ChirrBefriendBrother = Config.Bind(KEY_SS2U, "ChirrBefriendBrother", true, modcompat_SS2U_BaseToken_ChirrBefriendBrother);
+            cfgLostInTransit_BossHunterBeatingEmbryo = Config.Bind(KEY_LOSTINTRANSIT, "BossHunterBeatingEmbryo", ChatFilterType.All, GiveDescLineByLine(mc_LostInTransit_BodyChatMessage_BaseToken_BossHunterOption1Token, mc_LostInTransit_BodyChatMessage_BaseToken_BossHunterOption2Token));
+            cfgvanillaVoid_PortalSpawn = Config.Bind(KEY_VANILLAVOID, "PortalSpawn", true, mc_vanillaVoid_SimpleChatMessage_BaseToken_PortalSpawnToken);
+            cfgMysticsItems_ShrineLegendary = Config.Bind(KEY_MYSTICSITEMS, "ShrineLegendary", ChatFilterType.All, mc_MysticsItems_SubjectFormatChatMessage_BaseToken_ShrineLegendaryToken);
+            cfgMysticsItems_TreasureMap = Config.Bind(KEY_MYSTICSITEMS, "TreasureMap", true, mc_MysticsItems_SimpleChatMessage_BaseToken_TreasureMapToken);
+            cfgSS2U_NemesisDeactivated = Config.Bind(KEY_SS2U, "NemesisDeactivated", true, mc_SS2U_SimpleChatMessage_BaseToken_NemesisModeDeactivatedToken);
+            cfgSS2U_NemesisWarning = Config.Bind(KEY_SS2U, "NemesisWarning", true, mc_SS2U_SimpleChatMessage_BaseToken_NemesisModeActivatedWarningToken);
+            cfgSS2U_StormWarn = Config.Bind(KEY_SS2U, "StormWarn", true, mc_SS2U_SimpleChatMessage_BaseToken_StormWarnToken);
+            cfgSS2U_StormStart = Config.Bind(KEY_SS2U, "StormStart", true, mc_SS2U_SimpleChatMessage_BaseToken_StormStartToken);
+            cfgSS2U_StormEnd = Config.Bind(KEY_SS2U, "StormEnd", true, mc_SS2U_SimpleChatMessage_BaseToken_StormEndToken);
+            cfgSS2U_NemmandoVoidDeath = Config.Bind(KEY_SS2U, "NemmandoVoidDeathPrevention", true, mc_SS2U_SimpleChatMessage_BaseToken_NemmandoVoidDeathPreventToken);
+            cfgSS2U_BrotherKillChirr = Config.Bind(KEY_SS2U, "BrotherKillChirr", true, GiveDescLineByLine(mc_SS2U_BaseToken_BrotherKillChirr1, mc_SS2U_BaseToken_BrotherKillChirr2));
+            cfgSS2U_ChirrBefriendBrother = Config.Bind(KEY_SS2U, "ChirrBefriendBrother", true, mc_SS2U_BaseToken_ChirrBefriendBrother);
         }
 
         [MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.NoOptimization)]
@@ -447,34 +447,34 @@ namespace ror2ChatFilterMod
             #region Vanilla
 
             var vanilla = "Vanilla";
-            A2(cfgShowPlayerPickupMessagesClient, vanilla);
-            A2(cfgShowDeathMessagesClient, "Vanilla");
-            A2(cfgShowJoinMessagesClient, "Vanilla");
-            A2(cfgShowLeaveMessagesClient, "Vanilla");
-            A(cfgShowNPCPickupMessagesClient, "Vanilla");
-            A2(cfgShowAhoyClient, "Vanilla");
-            A(cfgShowNpcClient, "Vanilla");
-            A2(cfgShowAchievementClient, "Vanilla");
-            A(cfgShowFamilyClient, "Vanilla");
-            A2(cfgShowTeleporterActivationClient, "Vanilla");
-            A2(cfgShowSuppressorClient, "Vanilla");
-            A(cfgShowPortalShopWillOpenClient, "Vanilla");
-            A(cfgShowPortalGoldshoresWillOpenClient, "Vanilla");
-            A(cfgShowPortalMSWillOpenClient, "Vanilla");
-            A(cfgShowPortalShopOpenClient, "Vanilla");
-            A(cfgShowPortalGoldshoresOpenClient, "Vanilla");
-            A(cfgShowPortalMSOpenClient, "Vanilla");
-            A(cfgShowMountainTeleporterClient, "Vanilla");
-            A2(cfgShowShrineChanceWinClient, "Vanilla");
-            A2(cfgShowShrineChanceFailClient, "Vanilla");
-            A(cfgShowSeerClient, "Vanilla");
-            A2(cfgShowShrineBossClient, "Vanilla");
-            A2(cfgShowShrineBloodClient, "Vanilla");
-            A2(cfgShowShrineRestackClient, "Vanilla");
-            A2(cfgShowShrineHealingClient, "Vanilla");
-            A2(cfgShowShrineCombatClient, "Vanilla");
-            A(cfgShowArenaEndClient, "Vanilla");
-            A2(cfgShowPetFrogClient, "Vanilla");
+            A2(cfgShowPlayerPickupMessages, vanilla);
+            A2(cfgShowDeathMessages, "Vanilla");
+            A2(cfgShowJoinMessages, "Vanilla");
+            A2(cfgShowLeaveMessages, "Vanilla");
+            A(cfgShowNPCPickupMessages, "Vanilla");
+            A2(cfgShowAhoy, "Vanilla");
+            A(cfgShowNpc, "Vanilla");
+            A2(cfgShowAchievement, "Vanilla");
+            A(cfgShowFamily, "Vanilla");
+            A2(cfgShowTeleporterActivation, "Vanilla");
+            A2(cfgShowSuppressor, "Vanilla");
+            A(cfgShowPortalShopWillOpen, "Vanilla");
+            A(cfgShowPortalGoldshoresWillOpen, "Vanilla");
+            A(cfgShowPortalMSWillOpen, "Vanilla");
+            A(cfgShowPortalShopOpen, "Vanilla");
+            A(cfgShowPortalGoldshoresOpen, "Vanilla");
+            A(cfgShowPortalMSOpen, "Vanilla");
+            A(cfgShowMountainTeleporter, "Vanilla");
+            A2(cfgShowShrineChanceWin, "Vanilla");
+            A2(cfgShowShrineChanceFail, "Vanilla");
+            A(cfgShowSeer, "Vanilla");
+            A2(cfgShowShrineBoss, "Vanilla");
+            A2(cfgShowShrineBlood, "Vanilla");
+            A2(cfgShowShrineRestack, "Vanilla");
+            A2(cfgShowShrineHealing, "Vanilla");
+            A2(cfgShowShrineCombat, "Vanilla");
+            A(cfgShowArenaEnd, "Vanilla");
+            A2(cfgShowPetFrog, "Vanilla");
 
             #endregion Vanilla
 
@@ -482,52 +482,52 @@ namespace ror2ChatFilterMod
 
             if (modloaded_BossAntiSoftlock)
             {
-                A(cfgModCompat_BossAntiSoftlock_ResetBossPosition, KEY_BOSSANTISOFTLOCK);
-                A(cfgModCompat_BossAntiSoftlock_ErrorReset, KEY_BOSSANTISOFTLOCK);
-                A(cfgModCompat_BossAntiSoftlock_ModHint, KEY_BOSSANTISOFTLOCK);
-                A(cfgModCompat_BossAntiSoftlock_Command, KEY_BOSSANTISOFTLOCK);
+                A(cfgBossAntiSoftlock_ResetBossPosition, KEY_BOSSANTISOFTLOCK);
+                A(cfgBossAntiSoftlock_ErrorReset, KEY_BOSSANTISOFTLOCK);
+                A(cfgBossAntiSoftlock_ModHint, KEY_BOSSANTISOFTLOCK);
+                A(cfgBossAntiSoftlock_Command, KEY_BOSSANTISOFTLOCK);
             }
             if (modloaded_SpireItems)
             {
-                A(cfgModCompat_SpireItems_BloodIdol, KEY_SPIREITEMS);
+                A(cfgSpireItems_BloodIdol, KEY_SPIREITEMS);
             }
             if (modloaded_VsTwitch)
             {
-                A(cfgModcompat_VsTwitch_Challenge, KEY_VSTWITCH);
-                A(cfgModcompat_VsTwitch_AllyToken, KEY_VSTWITCH);
+                A(cfgVsTwitch_Challenge, KEY_VSTWITCH);
+                A(cfgVsTwitch_AllyToken, KEY_VSTWITCH);
             }
             if (modloaded_GOTCE)
             {
-                A(cfgModcompat_GOTCE_RushOrDie, KEY_GOTCE);
+                A(cfgGOTCE_RushOrDie, KEY_GOTCE);
             }
             if (modloaded_UltimateCustomRun)
             {
-                A(cfgModcompat_UltimateCustomRun_Welcome, KEY_ULTIMATECUSTOMRUN);
+                A(cfgUltimateCustomRun_Welcome, KEY_ULTIMATECUSTOMRUN);
             }
             if (modloaded_TeammateRevive)
             {
-                A(cfgModcompat_TeammateRevive_DeathCurseDisabled, KEY_TEAMMATEREVIVE);
-                A(cfgModcompat_TeammateRevive_DeathCurseEnforcedByServer, KEY_TEAMMATEREVIVE);
+                A(cfgTeammateRevive_DeathCurseDisabled, KEY_TEAMMATEREVIVE);
+                A(cfgTeammateRevive_DeathCurseEnforcedByServer, KEY_TEAMMATEREVIVE);
             }
             if (modloaded_TinkersSatchel)
             {
-                A2(cfgModCompat_TinkersSatchel_Compass, KEY_TINKERSSATCHEL);
-                A2(cfgModCompat_TinkersSatchel_MonkeyPawActivate, KEY_TINKERSSATCHEL);
-                A(cfgModCompat_TinkersSatchel_MonkeyPawItemGrant, KEY_TINKERSSATCHEL);
+                A2(cfgTinkersSatchel_Compass, KEY_TINKERSSATCHEL);
+                A2(cfgTinkersSatchel_MonkeyPawActivate, KEY_TINKERSSATCHEL);
+                A(cfgTinkersSatchel_MonkeyPawItemGrant, KEY_TINKERSSATCHEL);
             }
             if (modloaded_Multitudes)
             {
-                A(cfgModCompat_Multitudes_SendMultiplier, KEY_MULTITUDES);
+                A(cfgMultitudes_SendMultiplier, KEY_MULTITUDES);
             }
             if (modloaded_BetterShrines)
             {
-                A2(cfgModCompat_BetterShrines_ShrineHeresy, KEY_BETTERSHRINES);
-                A2(cfgModCompat_BetterShrines_ShrineDisorder, KEY_BETTERSHRINES);
-                A2(cfgModCompat_BetterShrines_ShrineFallen, KEY_BETTERSHRINES);
-                A2(cfgModCompat_BetterShrines_ShrineImp, KEY_BETTERSHRINES);
-                A2(cfgModCompat_BetterShrines_ShrineWisp, KEY_BETTERSHRINES);
-                A2(cfgModCompat_BetterShrines_ShrineShielding, KEY_BETTERSHRINES);
-                A2(cfgModCompat_BetterShrines_ShrineChancePunished, KEY_BETTERSHRINES);
+                A2(cfgBetterShrines_ShrineHeresy, KEY_BETTERSHRINES);
+                A2(cfgBetterShrines_ShrineDisorder, KEY_BETTERSHRINES);
+                A2(cfgBetterShrines_ShrineFallen, KEY_BETTERSHRINES);
+                A2(cfgBetterShrines_ShrineImp, KEY_BETTERSHRINES);
+                A2(cfgBetterShrines_ShrineWisp, KEY_BETTERSHRINES);
+                A2(cfgBetterShrines_ShrineShielding, KEY_BETTERSHRINES);
+                A2(cfgBetterShrines_ShrineChancePunished, KEY_BETTERSHRINES);
             }
             if (modloaded_DropInMultiplayer)
             {
@@ -604,93 +604,93 @@ namespace ror2ChatFilterMod
             string baseToken = chatMessage.baseToken;
             if (modloaded_VsTwitch)
             {
-                if (baseToken == modcompat_VsTwitch_SimpleChat_BaseToken_ChallengeToken)
-                    return cfgModcompat_VsTwitch_Challenge.Value;
-                else if (baseToken.StartsWith(modcompat_VsTwitch_SimpleChat_BaseToken_StartsWith_AllyToken)
-                    && baseToken.EndsWith(modcompat_VsTwitch_SimpleChat_BaseToken_EndsWith_AllyToken))
-                    return cfgModcompat_VsTwitch_AllyToken.Value;
+                if (baseToken == mc_VsTwitch_SimpleChat_BaseToken_ChallengeToken)
+                    return cfgVsTwitch_Challenge.Value;
+                else if (baseToken.StartsWith(mc_VsTwitch_SimpleChat_BaseToken_StartsWith_AllyToken)
+                    && baseToken.EndsWith(mc_VsTwitch_SimpleChat_BaseToken_EndsWith_AllyToken))
+                    return cfgVsTwitch_AllyToken.Value;
             }
             if (modloaded_GOTCE)
             {
-                if (baseToken == modcompat_GOTCE_SimpleChat_BaseToken_RushOrDieToken
+                if (baseToken == mc_GOTCE_SimpleChat_BaseToken_RushOrDieToken
                     && chatMessage.paramTokens.Length == 1
-                    && chatMessage.paramTokens[0] == modcompat_GOTCE_SimpleChat_ParamToken_RushOrDieToken)
-                    return cfgModcompat_GOTCE_RushOrDie.Value;
+                    && chatMessage.paramTokens[0] == mc_GOTCE_SimpleChat_ParamToken_RushOrDieToken)
+                    return cfgGOTCE_RushOrDie.Value;
             }
             if (modloaded_UltimateCustomRun)
             {
-                if (baseToken == modcompat_UltimateCustomRun_SimpleChatMessage_BaseToken_Welcome)
-                    return cfgModcompat_UltimateCustomRun_Welcome.Value;
+                if (baseToken == mc_UltimateCustomRun_SimpleChatMessage_BaseToken_Welcome)
+                    return cfgUltimateCustomRun_Welcome.Value;
             }
             if (modloaded_TeammateRevive)
             {
-                if (baseToken == modcompat_TeammateRevive_SimpleChatMessage_BaseToken_DeathCurseDisabledToken)
-                    return cfgModcompat_TeammateRevive_DeathCurseDisabled.Value;
-                else if (baseToken == modcompat_TeammateRevive_SimpleChatMessage_BaseToken_DeathCurseEnforcedByServerToken)
-                    return cfgModcompat_TeammateRevive_DeathCurseEnforcedByServer.Value;
+                if (baseToken == mc_TeammateRevive_SimpleChatMessage_BaseToken_DeathCurseDisabledToken)
+                    return cfgTeammateRevive_DeathCurseDisabled.Value;
+                else if (baseToken == mc_TeammateRevive_SimpleChatMessage_BaseToken_DeathCurseEnforcedByServerToken)
+                    return cfgTeammateRevive_DeathCurseEnforcedByServer.Value;
             }
             if (modloaded_BossAntiSoftlock)
             {
-                if (baseToken.StartsWith(modcompat_BossAntiSoftlock_SimpleChatMessage_BaseToken_StartsWith_ResetBossPositionsToken))
-                    return cfgModCompat_BossAntiSoftlock_ResetBossPosition.Value;
-                else if (baseToken == modcompat_BossAntiSoftlock_SimpleChatMessage_BaseToken_ErrorResetToken)
-                    return cfgModCompat_BossAntiSoftlock_ErrorReset.Value;
-                else if (baseToken == modcompat_BossAntiSoftlock_SimpleChatMessage_BaseToken_ModHintToken)
-                    return cfgModCompat_BossAntiSoftlock_ModHint.Value;
+                if (baseToken.StartsWith(mc_BossAntiSoftlock_SimpleChatMessage_BaseToken_StartsWith_ResetBossPositionsToken))
+                    return cfgBossAntiSoftlock_ResetBossPosition.Value;
+                else if (baseToken == mc_BossAntiSoftlock_SimpleChatMessage_BaseToken_ErrorResetToken)
+                    return cfgBossAntiSoftlock_ErrorReset.Value;
+                else if (baseToken == mc_BossAntiSoftlock_SimpleChatMessage_BaseToken_ModHintToken)
+                    return cfgBossAntiSoftlock_ModHint.Value;
             }
             if (modloaded_Multitudes)
             {
-                if (baseToken == modcompat_Multitudes_SimpleChatMessage_BaseToken_SendMultiplierToken)
-                    return cfgModCompat_Multitudes_SendMultiplier.Value;
+                if (baseToken == mc_Multitudes_SimpleChatMessage_BaseToken_SendMultiplierToken)
+                    return cfgMultitudes_SendMultiplier.Value;
             }
             if (modloaded_DropInMultiplayer)
             {
-                if (baseToken.EndsWith(modcompat_DropInMultiplayer_SimpleChatMessage_BaseToken_EndsWith_WelcomeToken))
+                if (baseToken.EndsWith(mc_DropInMultiplayer_SimpleChatMessage_BaseToken_EndsWith_WelcomeToken))
                     return cfgDropInMultiplayer_Welcome.Value;
-                else if (baseToken == modcompat_DropInMultiplayer_SimpleChatMessage_BaseToken_MissingCommandToken)
+                else if (baseToken == mc_DropInMultiplayer_SimpleChatMessage_BaseToken_MissingCommandToken)
                     return cfgDropInMultiplayer_MissingCommand.Value;
             }
             if (modloaded_DarthVader)
             {
-                if (baseToken == modcompat_DarthVader_SimpleChatMessage_BaseToken_DeathMessageToken)
+                if (baseToken == mc_DarthVader_SimpleChatMessage_BaseToken_DeathMessageToken)
                     return cfgDarthVader_DeathMessage.Value;
             }
             if (modloaded_RiskOfChaos)
             {
-                if (baseToken == modcompat_RiskOfChaos_SimpleChatMessage_BaseToken_ChaosEffectActivateToken)
+                if (baseToken == mc_RiskOfChaos_SimpleChatMessage_BaseToken_ChaosEffectActivateToken)
                     return cfgRiskOfChaos_ChaosEffectActivate.Value;
-                if (baseToken == modcompat_RiskOfChaos_SimpleChatMessage_BaseToken_LoginFailFormatToken)
+                if (baseToken == mc_RiskOfChaos_SimpleChatMessage_BaseToken_LoginFailFormatToken)
                     return cfgRiskOfChaos_LoginFail.Value;
             }
             if (modloaded_ShareSuite)
             {
-                if (baseToken == modcompat_ShareSuite_SimpleChatMessage_BaseToken_NotRepeatedMessageToken)
+                if (baseToken == mc_ShareSuite_SimpleChatMessage_BaseToken_NotRepeatedMessageToken)
                     return cfgShareSuite_NotRepeatedMessage.Value;
-                else if (baseToken == modcompat_ShareSuite_SimpleChatMessage_BaseToken_MessageToken)
+                else if (baseToken == mc_ShareSuite_SimpleChatMessage_BaseToken_MessageToken)
                     return cfgShareSuite_Message.Value;
-                else if (baseToken == modcompat_ShareSuite_SimpleChatMessage_BaseToken_ClickChatBoxToken)
+                else if (baseToken == mc_ShareSuite_SimpleChatMessage_BaseToken_ClickChatBoxToken)
                     return cfgShareSuite_ClickChatBox.Value;
             }
             if (modloaded_BossKillTimer)
             {
-                if (baseToken.EndsWith(modcompat_BossKillTimer_SimpleChatMessage_BaseToken_EndsWith_KillToken))
+                if (baseToken.EndsWith(mc_BossKillTimer_SimpleChatMessage_BaseToken_EndsWith_KillToken))
                 {
-                    if (baseToken.StartsWith(modcompat_BossKillTimer_SimpleChatMessage_BaseToken_StartsWith_InstantKillToken))
+                    if (baseToken.StartsWith(mc_BossKillTimer_SimpleChatMessage_BaseToken_StartsWith_InstantKillToken))
                         return cfgBossKillTimer_InstantKill.Value;
-                    else if (baseToken.StartsWith(modcompat_BossKillTimer_SimpleChatMessage_BaseToken_EndsWith_KillToken))
+                    else if (baseToken.StartsWith(mc_BossKillTimer_SimpleChatMessage_BaseToken_EndsWith_KillToken))
                         return cfgBossKillTimer_Kill.Value;
                 }
             }
             if (modloaded_Direseeker)
             {
-                if (baseToken == modcompat_Direseeker_SimpleChatMessage_BaseToken_SpawnWarningToken)
+                if (baseToken == mc_Direseeker_SimpleChatMessage_BaseToken_SpawnWarningToken)
                     return cfgDireseeker_SpawnWarning.Value;
-                else if (baseToken == modcompat_Direseeker_SimpleChatMessage_BaseToken_SpawnBeginToken)
+                else if (baseToken == mc_Direseeker_SimpleChatMessage_BaseToken_SpawnBeginToken)
                     return cfgDireseeker_SpawnBegin.Value;
             }
             if (modloaded_MultitudesDifficulty)
             {
-                if (baseToken.StartsWith(modcompat_MultitudesDifficulty_SimpleChatMessage_BaseToken_StartsWith_DescToken))
+                if (baseToken.StartsWith(mc_MultitudesDifficulty_SimpleChatMessage_BaseToken_StartsWith_DescToken))
                 {
                     string pattern = "<style=cStack>";
                     int count = Regex.Matches(baseToken, pattern, RegexOptions.IgnoreCase).Count;
@@ -708,36 +708,36 @@ namespace ror2ChatFilterMod
             }
             if (modloaded_vanillaVoid)
             {
-                if (baseToken == modcompat_vanillaVoid_SimpleChatMessage_BaseToken_PortalSpawnToken)
+                if (baseToken == mc_vanillaVoid_SimpleChatMessage_BaseToken_PortalSpawnToken)
                 {
                     return cfgvanillaVoid_PortalSpawn.Value;
                 }
             }
             if (modloaded_MysticsItems)
             {
-                if (baseToken == modcompat_MysticsItems_SimpleChatMessage_BaseToken_TreasureMapToken)
+                if (baseToken == mc_MysticsItems_SimpleChatMessage_BaseToken_TreasureMapToken)
                     return cfgMysticsItems_TreasureMap.Value;
             }
             if (modloaded_SS2U)
             {
-                if (baseToken == modcompat_SS2U_SimpleChatMessage_BaseToken_NemesisModeDeactivatedToken)
+                if (baseToken == mc_SS2U_SimpleChatMessage_BaseToken_NemesisModeDeactivatedToken)
                     return cfgSS2U_NemesisDeactivated.Value;
-                else if (baseToken == modcompat_SS2U_SimpleChatMessage_BaseToken_NemesisModeActivatedWarningToken)
+                else if (baseToken == mc_SS2U_SimpleChatMessage_BaseToken_NemesisModeActivatedWarningToken)
                     return cfgSS2U_NemesisWarning.Value;
-                else if (baseToken == modcompat_SS2U_SimpleChatMessage_BaseToken_StormWarnToken)
+                else if (baseToken == mc_SS2U_SimpleChatMessage_BaseToken_StormWarnToken)
                     return cfgSS2U_StormWarn.Value;
-                else if (baseToken == modcompat_SS2U_SimpleChatMessage_BaseToken_StormStartToken)
+                else if (baseToken == mc_SS2U_SimpleChatMessage_BaseToken_StormStartToken)
                     return cfgSS2U_StormStart.Value;
-                else if (baseToken == modcompat_SS2U_SimpleChatMessage_BaseToken_StormEndToken)
+                else if (baseToken == mc_SS2U_SimpleChatMessage_BaseToken_StormEndToken)
                     return cfgSS2U_StormEnd.Value;
-                else if (baseToken == modcompat_SS2U_SimpleChatMessage_BaseToken_StormEndToken)
+                else if (baseToken == mc_SS2U_SimpleChatMessage_BaseToken_StormEndToken)
                     return cfgSS2U_NemmandoVoidDeath.Value;
                 else if (baseToken.StartsWith("<color=#c6d5ff>Mithrix:") && baseToken.EndsWith("</color>"))
                 {
-                    if (baseToken.Contains(Language.GetString(modcompat_SS2U_BaseToken_BrotherKillChirr1))
-                        || baseToken.Contains(Language.GetString(modcompat_SS2U_BaseToken_BrotherKillChirr2)))
+                    if (baseToken.Contains(Language.GetString(mc_SS2U_BaseToken_BrotherKillChirr1))
+                        || baseToken.Contains(Language.GetString(mc_SS2U_BaseToken_BrotherKillChirr2)))
                         return cfgSS2U_BrotherKillChirr.Value;
-                    else if (baseToken.Contains(Language.GetString(modcompat_SS2U_BaseToken_ChirrBefriendBrother)))
+                    else if (baseToken.Contains(Language.GetString(mc_SS2U_BaseToken_ChirrBefriendBrother)))
                         return cfgSS2U_ChirrBefriendBrother.Value;
                 }
             }
@@ -751,40 +751,40 @@ namespace ror2ChatFilterMod
             var baseToken = chatMessage.baseToken;
             if (modloaded_TinkersSatchel)
             {
-                if (baseToken == modcompat_TinkersSatchel_SubjectFormatChatMessage_BaseToken_Compass)
-                    return ShouldShowClient(chatMessage, cfgModCompat_TinkersSatchel_Compass);
+                if (baseToken == mc_TinkersSatchel_SubjectFormatChatMessage_BaseToken_Compass)
+                    return ShouldShowClient(chatMessage, cfgTinkersSatchel_Compass);
             }
             if (modloaded_SpireItems)
             {
-                if (baseToken == modcompat_SpireItems_SubjectFormatChatMessage_BaseToken_GoldenIdolSingleToken
-                    || baseToken == modcompat_SpireItems_SubjectFormatChatMessage_BaseToken_GoldenIdolMultipleToken)
-                    return cfgModCompat_SpireItems_BloodIdol.Value;
+                if (baseToken == mc_SpireItems_SubjectFormatChatMessage_BaseToken_GoldenIdolSingleToken
+                    || baseToken == mc_SpireItems_SubjectFormatChatMessage_BaseToken_GoldenIdolMultipleToken)
+                    return cfgSpireItems_BloodIdol.Value;
             }
             if (modloaded_BetterShrines)
             {
                 switch (baseToken)
                 {
-                    case modcompat_BetterShrines_SubjectFormatChatMessage_BaseToken_ShrineDisorderToken:
-                        return ShouldShowClient(chatMessage, cfgModCompat_BetterShrines_ShrineDisorder);
+                    case mc_BetterShrines_SubjectFormatChatMessage_BaseToken_ShrineDisorderToken:
+                        return ShouldShowClient(chatMessage, cfgBetterShrines_ShrineDisorder);
 
-                    case modcompat_BetterShrines_SubjectFormatChatMessage_BaseToken_ShrineFallenToken:
-                        return ShouldShowClient(chatMessage, cfgModCompat_BetterShrines_ShrineFallen);
+                    case mc_BetterShrines_SubjectFormatChatMessage_BaseToken_ShrineFallenToken:
+                        return ShouldShowClient(chatMessage, cfgBetterShrines_ShrineFallen);
 
-                    case modcompat_BetterShrines_SubjectFormatChatMessage_BaseToken_ShrineHeresyToken:
-                        return ShouldShowClient(chatMessage, cfgModCompat_BetterShrines_ShrineHeresy);
+                    case mc_BetterShrines_SubjectFormatChatMessage_BaseToken_ShrineHeresyToken:
+                        return ShouldShowClient(chatMessage, cfgBetterShrines_ShrineHeresy);
 
-                    case modcompat_BetterShrines_SubjectFormatChatMessage_BaseToken_ShrineImpToken:
-                        return ShouldShowClient(chatMessage, cfgModCompat_BetterShrines_ShrineDisorder);
+                    case mc_BetterShrines_SubjectFormatChatMessage_BaseToken_ShrineImpToken:
+                        return ShouldShowClient(chatMessage, cfgBetterShrines_ShrineDisorder);
 
-                    case modcompat_BetterShrines_SubjectFormatChatMessage_BaseToken_ShrineWispAcceptToken:
-                    case modcompat_BetterShrines_SubjectFormatChatMessage_BaseToken_ShrineWispDenyToken:
-                        return ShouldShowClient(chatMessage, cfgModCompat_BetterShrines_ShrineWisp);
+                    case mc_BetterShrines_SubjectFormatChatMessage_BaseToken_ShrineWispAcceptToken:
+                    case mc_BetterShrines_SubjectFormatChatMessage_BaseToken_ShrineWispDenyToken:
+                        return ShouldShowClient(chatMessage, cfgBetterShrines_ShrineWisp);
 
-                    case modcompat_BetterShrines_SubjectFormatChatMessage_BaseToken_ShrineShieldingToken:
-                        return ShouldShowClient(chatMessage, cfgModCompat_BetterShrines_ShrineShielding);
+                    case mc_BetterShrines_SubjectFormatChatMessage_BaseToken_ShrineShieldingToken:
+                        return ShouldShowClient(chatMessage, cfgBetterShrines_ShrineShielding);
 
-                    case modcompat_BetterShrines_SubjectFormatChatMessage_BaseToken_ShrineChancePunishedToken:
-                        return ShouldShowClient(chatMessage, cfgModCompat_BetterShrines_ShrineChancePunished);
+                    case mc_BetterShrines_SubjectFormatChatMessage_BaseToken_ShrineChancePunishedToken:
+                        return ShouldShowClient(chatMessage, cfgBetterShrines_ShrineChancePunished);
 
                     default:
                         // Handle unknown baseToken value
@@ -793,12 +793,12 @@ namespace ror2ChatFilterMod
             }
             if (modloaded_WellRoundedBalance)
             {
-                if (baseToken == modcompat_WellRoundedBalance_SubjectFormatChatMessage_BaseToken_PluriCorruptedToken)
+                if (baseToken == mc_WellRoundedBalance_SubjectFormatChatMessage_BaseToken_PluriCorruptedToken)
                     return ShouldShowClient(chatMessage, cfgWRB_PluriCorrupted);
             }
             if (modloaded_MysticsItems)
             {
-                if (baseToken == modcompat_MysticsItems_SubjectFormatChatMessage_BaseToken_ShrineLegendaryToken)
+                if (baseToken == mc_MysticsItems_SubjectFormatChatMessage_BaseToken_ShrineLegendaryToken)
                     return ShouldShowClient(chatMessage, cfgMysticsItems_ShrineLegendary);
             }
             return true;
@@ -812,15 +812,15 @@ namespace ror2ChatFilterMod
             {
                 switch (lower)
                 {
-                    case modcompat_BossAntiSoftlock_SimpleChatMessage_Command_BossReset1:
-                    case modcompat_BossAntiSoftlock_SimpleChatMessage_Command_BossReset2:
-                    case modcompat_BossAntiSoftlock_SimpleChatMessage_Command_BossReset3:
-                    case modcompat_BossAntiSoftlock_SimpleChatMessage_Command_BossReset4:
-                    case modcompat_BossAntiSoftlock_SimpleChatMessage_Command_BossReset5:
-                    case modcompat_BossAntiSoftlock_SimpleChatMessage_Command_BossReset6:
-                    case modcompat_BossAntiSoftlock_SimpleChatMessage_Command_BossReset7:
-                    case modcompat_BossAntiSoftlock_SimpleChatMessage_Command_BossReset8:
-                        return cfgModCompat_BossAntiSoftlock_Command.Value;
+                    case mc_BossAntiSoftlock_SimpleChatMessage_Command_BossReset1:
+                    case mc_BossAntiSoftlock_SimpleChatMessage_Command_BossReset2:
+                    case mc_BossAntiSoftlock_SimpleChatMessage_Command_BossReset3:
+                    case mc_BossAntiSoftlock_SimpleChatMessage_Command_BossReset4:
+                    case mc_BossAntiSoftlock_SimpleChatMessage_Command_BossReset5:
+                    case mc_BossAntiSoftlock_SimpleChatMessage_Command_BossReset6:
+                    case mc_BossAntiSoftlock_SimpleChatMessage_Command_BossReset7:
+                    case mc_BossAntiSoftlock_SimpleChatMessage_Command_BossReset8:
+                        return cfgBossAntiSoftlock_Command.Value;
                 }
             }
             return true;
@@ -833,8 +833,8 @@ namespace ror2ChatFilterMod
 
             if (modloaded_LostInTransit)
             {
-                if (baseToken == modcompat_LostInTransit_BodyChatMessage_BaseToken_BossHunterOption1Token
-                    || baseToken == modcompat_LostInTransit_BodyChatMessage_BaseToken_BossHunterOption2Token)
+                if (baseToken == mc_LostInTransit_BodyChatMessage_BaseToken_BossHunterOption1Token
+                    || baseToken == mc_LostInTransit_BodyChatMessage_BaseToken_BossHunterOption2Token)
                     return ShouldShowClient(chatMessage, cfgLostInTransit_BossHunterBeatingEmbryo);
             }
 
@@ -848,8 +848,8 @@ namespace ror2ChatFilterMod
 
             if (modloaded_TinkersSatchel)
             {
-                if (baseToken == modcompat_TinkersSatchel_SubjectChatMessage_BaseToken_MonkeyPawActivate)
-                    return ShouldShowClient(chatMessage, cfgModCompat_TinkersSatchel_MonkeyPawActivate);
+                if (baseToken == mc_TinkersSatchel_SubjectChatMessage_BaseToken_MonkeyPawActivate)
+                    return ShouldShowClient(chatMessage, cfgTinkersSatchel_MonkeyPawActivate);
             }
 
             return true;
@@ -862,8 +862,8 @@ namespace ror2ChatFilterMod
 
             if (modloaded_TinkersSatchel)
             {
-                if (baseToken == modcompat_TinkersSatchel_ColoredTokenChatMessage_BaseToken_MonkeyPawItemGrant)
-                    return cfgModCompat_TinkersSatchel_MonkeyPawItemGrant.Value;
+                if (baseToken == mc_TinkersSatchel_ColoredTokenChatMessage_BaseToken_MonkeyPawItemGrant)
+                    return cfgTinkersSatchel_MonkeyPawItemGrant.Value;
             }
 
             return true;
