@@ -37,7 +37,7 @@ namespace ror2ChatFilterMod
     [BepInDependency("com.justinderby.bossantisoftlock", BepInDependency.DependencyFlags.SoftDependency)]
     public class Main : BaseUnityPlugin
     {
-        public static ConfigEntry<string> cfgTimestampFormat;
+        //public static ConfigEntry<string> cfgTimestampFormat;
 
         public static ConfigEntry<ChatFilterType> cfgPlayerPickupMessages;
         public static ConfigEntry<bool> cfgNPCPickupMessages;
@@ -355,7 +355,7 @@ namespace ror2ChatFilterMod
                 return Config.Bind(clientKey, k, t, d);
             }
             cfgPlayerPickupMessages = Config.Bind(clientKey, "Player Pickup", ChatFilterType.All, "<style=cEvent>{0} picked up {1}{2}</color>");
-            cfgTimestampFormat = Config.Bind(clientKey, "Timestamp Format", "{0} {1}", "First parameter is the timestamp, the second is the original message. Leave empty to disable.");
+            //cfgTimestampFormat = Config.Bind(clientKey, "Timestamp Format", "{0} {1}", "First parameter is the timestamp, the second is the original message. Leave empty to disable.");
 
             cfgDeathMessages = Bind2("Death", ChatFilterType.All, "");
             cfgJoinMessages = Bind2("Join", ChatFilterType.All, "<style=cEvent>{0} connected.</color>");
