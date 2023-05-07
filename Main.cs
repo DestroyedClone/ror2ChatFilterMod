@@ -11,7 +11,7 @@ using System.Security.Permissions;
 
 namespace ror2ChatFilterMod
 {
-    [BepInPlugin("com.DestroyedClone.RoR2ChatFilterMod", "Chat Filter Mod", "1.0.0")]
+    [BepInPlugin("com.DestroyedClone.ChatFilterMod", "Chat Filter Mod", "1.0.0")]
     [BepInDependency("com.rune580.riskofoptions", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("com.justinderby.vstwitch", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("com.TheBestAssociatedLargelyLudicrousSillyheadGroup.GOTCE", BepInDependency.DependencyFlags.SoftDependency)]
@@ -82,6 +82,18 @@ namespace ror2ChatFilterMod
 
             On.RoR2.Chat.AddMessage_ChatMessageBase += ChatFilter;
             ModCompat.Initialize(Config);
+            //On.RoR2.Stats.StatSheet.GetStatValueULong_StatDef += StatSheet_GetStatValueULong_StatDef;
+        }
+
+        private ulong StatSheet_GetStatValueULong_StatDef(On.RoR2.Stats.StatSheet.orig_GetStatValueULong_StatDef orig, RoR2.Stats.StatSheet self, RoR2.Stats.StatDef statDef)
+        {
+            try
+            {
+                return orig(self, statDef);
+            } catch
+            {
+                return 0;
+            }
         }
 
         public static bool ShouldShowClient(ChatMessageBase chatMessage, ConfigEntry<ChatFilterType> configEntry)
